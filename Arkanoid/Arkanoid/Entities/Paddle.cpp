@@ -17,15 +17,16 @@ Paddle::~Paddle()
 bool Paddle::Start()
 {
 	size.x = 150.0f;
-	size.y = 30.0f;
+	size.y = 20.0f;
 	shape.setSize(size);
 
 	position.x = 400.0f;
-	position.y = 500.0f;
+	position.y = 700.0f;
 	shape.setPosition(position);
 
-	shape.setFillColor(sf::Color::Blue);
-
+	shape.setFillColor(sf::Color({ 99, 164, 214 }));
+	shape.setOutlineThickness(2.0f);
+	shape.setOutlineColor({ sf::Color({15, 15, 15}) });
 	return true;
 }
 

@@ -6,6 +6,8 @@
 
 #include <vector>
 
+class Ball;
+
 class GameModule : public Module
 {
 public:
@@ -17,9 +19,11 @@ public:
 	UpdateState PostUpdate(const float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
+	void OnMiss();
+
 	const std::vector<Entity*>& GetAllEntities() const { return entities; }
 
 private:
 	std::vector<Entity*> entities;
-
+	Ball* ball;
 };

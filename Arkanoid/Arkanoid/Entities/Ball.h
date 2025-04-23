@@ -8,13 +8,14 @@ class Ball : public Entity
 {
 public:
 	Ball();
-	Ball(const sf::Vector2f& pos);
 	~Ball();
 
 	bool Start() override;
 	UpdateState Update(const float deltaTime) override;
 	UpdateState Draw() override;
 	bool Close() override;
+
+	void Reset();
 
 private:
 	void Move(const float deltaTime);

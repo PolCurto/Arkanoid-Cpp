@@ -6,9 +6,19 @@
 
 GameModule::GameModule()
 {
-	entities.push_back(new Ball());
-	entities.push_back(new Block());
+	entities.push_back(ball = new Ball());
 	entities.push_back(new Paddle());
+
+	// Set all the blocks
+	const uint8_t rows = 8;
+	const uint8_t columns = 15;
+	for (uint8_t x = 0; x < columns; ++x)
+	{
+		for (uint8_t y = 0; y < rows; ++y)
+		{
+			entities.push_back(new Block(x * 80, y * 30 + 60));
+		}
+	}
 }
 
 GameModule::~GameModule()
@@ -67,4 +77,11 @@ bool GameModule::Close()
 	}
 
 	return state;
+}
+
+void GameModule::OnMiss()
+{
+	ball->Reset();
+
+	// TODO: subtract score or something like that
 }

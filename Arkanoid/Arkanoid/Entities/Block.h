@@ -8,6 +8,7 @@ class Block : public Entity
 {
 public:
 	Block();
+	Block(const float x, const float y);
 	Block(const EntityType type);
 	~Block();
 
@@ -16,6 +17,13 @@ public:
 	virtual UpdateState Draw() override;
 	virtual bool Close() override;
 
+	void OnHit(const int damage);
+
+private:
+	void Destroy();
+
 protected:
 	sf::RectangleShape shape;
+
+	unsigned int life;
 };
