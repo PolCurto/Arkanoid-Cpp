@@ -16,7 +16,9 @@ Paddle::~Paddle()
 
 bool Paddle::Start()
 {
-	shape.setSize({ 100.0f, 50.0f });
+	size.x = 150.0f;
+	size.y = 30.0f;
+	shape.setSize(size);
 
 	position.x = 400.0f;
 	position.y = 500.0f;
@@ -63,6 +65,12 @@ void Paddle::GetInputs()
 
 void Paddle::Move(const float deltaTime)
 {
-	position.x += currentVelocity * deltaTime;
-	shape.setPosition(position);
+	float finalPos = position.x + currentVelocity * deltaTime;
+
+	// Avoid going out of bounds
+	if (finalPos > 0 && finalPos + size.x < SCREEN_WIDTH)
+	{
+		position.x = finalPos;
+		shape.setPosition(position);
+	}
 }

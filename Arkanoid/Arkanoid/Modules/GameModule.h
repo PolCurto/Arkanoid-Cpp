@@ -17,6 +17,8 @@ public:
 	UpdateState PostUpdate(const float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
+	const std::vector<Entity*>& GetAllEntities() const { return entities; }
+
 private:
 	std::vector<Entity*> entities;
 

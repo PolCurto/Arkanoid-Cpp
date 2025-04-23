@@ -17,5 +17,11 @@ public:
 	bool Close() override;
 
 private:
+	void Move(const float deltaTime);
+
+private:
 	sf::CircleShape shape;
+
+	sf::Vector2f direction = {1.0f, 1.0f};
+	float velocity = 500;
 };
