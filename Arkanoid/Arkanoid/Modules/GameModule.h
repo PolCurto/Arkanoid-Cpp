@@ -10,6 +10,7 @@ public:
 
 	bool Start() override;
 	UpdateState Update() override;
+	UpdateState PostUpdate() override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
 private:

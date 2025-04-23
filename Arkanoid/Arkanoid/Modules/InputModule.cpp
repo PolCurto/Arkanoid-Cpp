@@ -1,6 +1,8 @@
 #include "InputModule.h"
 
-InputModule::InputModule()
+#include <SFML/Graphics.hpp>
+
+InputModule::InputModule(sf::RenderWindow* window) : mainWindow(window)
 {
 
 }
@@ -17,7 +19,16 @@ bool InputModule::Start()
 
 UpdateState InputModule::Update()
 {
-	return UPDATE_CONTINUE;
+	UpdateState state = UPDATE_CONTINUE;
+
+	while (const std::optional event = mainWindow->pollEvent())
+	{
+		if (event->is<sf::Event::Closed>()) {
+			state = UPDATE_STOP;
+		}
+	}
+
+	return state;
 }
 
 bool InputModule::Close()

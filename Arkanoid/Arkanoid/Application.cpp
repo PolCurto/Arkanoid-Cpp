@@ -9,10 +9,10 @@
 Application::Application()
 {
 	modules.push_back(window = new WindowModule());
-	modules.push_back(input = new InputModule());
+	modules.push_back(input = new InputModule(window->GetWindow()));
 	modules.push_back(game = new GameModule());
 	modules.push_back(audio = new AudioModule());
-	modules.push_back(renderer = new RenderModule());
+	modules.push_back(renderer = new RenderModule(window->GetWindow()));
 }
 
 Application::~Application()
@@ -31,6 +31,7 @@ bool Application::Start()
 	for (Module* module : modules)
 	{
 		state = module->Start();
+		if (!state) break;
 	}
 
 	return state;
@@ -43,6 +44,15 @@ UpdateState Application::Update()
 	for (Module* module : modules)
 	{
 		state = module->Update();
+		if (state != UPDATE_CONTINUE) break;
+	}
+
+	if (state != UPDATE_CONTINUE) return state;
+
+	for (Module* module : modules)
+	{
+		state = module->PostUpdate();
+		if (state != UPDATE_CONTINUE) break;
 	}
 
 	return state;
@@ -55,6 +65,7 @@ bool Application::Close()
 	for (Module* module : modules)
 	{
 		state = module->Close();
+		if (!state) break;
 	}
 
 	return state;

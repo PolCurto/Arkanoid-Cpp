@@ -6,7 +6,7 @@
 
 namespace sf
 {
-	class Window;
+	class RenderWindow;
 }
 
 class WindowModule : public Module
@@ -17,8 +17,11 @@ public:
 
 	bool Start() override;
 	UpdateState Update() override;
+	UpdateState PostUpdate() override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
+	sf::RenderWindow* GetWindow() { return window; }
+
 private:
-	std::unique_ptr<sf::Window> window;
+	sf::RenderWindow* window;
 };

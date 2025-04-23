@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-RenderModule::RenderModule()
+RenderModule::RenderModule(sf::RenderWindow* window) : mainWindow(window)
 {
 
 }
@@ -19,6 +19,13 @@ bool RenderModule::Start()
 
 UpdateState RenderModule::Update()
 {
+	mainWindow->clear(sf::Color::Black);
+	return UPDATE_CONTINUE;
+}
+
+UpdateState RenderModule::PostUpdate()
+{
+	mainWindow->display();
 	return UPDATE_CONTINUE;
 }
 

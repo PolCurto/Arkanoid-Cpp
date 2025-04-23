@@ -1,10 +1,12 @@
 #include "WindowModule.h"
 
-#include <SFML/Window.hpp>
+#include "InputModule.h"
+
+#include <SFML/Graphics.hpp>
 
 WindowModule::WindowModule()
 {
-
+	window = new sf::RenderWindow();
 }
 
 WindowModule::~WindowModule()
@@ -14,26 +16,18 @@ WindowModule::~WindowModule()
 
 bool WindowModule::Start()
 {
-	window = std::make_unique<sf::Window>();
-	window->create(sf::VideoMode({ 800, 800 }), "Arkanoid");
+	window->create(sf::VideoMode({ 800, 600 }), "Arkanoid");
 	return true;
 }
 
 UpdateState WindowModule::Update()
 {
-	UpdateState state = UPDATE_CONTINUE;
-
-	while (const std::optional event = window->pollEvent())
-	{
-		if (event->is<sf::Event::Closed>()) {
-			window->close();
-			state = UPDATE_STOP;
-		}
-	}
-	return state;
+	return UPDATE_CONTINUE;
 }
 
 bool WindowModule::Close()
 {
+	window->close();
+	delete window;
 	return true;
 }
