@@ -16,7 +16,10 @@ WindowModule::~WindowModule()
 
 bool WindowModule::Start()
 {
-	window->create(sf::VideoMode({ 800, 600 }), "Arkanoid");
+	sf::ContextSettings settings;
+	settings.antiAliasingLevel = 8;
+
+	window->create(sf::VideoMode({ 800, 600 }), "Arkanoid", sf::Style::Default, sf::State::Windowed, settings);
 	return true;
 }
 

@@ -2,6 +2,10 @@
 
 #include "Module.h"
 
+#include "Entities/Entity.h"
+
+#include <vector>
+
 class GameModule : public Module
 {
 public:
@@ -14,5 +18,6 @@ public:
 	bool Close() override;
 
 private:
+	std::vector<Entity*> entities;
 
 };

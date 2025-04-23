@@ -5,6 +5,7 @@
 namespace sf
 {
 	class RenderWindow;
+	class Shape;
 }
 
 class RenderModule : public Module
@@ -17,6 +18,8 @@ public:
 	UpdateState Update() override;
 	UpdateState PostUpdate() override;
 	bool Close() override;
+
+	void DrawShape(const sf::Shape& shape);
 
 private:
 	sf::RenderWindow* mainWindow;
