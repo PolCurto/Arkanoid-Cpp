@@ -1,5 +1,7 @@
 #include "RenderModule.h"
 
+#include <SFML/Graphics.hpp>
+
 RenderModule::RenderModule()
 {
 

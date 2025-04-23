@@ -1,8 +1,6 @@
 #include "Application.h"
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
-
 
 Application* App = nullptr;
 

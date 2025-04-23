@@ -136,6 +136,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Entities\Ball.cpp" />
+    <ClCompile Include="Entities\Block.cpp" />
+    <ClCompile Include="Entities\Paddle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modules\AudioModule.cpp" />
     <ClCompile Include="Modules\GameModule.cpp" />
@@ -145,7 +148,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Entities\Ball.h" />
+    <ClInclude Include="Entities\Block.h" />
     <ClInclude Include="Entities\Entity.h" />
+    <ClInclude Include="Entities\Paddle.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Modules\AudioModule.h" />
     <ClInclude Include="Modules\GameModule.h" />

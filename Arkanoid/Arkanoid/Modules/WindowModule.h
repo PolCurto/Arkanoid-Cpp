@@ -2,6 +2,13 @@
 
 #include "Module.h"
 
+#include <memory>
+
+namespace sf
+{
+	class Window;
+}
+
 class WindowModule : public Module
 {
 public:
@@ -13,5 +20,5 @@ public:
 	bool Close() override;
 
 private:
-
+	std::unique_ptr<sf::Window> window;
 };
