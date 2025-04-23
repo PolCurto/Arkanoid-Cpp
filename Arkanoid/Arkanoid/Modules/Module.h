@@ -9,7 +9,7 @@ public:
 	~Module() = default;
 
 	virtual bool Start() = 0;
-	virtual UpdateState Update() = 0;
-	virtual UpdateState PostUpdate() = 0;
+	virtual UpdateState Update(const float deltaTime) = 0;
+	virtual UpdateState PostUpdate(const float deltaTime) = 0;
 	virtual bool Close() = 0;
 };

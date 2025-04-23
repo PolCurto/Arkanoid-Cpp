@@ -2,16 +2,20 @@
 
 #include "Entity.h"
 
+#include <SFML/Graphics/RectangleShape.hpp>
+
 class Block : public Entity
 {
 public:
 	Block();
+	Block(const EntityType type);
 	~Block();
 
-	bool Start() override;
-	UpdateState Update() override;
-	bool Close() override;
+	virtual bool Start() override;
+	virtual UpdateState Update(const float deltaTime) override;
+	virtual UpdateState Draw() override;
+	virtual bool Close() override;
 
-private:
-
+protected:
+	sf::RectangleShape shape;
 };

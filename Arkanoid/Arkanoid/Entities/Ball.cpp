@@ -26,7 +26,7 @@ bool Ball::Start()
 	return true;
 }
 
-UpdateState Ball::Update()
+UpdateState Ball::Update(const float deltaTime)
 {
 	return UPDATE_CONTINUE;
 }

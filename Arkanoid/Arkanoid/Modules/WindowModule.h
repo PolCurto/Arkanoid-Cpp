@@ -16,8 +16,8 @@ public:
 	~WindowModule();
 
 	bool Start() override;
-	UpdateState Update() override;
-	UpdateState PostUpdate() override { return UPDATE_CONTINUE; };
+	UpdateState Update(const float deltaTime) override { return UPDATE_CONTINUE; };
+	UpdateState PostUpdate(const float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
 	sf::RenderWindow* GetWindow() { return window; }

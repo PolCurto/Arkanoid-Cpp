@@ -19,7 +19,7 @@ public:
 	~Application();
 
 	bool Start();
-	UpdateState Update();
+	UpdateState Update(const float deltaTime);
 	bool Close();
 
 public:

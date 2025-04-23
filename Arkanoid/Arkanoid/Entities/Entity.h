@@ -20,7 +20,7 @@ public:
 	~Entity() = default;
 
 	virtual bool Start() { return true; };
-	virtual UpdateState Update() { return UPDATE_CONTINUE; };
+	virtual UpdateState Update(const float deltaTime) { return UPDATE_CONTINUE; };
 	virtual UpdateState Draw() { return UPDATE_CONTINUE; };
 	virtual bool Close() { return true; };
 

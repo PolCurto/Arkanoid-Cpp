@@ -1,6 +1,8 @@
 #include "Application.h"
 
 #include <iostream>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 
 Application* App = nullptr;
 
@@ -15,6 +17,8 @@ enum class MainState
 int main()
 {
 	App = new Application();
+	sf::Clock clock;
+	float deltaTime;
 	MainState state = MainState::START;
 	while (state != MainState::EXIT)
 	{
@@ -33,7 +37,8 @@ int main()
 			break;
 
 		case MainState::UPDATE:
-			switch (App->Update())
+			deltaTime = clock.restart().asSeconds();
+			switch (App->Update(deltaTime))
 			{
 			case UPDATE_ERROR:
 				state = MainState::EXIT;

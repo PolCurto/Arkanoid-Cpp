@@ -17,9 +17,10 @@ bool InputModule::Start()
 	return true;
 }
 
-UpdateState InputModule::Update()
+UpdateState InputModule::Update(const float deltaTime)
 {
 	UpdateState state = UPDATE_CONTINUE;
+
 
 	while (const std::optional event = mainWindow->pollEvent())
 	{
@@ -34,4 +35,9 @@ UpdateState InputModule::Update()
 bool InputModule::Close()
 {
 	return true;
+}
+
+bool InputModule::IsKeyDown(sf::Keyboard::Scan key) const
+{
+	return sf::Keyboard::isKeyPressed(key);
 }

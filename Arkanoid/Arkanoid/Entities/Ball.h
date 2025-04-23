@@ -12,7 +12,7 @@ public:
 	~Ball();
 
 	bool Start() override;
-	UpdateState Update() override;
+	UpdateState Update(const float deltaTime) override;
 	UpdateState Draw() override;
 	bool Close() override;
 

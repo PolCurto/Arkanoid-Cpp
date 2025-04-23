@@ -9,10 +9,10 @@
 Application::Application()
 {
 	modules.push_back(window = new WindowModule());
+	modules.push_back(renderer = new RenderModule(window->GetWindow()));
 	modules.push_back(input = new InputModule(window->GetWindow()));
 	modules.push_back(game = new GameModule());
 	modules.push_back(audio = new AudioModule());
-	modules.push_back(renderer = new RenderModule(window->GetWindow()));
 }
 
 Application::~Application()
@@ -37,13 +37,13 @@ bool Application::Start()
 	return state;
 }
 
-UpdateState Application::Update()
+UpdateState Application::Update(const float deltaTime)
 {
 	UpdateState state = UPDATE_CONTINUE;
 
 	for (Module* module : modules)
 	{
-		state = module->Update();
+		state = module->Update(deltaTime);
 		if (state != UPDATE_CONTINUE) break;
 	}
 
@@ -51,7 +51,7 @@ UpdateState Application::Update()
 
 	for (Module* module : modules)
 	{
-		state = module->PostUpdate();
+		state = module->PostUpdate(deltaTime);
 		if (state != UPDATE_CONTINUE) break;
 	}
 

@@ -15,8 +15,8 @@ public:
 	~RenderModule();
 
 	bool Start() override;
-	UpdateState Update() override;
-	UpdateState PostUpdate() override;
+	UpdateState Update(const float deltaTime) override;
+	UpdateState PostUpdate(const float deltaTime) override;
 	bool Close() override;
 
 	void DrawShape(const sf::Shape& shape);
