@@ -105,7 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include;$(ProjectDir);$(ProjectDir)\Modules</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include;$(ProjectDir);$(ProjectDir)\Modules</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -137,6 +137,11 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Modules\AudioModule.cpp" />
+    <ClCompile Include="Modules\GameModule.cpp" />
+    <ClCompile Include="Modules\InputModule.cpp" />
+    <ClCompile Include="Modules\RenderModule.cpp" />
+    <ClCompile Include="Modules\WindowModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />

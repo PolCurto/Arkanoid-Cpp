@@ -1,43 +1,63 @@
+#include "Application.h"
+
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "Application.h"
 
 Application* App = nullptr;
 
 enum class MainState
 {
-    START,
-    UPDATE,
-    FINISH,
-    EXIT
+	START,
+	UPDATE,
+	FINISH,
+	EXIT
 };
 
 int main()
 {
-    //MainState state = MainState::START;
-    //while (state != MainState::EXIT)
-    //{
-    //
-    //}
+	App = new Application();
+	MainState state = MainState::START;
+	while (state != MainState::EXIT)
+	{
+		switch (state)
+		{
+		case MainState::START:
+			if (App->Start()) 
+			{
+				state = MainState::UPDATE;
+			}
+			else 
+			{
+				state = MainState::EXIT;
+				std::cout << "Error in application Start" << std::endl;
+			}
+			break;
 
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+		case MainState::UPDATE:
+			switch (App->Update())
+			{
+			case UPDATE_ERROR:
+				state = MainState::EXIT;
+				std::cout << "Error in application Update" << std::endl;
+				break;
 
-    while (window.isOpen())
-    {
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-                window.close();
-        }
+			case UPDATE_STOP:
+				state = MainState::FINISH;
+				break;
+			}
+			break;
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+		case MainState::FINISH:
+			if (!App->Close()) std::cout << "Error in application Close" << std::endl;
+			state = MainState::EXIT;	
+			break;
+		}
+	}
 
-    return 0;
+	delete App;
+
+	return 0;
 }
 
 

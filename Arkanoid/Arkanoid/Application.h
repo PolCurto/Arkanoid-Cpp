@@ -3,9 +3,14 @@
 #include "Globals.h"
 
 #include <vector>
+#include <memory>
 
+class Module;
 class WindowModule;
 class RenderModule;
+class GameModule;
+class InputModule;
+class AudioModule;
 
 class Application
 {
@@ -17,7 +22,15 @@ public:
 	UpdateState Update();
 	bool Close();
 
+public:
+	WindowModule* window;
+	RenderModule* renderer;
+	GameModule* game;
+	InputModule* input;
+	AudioModule* audio;
+
 private:
+	std::vector<Module*> modules;
 
 };
 
