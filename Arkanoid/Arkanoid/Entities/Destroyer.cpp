@@ -1,5 +1,9 @@
 #include "Destroyer.h"
 
+#include "Application.h"
+#include "GameModule.h"
+#include "Ball.h"
+
 Destroyer::Destroyer(const sf::Vector2f position) : Item(position, EntityType::Destroyer)
 {
 
@@ -26,4 +30,9 @@ void Destroyer::Move(const float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);
+
+	if (CheckCollisions())
+	{
+		App->game->GetBall()->Upgrade();
+	}
 }

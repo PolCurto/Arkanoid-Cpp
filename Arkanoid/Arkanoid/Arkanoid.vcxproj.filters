@@ -51,14 +51,14 @@
     <ClCompile Include="Entities\Item.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Destroyer.cpp">
+      <Filter>Entities\Items</Filter>
+    </ClCompile>
     <ClCompile Include="Entities\Enlarger.cpp">
-      <Filter>Entities</Filter>
+      <Filter>Entities\Items</Filter>
     </ClCompile>
     <ClCompile Include="Entities\Reducer.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Entities\Destroyer.cpp">
-      <Filter>Entities</Filter>
+      <Filter>Entities\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,10 +105,10 @@
       <Filter>Entities\Items</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Reducer.h">
-      <Filter>Modules</Filter>
+      <Filter>Entities\Items</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Destroyer.h">
-      <Filter>Modules</Filter>
+      <Filter>Entities\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

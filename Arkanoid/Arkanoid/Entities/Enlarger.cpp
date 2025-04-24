@@ -1,5 +1,9 @@
 #include "Enlarger.h"
 
+#include "Application.h"
+#include "GameModule.h"
+#include "Paddle.h"
+
 Enlarger::Enlarger(const sf::Vector2f position) : Item(position, EntityType::Enlarger)
 {
 
@@ -26,4 +30,9 @@ void Enlarger::Move(const float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);
+
+	if (CheckCollisions())
+	{
+		App->game->GetPaddle()->Grow();
+	}
 }

@@ -17,6 +17,7 @@ public:
 
 protected:
 	virtual void Move(const float deltaTime) {};
+	bool CheckCollisions();
 
 protected:
 	sf::CircleShape shape;

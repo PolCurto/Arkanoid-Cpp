@@ -10,7 +10,7 @@
 GameModule::GameModule()
 {
 	entities.push_back(ball = new Ball());
-	entities.push_back(new Paddle());
+	entities.push_back(paddle = new Paddle());
 
 	const std::vector<sf::Color> colors = {
 		sf::Color(143, 143, 143), sf::Color(255, 33, 33), sf::Color(255, 233, 33),

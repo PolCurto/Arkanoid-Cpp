@@ -27,14 +27,15 @@ bool Ball::Start()
 	position.y = 500.0f;
 	shape.setPosition(position);
 
-	shape.setFillColor(sf::Color({ 0, 179, 255 }));
+	shape.setFillColor(defaultColor);
 	shape.setOutlineThickness(2.0f);
-	shape.setOutlineColor({ sf::Color({255, 255, 255}) });
+	shape.setOutlineColor(defaultOutlineColor);
 	return true;
 }
 
 UpdateState Ball::Update(const float deltaTime)
 {
+	CheckEffects(deltaTime);
 	Move(deltaTime);
 	CheckCollisions();
 	// Increase ball speed over time
@@ -61,7 +62,15 @@ void Ball::Reset()
 	position.y = 500.0f;
 	shape.setPosition(position);
 
-	direction = { 0.0f, -1.0f };
+	direction = { 0.0f, 1.0f };
+}
+
+void Ball::Upgrade()
+{
+	isDestroyer = true;
+	timer = destroyerDuration;
+	shape.setFillColor({ 89, 255, 131 });
+	shape.setOutlineColor({ 255, 124, 122 });
 }
 
 void Ball::Move(const float deltaTime)
@@ -93,7 +102,7 @@ void Ball::CheckCollisions()
 			Block* block = static_cast<Block*>(entity);
 			if (shape.getGlobalBounds().findIntersection(block->GetBoundingBox()))
 			{
-				Bounce(block);
+				if (!isDestroyer) Bounce(block);
 				block->OnHit(hitDamage);
 			}
 		}
@@ -112,5 +121,24 @@ void Ball::Bounce(const Entity* otherEnt)
 	const sf::Vector2f ballCenter = position + (size / 2.0f);
 	const sf::Vector2f otherCenter = otherEnt->GetPosition() + (otherEnt->GetSize() / 2.0f);
 	direction = (ballCenter - otherCenter).normalized();
+}
+
+void Ball::CheckEffects(const float deltaTime)
+{
+	if (!isDestroyer) return;
+
+	timer -= deltaTime;
+	if (timer <= 0)
+	{
+		RemoveEffect();
+		timer = 0;
+	}
+}
+
+void Ball::RemoveEffect()
+{
+	isDestroyer = false;
+	shape.setFillColor(defaultColor);
+	shape.setOutlineColor(defaultOutlineColor);
 }
 

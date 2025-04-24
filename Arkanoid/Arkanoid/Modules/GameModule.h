@@ -21,13 +21,12 @@ public:
 	bool Close() override;
 
 	void OnMiss();
-	void OnItem(const EntityType itemType);
-	
 	void AddEntity(Entity* newEntity) { entitiesToAdd.push_back(newEntity); }
 	void DeleteEntity(Entity* entity) { entitiesToDelete.push_back(entity); }
 
 	const std::vector<Entity*>& GetAllEntities() const { return entities; }
 	Paddle* GetPaddle() const { return paddle; }
+	Ball* GetBall() const { return ball; }
 
 private:
 	void ManageEntities();

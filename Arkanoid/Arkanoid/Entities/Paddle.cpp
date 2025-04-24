@@ -4,6 +4,8 @@
 #include "RenderModule.h"
 #include "InputModule.h"
 
+#include <iostream>
+
 Paddle::Paddle() : Block(EntityType::Paddle)
 {
 
@@ -16,7 +18,7 @@ Paddle::~Paddle()
 
 bool Paddle::Start()
 {
-	size.x = 150.0f;
+	size.x = defaultWidth;
 	size.y = 20.0f;
 	shape.setSize(size);
 
@@ -24,7 +26,7 @@ bool Paddle::Start()
 	position.y = 800.0f;
 	shape.setPosition(position);
 
-	shape.setFillColor(sf::Color({ 125, 125, 125 }));
+	shape.setFillColor(defaultColor);
 	shape.setOutlineThickness(2.0f);
 	shape.setOutlineColor({ sf::Color({15, 15, 15}) });
 	return true;
@@ -32,8 +34,7 @@ bool Paddle::Start()
 
 UpdateState Paddle::Update(const float deltaTime)
 {
-	currentVelocity = 0;
-
+	CheckEffects(deltaTime);
 	GetInputs();
 	Move(deltaTime);
 
@@ -51,8 +52,36 @@ bool Paddle::Close()
 	return true;
 }
 
+void Paddle::Grow()
+{
+	if (mode != PaddleMode::Large)
+	{
+		mode = PaddleMode::Large;
+		timer = effectDuration;
+		size.x = 300.0f;
+		shape.setPosition(position);
+		shape.setSize(size);
+		shape.setFillColor(sf::Color(175, 175, 175));
+	}
+}
+
+void Paddle::Shrink()
+{
+	if (mode != PaddleMode::Small)
+	{
+		mode = PaddleMode::Small;
+		timer = effectDuration;
+		size.x = 100.0f;
+		shape.setPosition(position);
+		shape.setSize(size);
+		shape.setFillColor(sf::Color(75, 75, 75));
+	}
+}
+
 void Paddle::GetInputs()
 {
+	currentVelocity = 0;
+
 	if (App->input->IsKeyDown(sf::Keyboard::Scan::Left))
 	{
 		currentVelocity -= velocity;
@@ -74,4 +103,24 @@ void Paddle::Move(const float deltaTime)
 		position.x = finalPos;
 		shape.setPosition(position);
 	}
+}
+
+void Paddle::CheckEffects(const float deltaTime)
+{
+	if (mode == PaddleMode::Default) return;
+
+	timer -= deltaTime;
+	if (timer <= 0) 
+	{
+		ResetSize();
+		timer = 0;
+	}
+}
+
+void Paddle::ResetSize()
+{
+	shape.setFillColor(defaultColor);
+	mode = PaddleMode::Default;
+	size.x = defaultWidth;
+	shape.setSize(size);
 }

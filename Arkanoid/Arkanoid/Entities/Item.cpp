@@ -26,6 +26,7 @@ bool Item::Start()
 UpdateState Item::Update(const float deltaTime)
 {
 	Move(deltaTime);
+	CheckCollisions();
 	return UPDATE_CONTINUE;
 }
 
@@ -38,4 +39,18 @@ UpdateState Item::Draw()
 bool Item::Close()
 {
 	return true;
+}
+
+bool Item::CheckCollisions()
+{
+	bool isColliding = false;
+
+	if (shape.getGlobalBounds().findIntersection(App->game->GetPaddle()->GetBoundingBox()))
+	{
+		isColliding = true;
+		position = sf::Vector2f(10000, 10000);
+		shape.setPosition(position);
+	}
+
+	return isColliding;
 }

@@ -95,7 +95,6 @@ void Block::Destroy()
 			App->game->AddEntity(new Destroyer(posToSpawn));
 			break;
 		}
-
 	}
 
 	// Move the block far away to avoid destroying it
