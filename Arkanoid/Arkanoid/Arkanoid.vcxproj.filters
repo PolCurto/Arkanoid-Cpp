@@ -54,6 +54,12 @@
     <ClCompile Include="Entities\Enlarger.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Reducer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\Destroyer.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\WindowModule.h">
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="Entities\Enlarger.h">
       <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Reducer.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Destroyer.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

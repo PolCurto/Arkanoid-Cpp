@@ -4,6 +4,8 @@
 #include "RenderModule.h"
 #include "GameModule.h"
 #include "Enlarger.h"
+#include "Reducer.h"
+#include "Destroyer.h"
 
 #include <random>
 
@@ -86,9 +88,11 @@ void Block::Destroy()
 			break;
 
 		case 1:
+			App->game->AddEntity(new Reducer(posToSpawn));
 			break;
 
 		case 2:
+			App->game->AddEntity(new Destroyer(posToSpawn));
 			break;
 		}
 
