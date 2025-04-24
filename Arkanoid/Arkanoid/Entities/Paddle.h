@@ -16,7 +16,7 @@ public:
 	~Paddle();
 
 	bool Start() override;
-	UpdateState Update(const float deltaTime) override;
+	UpdateState Update(float deltaTime) override;
 	UpdateState Draw() override;
 	bool Close() override;
 
@@ -25,8 +25,8 @@ public:
 
 private:
 	void GetInputs();
-	void Move(const float deltaTime);
-	void CheckEffects(const float deltaTime);
+	void Move(float deltaTime);
+	void CheckEffects(float deltaTime);
 	void ResetSize();
 
 private:

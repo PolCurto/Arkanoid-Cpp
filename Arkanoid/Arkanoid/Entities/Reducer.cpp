@@ -29,7 +29,7 @@ bool Reducer::Start()
 	return state;
 }
 
-void Reducer::Move(const float deltaTime)
+void Reducer::Move(float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);

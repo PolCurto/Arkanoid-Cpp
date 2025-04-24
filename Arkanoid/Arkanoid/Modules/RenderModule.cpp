@@ -17,13 +17,13 @@ bool RenderModule::Start()
 	return true;
 }
 
-UpdateState RenderModule::Update(const float deltaTime)
+UpdateState RenderModule::Update(float deltaTime)
 {
 	mainWindow->clear(sf::Color({ 22, 28, 217 }));
 	return UPDATE_CONTINUE;
 }
 
-UpdateState RenderModule::PostUpdate(const float deltaTime)
+UpdateState RenderModule::PostUpdate(float deltaTime)
 {
 	mainWindow->display();
 	return UPDATE_CONTINUE;

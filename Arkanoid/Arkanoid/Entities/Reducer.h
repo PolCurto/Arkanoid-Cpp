@@ -11,5 +11,5 @@ public:
 	bool Start() override;
 
 private:
-	void Move(const float deltaTime) override;
+	void Move(float deltaTime) override;
 };

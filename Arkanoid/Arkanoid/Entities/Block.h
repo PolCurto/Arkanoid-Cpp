@@ -13,7 +13,7 @@ public:
 	~Block();
 
 	virtual bool Start() override;
-	virtual UpdateState Update(const float deltaTime) override;
+	virtual UpdateState Update(float deltaTime) override;
 	virtual UpdateState Draw() override;
 	virtual bool Close() override;
 

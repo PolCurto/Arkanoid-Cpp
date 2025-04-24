@@ -37,7 +37,7 @@ bool Application::Start()
 	return state;
 }
 
-UpdateState Application::Update(const float deltaTime)
+UpdateState Application::Update(float deltaTime)
 {
 	UpdateState state = UPDATE_CONTINUE;
 

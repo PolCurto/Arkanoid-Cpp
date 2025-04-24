@@ -26,7 +26,7 @@ bool Destroyer::Start()
 	return state;
 }
 
-void Destroyer::Move(const float deltaTime)
+void Destroyer::Move(float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);

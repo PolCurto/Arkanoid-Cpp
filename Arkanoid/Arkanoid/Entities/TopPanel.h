@@ -18,7 +18,7 @@ public:
 	~TopPanel();
 
 	bool Start() override;
-	UpdateState Update(const float deltaTime) override { return UPDATE_CONTINUE; };
+	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };
 	UpdateState Draw() override;
 	bool Close() override;
 

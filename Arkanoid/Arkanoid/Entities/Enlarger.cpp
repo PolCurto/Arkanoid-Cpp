@@ -26,7 +26,7 @@ bool Enlarger::Start()
 	return state;
 }
 
-void Enlarger::Move(const float deltaTime)
+void Enlarger::Move(float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);

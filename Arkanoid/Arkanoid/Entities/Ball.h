@@ -11,7 +11,7 @@ public:
 	~Ball();
 
 	bool Start() override;
-	UpdateState Update(const float deltaTime) override;
+	UpdateState Update(float deltaTime) override;
 	UpdateState Draw() override;
 	bool Close() override;
 
@@ -19,10 +19,10 @@ public:
 	void Upgrade();
 
 private:
-	void Move(const float deltaTime);
+	void Move(float deltaTime);
 	void CheckCollisions();
 	void Bounce(const Entity* otherEnt);
-	void CheckEffects(const float deltaTime);
+	void CheckEffects(float deltaTime);
 	void RemoveEffect();
 
 private:

@@ -11,12 +11,12 @@ public:
 	~Item();
 
 	virtual bool Start() override;
-	virtual UpdateState Update(const float deltaTime) override;
+	virtual UpdateState Update(float deltaTime) override;
 	virtual UpdateState Draw() override;
 	virtual bool Close() override;
 
 protected:
-	virtual void Move(const float deltaTime) {};
+	virtual void Move(float deltaTime) {};
 	bool CheckCollisions();
 
 protected:

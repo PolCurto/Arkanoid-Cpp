@@ -15,7 +15,7 @@ bool AudioModule::Start()
 	return true;
 }
 
-UpdateState AudioModule::Update(const float deltaTime)
+UpdateState AudioModule::Update(float deltaTime)
 {
 	return UPDATE_CONTINUE;
 }

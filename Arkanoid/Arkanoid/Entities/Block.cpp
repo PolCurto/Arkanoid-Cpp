@@ -44,7 +44,7 @@ bool Block::Start()
 	return true;
 }
 
-UpdateState Block::Update(const float deltaTime)
+UpdateState Block::Update(float deltaTime)
 {
 	return UPDATE_CONTINUE;
 }

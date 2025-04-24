@@ -32,7 +32,7 @@ bool Paddle::Start()
 	return true;
 }
 
-UpdateState Paddle::Update(const float deltaTime)
+UpdateState Paddle::Update(float deltaTime)
 {
 	CheckEffects(deltaTime);
 	GetInputs();
@@ -93,7 +93,7 @@ void Paddle::GetInputs()
 	}
 }
 
-void Paddle::Move(const float deltaTime)
+void Paddle::Move(float deltaTime)
 {
 	float finalPos = position.x + currentVelocity * deltaTime;
 
@@ -105,7 +105,7 @@ void Paddle::Move(const float deltaTime)
 	}
 }
 
-void Paddle::CheckEffects(const float deltaTime)
+void Paddle::CheckEffects(float deltaTime)
 {
 	if (mode == PaddleMode::Default) return;
 

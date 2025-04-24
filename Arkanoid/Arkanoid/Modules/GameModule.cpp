@@ -55,27 +55,35 @@ bool GameModule::Start()
 	return state;
 }
 
-UpdateState GameModule::Update(const float deltaTime)
+UpdateState GameModule::Update(float deltaTime)
 {
-	UpdateState state = UPDATE_CONTINUE;
-	ManageEntities();
-
-	// First update the entities' logic
-	for (Entity* entity : entities)
+	if (isGameOver)
 	{
-		state = entity->Update(deltaTime);
-		if (state != UPDATE_CONTINUE) break;
+
 	}
-
-	if (state != UPDATE_CONTINUE) return state;
-
-	// Draw them afterwards
-	for (Entity* entity : entities)
+	else
 	{
-		state = entity->Draw();
-		if (state != UPDATE_CONTINUE) break;
-	}
+		if (isPaused) deltaTime = 0;
 
+		UpdateState state = UPDATE_CONTINUE;
+		ManageEntities();
+
+		// First update the entities' logic
+		for (Entity* entity : entities)
+		{
+			state = entity->Update(deltaTime);
+			if (state != UPDATE_CONTINUE) break;
+		}
+
+		if (state != UPDATE_CONTINUE) return state;
+
+		// Draw them afterwards
+		for (Entity* entity : entities)
+		{
+			state = entity->Draw();
+			if (state != UPDATE_CONTINUE) break;
+		}
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -101,10 +109,7 @@ void GameModule::OnMiss()
 	if (score < 0) score = 0;
 	lives -= 1;
 
-	if (lives == 0)
-	{
-		//TODO: Game over
-	}
+	if (lives == 0) EndGame();
 
 	topPanel->SetScore(score);
 	topPanel->SetLife(lives);
@@ -141,6 +146,12 @@ void GameModule::AddScore(int newScore)
 	topPanel->SetScore(score, color);
 }
 
+void GameModule::PauseGame()
+{
+	isPaused = !isPaused;
+	//TODO: Pantalla pausa maybe
+}
+
 void GameModule::ManageEntities()
 {
 	for (Entity* oldEntity : entitiesToDelete)
@@ -162,4 +173,11 @@ void GameModule::ManageEntities()
 
 	entitiesToDelete.clear();
 	entitiesToAdd.clear();
+}
+
+void GameModule::EndGame()
+{
+	isGameOver = true;
+
+	//TODO: ventana de game over press r to continue
 }

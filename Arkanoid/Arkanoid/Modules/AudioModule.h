@@ -9,8 +9,8 @@ public:
 	~AudioModule();
 
 	bool Start() override;
-	UpdateState Update(const float deltaTime) override;
-	UpdateState PostUpdate(const float deltaTime) override { return UPDATE_CONTINUE; };
+	UpdateState Update(float deltaTime) override;
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
 private:

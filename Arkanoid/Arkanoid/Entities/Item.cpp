@@ -23,7 +23,7 @@ bool Item::Start()
 	return true;
 }
 
-UpdateState Item::Update(const float deltaTime)
+UpdateState Item::Update(float deltaTime)
 {
 	Move(deltaTime);
 	CheckCollisions();

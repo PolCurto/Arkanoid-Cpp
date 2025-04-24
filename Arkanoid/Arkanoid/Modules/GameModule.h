@@ -17,12 +17,13 @@ public:
 	~GameModule();
 
 	bool Start() override;
-	UpdateState Update(const float deltaTime) override;
-	UpdateState PostUpdate(const float deltaTime) override { return UPDATE_CONTINUE; };
+	UpdateState Update(float deltaTime) override;
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
 	void OnMiss();
 	void AddScore(int newScore);
+	void PauseGame();
 
 	void AddEntity(Entity* newEntity) { entitiesToAdd.push_back(newEntity); }
 	void DeleteEntity(Entity* entity) { entitiesToDelete.push_back(entity); }
@@ -33,6 +34,7 @@ public:
 
 private:
 	void ManageEntities();
+	void EndGame();
 
 	Ball* ball;
 	Paddle* paddle;

@@ -33,7 +33,7 @@ bool Ball::Start()
 	return true;
 }
 
-UpdateState Ball::Update(const float deltaTime)
+UpdateState Ball::Update(float deltaTime)
 {
 	CheckEffects(deltaTime);
 	Move(deltaTime);
@@ -73,7 +73,7 @@ void Ball::Upgrade()
 	shape.setOutlineColor({ 255, 124, 122 });
 }
 
-void Ball::Move(const float deltaTime)
+void Ball::Move(float deltaTime)
 {
 	sf::Vector2f finalPos = position + currentVelocity * direction * deltaTime;
 
@@ -123,7 +123,7 @@ void Ball::Bounce(const Entity* otherEnt)
 	direction = (ballCenter - otherCenter).normalized();
 }
 
-void Ball::CheckEffects(const float deltaTime)
+void Ball::CheckEffects(float deltaTime)
 {
 	if (!isDestroyer) return;
 
