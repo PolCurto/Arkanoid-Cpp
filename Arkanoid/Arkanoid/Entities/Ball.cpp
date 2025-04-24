@@ -87,48 +87,23 @@ void Ball::CheckCollisions()
 {
 	for (Entity* entity : App->game->GetAllEntities())
 	{
-		switch (entity->GetType())
+		EntityType entityType = entity->GetType();
+		if (entityType == EntityType::Block)
 		{
-		case EntityType::Block: {
 			Block* block = static_cast<Block*>(entity);
 			if (shape.getGlobalBounds().findIntersection(block->GetBoundingBox()))
 			{
-				block->OnHit(hitDamage);
 				Bounce(block);
+				block->OnHit(hitDamage);
 			}
-			break;
 		}
-		
-		case EntityType::Paddle:
+		else if (entityType == EntityType::Paddle)
+		{
 			if (shape.getGlobalBounds().findIntersection(static_cast<Paddle*>(entity)->GetBoundingBox()))
 			{
 				Bounce(entity);
 			}
-			break;
-		
-		case EntityType::PowerUp:
-			break;
 		}
-		//if (entity->GetType() == EntityType::Block)
-		//{
-		//	Block* block = static_cast<Block*>(entity);
-		//	if (shape.getGlobalBounds().findIntersection(block->GetBoundingBox()))
-		//	{
-		//		block->OnHit(hitDamage);
-		//		Bounce(block);
-		//	}
-		//}
-		//else if (entity->GetType() == EntityType::Paddle) 
-		//{
-		//	if (shape.getGlobalBounds().findIntersection(static_cast<Paddle*>(entity)->GetBoundingBox()))
-		//	{
-		//		Bounce(entity);
-		//	}
-		//}
-		//else if (entity->GetType() == EntityType::PowerUp)
-		//{
-		//
-		//}
 	}
 }
 

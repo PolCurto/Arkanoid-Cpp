@@ -138,6 +138,8 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Entities\Ball.cpp" />
     <ClCompile Include="Entities\Block.cpp" />
+    <ClCompile Include="Entities\Enlarger.cpp" />
+    <ClCompile Include="Entities\Item.cpp" />
     <ClCompile Include="Entities\Paddle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modules\AudioModule.cpp" />
@@ -148,9 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Entities\Enlarger.h" />
     <ClInclude Include="Entities\Ball.h" />
     <ClInclude Include="Entities\Block.h" />
     <ClInclude Include="Entities\Entity.h" />
+    <ClInclude Include="Entities\Item.h" />
     <ClInclude Include="Entities\Paddle.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Modules\AudioModule.h" />

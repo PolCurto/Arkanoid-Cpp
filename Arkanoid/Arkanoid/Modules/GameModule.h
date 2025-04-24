@@ -7,6 +7,7 @@
 #include <vector>
 
 class Ball;
+class Paddle;
 
 class GameModule : public Module
 {
@@ -20,10 +21,23 @@ public:
 	bool Close() override;
 
 	void OnMiss();
+	void OnItem(const EntityType itemType);
+	
+	void AddEntity(Entity* newEntity) { entitiesToAdd.push_back(newEntity); }
+	void DeleteEntity(Entity* entity) { entitiesToDelete.push_back(entity); }
 
 	const std::vector<Entity*>& GetAllEntities() const { return entities; }
+	Paddle* GetPaddle() const { return paddle; }
 
 private:
-	std::vector<Entity*> entities;
+	void ManageEntities();
+
 	Ball* ball;
+	Paddle* paddle;
+
+	std::vector<Entity*> entities;
+	std::vector<Entity*> entitiesToAdd;
+	std::vector<Entity*> entitiesToDelete;
+
+	int score;
 };

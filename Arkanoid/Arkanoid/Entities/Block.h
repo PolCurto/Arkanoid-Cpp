@@ -8,7 +8,7 @@ class Block : public Entity
 {
 public:
 	Block();
-	Block(const sf::Vector2f, const sf::Color color);
+	Block(const sf::Vector2f position, const sf::Color color);
 	Block(const EntityType type);
 	~Block();
 
@@ -19,7 +19,7 @@ public:
 
 	void OnHit(const int damage);
 
-	const sf::FloatRect& GetBoundingBox() { return shape.getGlobalBounds(); };
+	const sf::FloatRect GetBoundingBox() { return shape.getGlobalBounds(); };
 
 private:
 	void Destroy();
@@ -29,4 +29,5 @@ protected:
 
 	sf::Color color;
 	unsigned int life = 1;
+	float itemRate = 0.2f;
 };

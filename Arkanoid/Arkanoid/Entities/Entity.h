@@ -10,7 +10,9 @@ enum class EntityType: uint8_t
 	Block,
 	Paddle,
 	Ball,
-	PowerUp
+	Enlarger,
+	Reducer,
+	Destroyer
 };
 
 class Entity

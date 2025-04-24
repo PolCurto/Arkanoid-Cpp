@@ -24,7 +24,7 @@ GameModule::GameModule()
 	{
 		for (uint8_t y = 0; y < rows; ++y)
 		{
-			entities.push_back(new Block(sf::Vector2f(x * 75, y * 30 + 60), colors[y]));
+			entities.push_back(new Block(sf::Vector2f(x * 75.0f, y * 30.0f + 60.0f), colors[y]));
 		}
 	}
 }
@@ -54,6 +54,7 @@ bool GameModule::Start()
 UpdateState GameModule::Update(const float deltaTime)
 {
 	UpdateState state = UPDATE_CONTINUE;
+	ManageEntities();
 
 	// First update the entities' logic
 	for (Entity* entity : entities)
@@ -92,4 +93,27 @@ void GameModule::OnMiss()
 	ball->Reset();
 
 	// TODO: subtract score or something like that
+}
+
+void GameModule::ManageEntities()
+{
+	for (Entity* oldEntity : entitiesToDelete)
+	{
+		const auto& it = std::find(entities.begin(), entities.end(), oldEntity);
+		if (it != entities.end())
+		{
+			(*it)->Close();
+			delete *it;
+			entities.erase(it);
+		}
+	}
+
+	for (Entity* newEntity : entitiesToAdd)
+	{
+		entities.push_back(newEntity);
+		newEntity->Start();
+	}
+
+	entitiesToDelete.clear();
+	entitiesToAdd.clear();
 }
