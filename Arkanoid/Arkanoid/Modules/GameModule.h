@@ -8,6 +8,7 @@
 
 class Ball;
 class Paddle;
+class TopPanel;
 
 class GameModule : public Module
 {
@@ -21,6 +22,8 @@ public:
 	bool Close() override;
 
 	void OnMiss();
+	void AddScore(int newScore);
+
 	void AddEntity(Entity* newEntity) { entitiesToAdd.push_back(newEntity); }
 	void DeleteEntity(Entity* entity) { entitiesToDelete.push_back(entity); }
 
@@ -33,10 +36,16 @@ private:
 
 	Ball* ball;
 	Paddle* paddle;
+	TopPanel* topPanel;
 
 	std::vector<Entity*> entities;
 	std::vector<Entity*> entitiesToAdd;
 	std::vector<Entity*> entitiesToDelete;
 
 	int score;
+	int streak;
+	int lives = 3;
+
+	bool isGameOver = false;
+	bool isPaused = false;
 };

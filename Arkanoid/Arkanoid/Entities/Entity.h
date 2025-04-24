@@ -12,7 +12,8 @@ enum class EntityType: uint8_t
 	Ball,
 	Enlarger,
 	Reducer,
-	Destroyer
+	Destroyer,
+	UI
 };
 
 class Entity

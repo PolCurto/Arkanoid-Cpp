@@ -9,3 +9,6 @@ enum UpdateState
 
 constexpr int SCREEN_WIDTH = 900;
 constexpr int SCREEN_HEIGHT = 900;
+
+constexpr int ARENA_WIDTH = 900;
+constexpr int ARENA_HEIGHT = 750;

@@ -23,7 +23,7 @@ bool Ball::Start()
 	shape.setRadius(10.0f);
 	size = shape.getLocalBounds().size;
 
-	position.x = SCREEN_WIDTH / 2.0f;
+	position.x = ARENA_WIDTH / 2.0f;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -58,7 +58,7 @@ bool Ball::Close()
 void Ball::Reset()
 {
 	currentVelocity = startVelocity;
-	position.x = SCREEN_WIDTH / 2.0f;
+	position.x = ARENA_WIDTH / 2.0f;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -85,8 +85,8 @@ void Ball::Move(const float deltaTime)
 	}
 
 	// Bounce off walls
-	if (finalPos.x < 0 || finalPos.x + size.x > SCREEN_WIDTH) direction.x *= -1;
-	if (finalPos.y < 0) direction.y *= -1;
+	if (finalPos.x < 0 || finalPos.x + size.x > ARENA_WIDTH) direction.x *= -1;
+	if (finalPos.y < SCREEN_HEIGHT - ARENA_HEIGHT) direction.y *= -1;
 
 	position = finalPos;
 	shape.setPosition(position);

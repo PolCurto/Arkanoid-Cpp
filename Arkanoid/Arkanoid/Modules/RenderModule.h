@@ -6,6 +6,7 @@ namespace sf
 {
 	class RenderWindow;
 	class Shape;
+	class Text;
 }
 
 class RenderModule : public Module
@@ -20,6 +21,7 @@ public:
 	bool Close() override;
 
 	void DrawShape(const sf::Shape& shape);
+	void DrawText(const sf::Text& text);
 
 private:
 	sf::RenderWindow* mainWindow;

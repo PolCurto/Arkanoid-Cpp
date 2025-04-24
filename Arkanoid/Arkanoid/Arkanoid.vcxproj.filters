@@ -60,6 +60,9 @@
     <ClCompile Include="Entities\Reducer.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\TopPanel.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\WindowModule.h">
@@ -81,9 +84,6 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
-      <Filter>App</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
       <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Paddle.h">
@@ -109,6 +109,15 @@
     </ClInclude>
     <ClInclude Include="Entities\Destroyer.h">
       <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\TopPanel.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Globals.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Text.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

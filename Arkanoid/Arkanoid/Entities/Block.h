@@ -8,7 +8,7 @@ class Block : public Entity
 {
 public:
 	Block();
-	Block(const sf::Vector2f position, const sf::Color color);
+	Block(const sf::Vector2f position, const sf::Color color, const int score);
 	Block(const EntityType type);
 	~Block();
 
@@ -30,4 +30,6 @@ protected:
 	sf::Color color;
 	unsigned int life = 1;
 	float itemRate = 0.8f;
+
+	int score;
 };

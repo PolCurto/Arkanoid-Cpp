@@ -29,9 +29,14 @@ UpdateState RenderModule::PostUpdate(const float deltaTime)
 	return UPDATE_CONTINUE;
 }
 
-void RenderModule::DrawShape(const sf::Shape& shape)
+void RenderModule::DrawShape(const sf::Shape& drawable)
 {
-	mainWindow->draw(shape);
+	mainWindow->draw(drawable);
+}
+
+void RenderModule::DrawText(const sf::Text& text)
+{
+	mainWindow->draw(text);
 }
 
 bool RenderModule::Close()

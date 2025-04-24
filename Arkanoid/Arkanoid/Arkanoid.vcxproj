@@ -105,7 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include;$(ProjectDir);$(ProjectDir)\Modules</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include;$(ProjectDir);$(ProjectDir)\Modules;$(ProjectDir)\Utils</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include;$(ProjectDir);$(ProjectDir)\Modules</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\SFML-3.0.0\include;$(ProjectDir);$(ProjectDir)\Modules;$(ProjectDir)\Utils</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -143,6 +143,7 @@
     <ClCompile Include="Entities\Item.cpp" />
     <ClCompile Include="Entities\Paddle.cpp" />
     <ClCompile Include="Entities\Reducer.cpp" />
+    <ClCompile Include="Entities\TopPanel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modules\AudioModule.cpp" />
     <ClCompile Include="Modules\GameModule.cpp" />
@@ -160,13 +161,15 @@
     <ClInclude Include="Entities\Item.h" />
     <ClInclude Include="Entities\Paddle.h" />
     <ClInclude Include="Entities\Reducer.h" />
-    <ClInclude Include="Globals.h" />
     <ClInclude Include="Modules\AudioModule.h" />
     <ClInclude Include="Modules\GameModule.h" />
     <ClInclude Include="Modules\InputModule.h" />
     <ClInclude Include="Modules\Module.h" />
     <ClInclude Include="Modules\RenderModule.h" />
     <ClInclude Include="Modules\WindowModule.h" />
+    <ClInclude Include="Entities\TopPanel.h" />
+    <ClInclude Include="Utils\Globals.h" />
+    <ClInclude Include="Utils\Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

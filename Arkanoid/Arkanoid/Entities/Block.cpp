@@ -14,7 +14,7 @@ Block::Block() : Entity(EntityType::Block)
 
 }
 
-Block::Block(const sf::Vector2f position, const sf::Color color) : color(color), Entity(EntityType::Block, position)
+Block::Block(const sf::Vector2f position, const sf::Color color, const int score) : color(color), score(score), Entity(EntityType::Block, position)
 {
 
 }
@@ -69,6 +69,8 @@ void Block::OnHit(const int damage)
 
 void Block::Destroy()
 {
+	App->game->AddScore(score);
+
 	// Randomly spawn an item
 	// Code from: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
 	std::random_device rd;

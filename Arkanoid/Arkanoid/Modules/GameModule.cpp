@@ -3,6 +3,7 @@
 #include "Entities/Ball.h"
 #include "Entities/Block.h"
 #include "Entities/Paddle.h"
+#include "Entities/TopPanel.h"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -24,9 +25,12 @@ GameModule::GameModule()
 	{
 		for (uint8_t y = 0; y < rows; ++y)
 		{
-			entities.push_back(new Block(sf::Vector2f(x * 75.0f, y * 30.0f + 60.0f), colors[y]));
+			const sf::Vector2f position(x * 75.0f, y * 30.0f + 200.0f);
+			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
 		}
 	}
+
+	entities.push_back(topPanel = new TopPanel());
 }
 
 GameModule::~GameModule()
@@ -93,6 +97,48 @@ void GameModule::OnMiss()
 	ball->Reset();
 
 	// TODO: subtract score or something like that
+	score -= 100;
+	if (score < 0) score = 0;
+	lives -= 1;
+
+	if (lives == 0)
+	{
+		//TODO: Game over
+	}
+
+	topPanel->SetScore(score);
+	topPanel->SetLife(lives);
+}
+
+void GameModule::AddScore(int newScore)
+{
+	++streak;
+	sf::Color color = sf::Color::Red;
+
+	if (streak >= 5)
+	{
+		color = sf::Color(255, 175, 0);
+		newScore *= 2;
+	}
+	if (streak >= 10)
+	{
+		color = sf::Color(175, 255, 0);
+		newScore *= 2;
+	}
+	if (streak >= 20) 
+	{
+		color = sf::Color(0, 255, 75);
+		newScore *= 2;
+	}
+	if (streak >= 40) 
+	{
+		color = sf::Color(0, 255, 200);
+		newScore *= 2;
+	}
+
+	score += newScore;
+
+	topPanel->SetScore(score, color);
 }
 
 void GameModule::ManageEntities()

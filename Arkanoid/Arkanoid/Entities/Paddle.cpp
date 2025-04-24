@@ -98,7 +98,7 @@ void Paddle::Move(const float deltaTime)
 	float finalPos = position.x + currentVelocity * deltaTime;
 
 	// Avoid going out of bounds
-	if (finalPos > 0 && finalPos + size.x < SCREEN_WIDTH)
+	if (finalPos > 0 && finalPos + size.x < ARENA_WIDTH)
 	{
 		position.x = finalPos;
 		shape.setPosition(position);
