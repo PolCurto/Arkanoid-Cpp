@@ -19,10 +19,16 @@ public:
 
 private:
 	void Move(const float deltaTime);
+	void CheckCollisions();
+	void Bounce(const Entity* otherEnt);
 
 private:
 	sf::CircleShape shape;
 
-	sf::Vector2f direction = {1.0f, 1.0f};
-	float velocity = 500;
+	sf::Vector2f direction = {0.0f, 1.0f};
+	float startVelocity = 400;
+	float maxVelocity = 700;
+
+	float currentVelocity;
+	int hitDamage = 1;
 };

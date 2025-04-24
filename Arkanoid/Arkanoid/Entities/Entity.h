@@ -5,11 +5,12 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 
-enum class EntityType
+enum class EntityType: uint8_t
 {
 	Block,
 	Paddle,
-	Ball
+	Ball,
+	PowerUp
 };
 
 class Entity
@@ -23,6 +24,10 @@ public:
 	virtual UpdateState Update(const float deltaTime) { return UPDATE_CONTINUE; };
 	virtual UpdateState Draw() { return UPDATE_CONTINUE; };
 	virtual bool Close() { return true; };
+
+	EntityType GetType() const { return type; }
+	sf::Vector2f GetPosition() const { return position; }
+	sf::Vector2f GetSize() const { return size; }
 
 protected:
 	EntityType type;

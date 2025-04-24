@@ -19,5 +19,5 @@ private:
 
 private:
 	float currentVelocity = 0;
-	float velocity = 500;
+	float velocity = 600;
 };

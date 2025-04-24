@@ -19,7 +19,7 @@ bool RenderModule::Start()
 
 UpdateState RenderModule::Update(const float deltaTime)
 {
-	mainWindow->clear(sf::Color({ 227, 158, 89 }));
+	mainWindow->clear(sf::Color({ 22, 28, 217 }));
 	return UPDATE_CONTINUE;
 }
 

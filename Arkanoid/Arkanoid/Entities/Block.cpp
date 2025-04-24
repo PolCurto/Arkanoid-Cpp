@@ -8,7 +8,7 @@ Block::Block() : Entity(EntityType::Block)
 
 }
 
-Block::Block(const float x, const float y) : Entity(EntityType::Block, {x, y})
+Block::Block(const sf::Vector2f position, const sf::Color color) : color(color), Entity(EntityType::Block, position)
 {
 
 }
@@ -25,14 +25,14 @@ Block::~Block()
 
 bool Block::Start()
 {
-	size.x = 80.0f;
+	size.x = 75;
 	size.y = 30.0f;
 	shape.setSize(size);
-
+	
 	shape.setPosition(position);
 
-	shape.setFillColor(sf::Color({ 199, 61, 46 }));
-	shape.setOutlineThickness(1.0f);
+	shape.setFillColor(color);
+	shape.setOutlineThickness(2.0f);
 	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
 
 	return true;

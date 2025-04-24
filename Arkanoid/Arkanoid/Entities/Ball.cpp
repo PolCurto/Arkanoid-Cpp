@@ -3,12 +3,14 @@
 #include "Application.h"
 #include "RenderModule.h"
 #include "GameModule.h"
+#include "Block.h"
+#include "Paddle.h"
 
 #include <iostream>
 
 Ball::Ball() : Entity(EntityType::Ball)
 {
-
+	currentVelocity = startVelocity;
 }
 
 Ball::~Ball()
@@ -18,22 +20,26 @@ Ball::~Ball()
 
 bool Ball::Start()
 {
-	shape.setRadius(15.0f);
+	shape.setRadius(10.0f);
 	size = shape.getLocalBounds().size;
 
 	position.x = SCREEN_WIDTH / 2.0f;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
-	shape.setFillColor(sf::Color({ 29, 127, 224 }));
+	shape.setFillColor(sf::Color({ 0, 179, 255 }));
 	shape.setOutlineThickness(2.0f);
-	shape.setOutlineColor({ sf::Color({15, 15, 15}) });
+	shape.setOutlineColor({ sf::Color({255, 255, 255}) });
 	return true;
 }
 
 UpdateState Ball::Update(const float deltaTime)
 {
 	Move(deltaTime);
+	CheckCollisions();
+	// Increase ball speed over time
+	currentVelocity += deltaTime * 10; 
+
 	return UPDATE_CONTINUE;
 }
 
@@ -50,6 +56,7 @@ bool Ball::Close()
 
 void Ball::Reset()
 {
+	currentVelocity = startVelocity;
 	position.x = SCREEN_WIDTH / 2.0f;
 	position.y = 500.0f;
 	shape.setPosition(position);
@@ -59,19 +66,76 @@ void Ball::Reset()
 
 void Ball::Move(const float deltaTime)
 {
-	sf::Vector2f finalPos = position + velocity * direction * deltaTime;
+	sf::Vector2f finalPos = position + currentVelocity * direction * deltaTime;
+
+	// Gets off stage below, reset ball
+	if (finalPos.y + size.y > SCREEN_HEIGHT)
+	{
+		App->game->OnMiss();
+		return;
+	}
 
 	// Bounce off walls
 	if (finalPos.x < 0 || finalPos.x + size.x > SCREEN_WIDTH) direction.x *= -1;
 	if (finalPos.y < 0) direction.y *= -1;
 
-	// TODO: Check collisions with blocks / paddle
-
-	// Gets off stage below, reset ball
-	if (finalPos.y + size.y > SCREEN_HEIGHT) App->game->OnMiss();
-
 	position = finalPos;
 	shape.setPosition(position);
+}
 
+void Ball::CheckCollisions()
+{
+	for (Entity* entity : App->game->GetAllEntities())
+	{
+		switch (entity->GetType())
+		{
+		case EntityType::Block: {
+			Block* block = static_cast<Block*>(entity);
+			if (shape.getGlobalBounds().findIntersection(block->GetBoundingBox()))
+			{
+				block->OnHit(hitDamage);
+				Bounce(block);
+			}
+			break;
+		}
+		
+		case EntityType::Paddle:
+			if (shape.getGlobalBounds().findIntersection(static_cast<Paddle*>(entity)->GetBoundingBox()))
+			{
+				Bounce(entity);
+			}
+			break;
+		
+		case EntityType::PowerUp:
+			break;
+		}
+		//if (entity->GetType() == EntityType::Block)
+		//{
+		//	Block* block = static_cast<Block*>(entity);
+		//	if (shape.getGlobalBounds().findIntersection(block->GetBoundingBox()))
+		//	{
+		//		block->OnHit(hitDamage);
+		//		Bounce(block);
+		//	}
+		//}
+		//else if (entity->GetType() == EntityType::Paddle) 
+		//{
+		//	if (shape.getGlobalBounds().findIntersection(static_cast<Paddle*>(entity)->GetBoundingBox()))
+		//	{
+		//		Bounce(entity);
+		//	}
+		//}
+		//else if (entity->GetType() == EntityType::PowerUp)
+		//{
+		//
+		//}
+	}
+}
+
+void Ball::Bounce(const Entity* otherEnt)
+{
+	const sf::Vector2f ballCenter = position + (size / 2.0f);
+	const sf::Vector2f otherCenter = otherEnt->GetPosition() + (otherEnt->GetSize() / 2.0f);
+	direction = (ballCenter - otherCenter).normalized();
 }
 

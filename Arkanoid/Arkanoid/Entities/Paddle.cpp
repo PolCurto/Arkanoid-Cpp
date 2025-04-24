@@ -21,10 +21,10 @@ bool Paddle::Start()
 	shape.setSize(size);
 
 	position.x = 400.0f;
-	position.y = 700.0f;
+	position.y = 800.0f;
 	shape.setPosition(position);
 
-	shape.setFillColor(sf::Color({ 99, 164, 214 }));
+	shape.setFillColor(sf::Color({ 125, 125, 125 }));
 	shape.setOutlineThickness(2.0f);
 	shape.setOutlineColor({ sf::Color({15, 15, 15}) });
 	return true;

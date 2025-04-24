@@ -4,19 +4,27 @@
 #include "Entities/Block.h"
 #include "Entities/Paddle.h"
 
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/System/Vector2.hpp>
+
 GameModule::GameModule()
 {
 	entities.push_back(ball = new Ball());
 	entities.push_back(new Paddle());
 
+	const std::vector<sf::Color> colors = {
+		sf::Color(143, 143, 143), sf::Color(255, 33, 33), sf::Color(255, 233, 33),
+		sf::Color(31, 128, 255), sf::Color(229, 31, 255), sf::Color(74, 255, 38)
+	};
+
 	// Set all the blocks
-	const uint8_t rows = 8;
-	const uint8_t columns = 15;
+	const uint8_t rows = 6;
+	const uint8_t columns = 12;
 	for (uint8_t x = 0; x < columns; ++x)
 	{
 		for (uint8_t y = 0; y < rows; ++y)
 		{
-			entities.push_back(new Block(x * 80, y * 30 + 60));
+			entities.push_back(new Block(sf::Vector2f(x * 75, y * 30 + 60), colors[y]));
 		}
 	}
 }

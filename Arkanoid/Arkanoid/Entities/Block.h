@@ -8,7 +8,7 @@ class Block : public Entity
 {
 public:
 	Block();
-	Block(const float x, const float y);
+	Block(const sf::Vector2f, const sf::Color color);
 	Block(const EntityType type);
 	~Block();
 
@@ -19,11 +19,14 @@ public:
 
 	void OnHit(const int damage);
 
+	const sf::FloatRect& GetBoundingBox() { return shape.getGlobalBounds(); };
+
 private:
 	void Destroy();
 
 protected:
 	sf::RectangleShape shape;
 
-	unsigned int life;
+	sf::Color color;
+	unsigned int life = 1;
 };
