@@ -4,7 +4,7 @@
 #include "GameModule.h"
 #include "Paddle.h"
 
-Enlarger::Enlarger(const sf::Vector2f position) : Item(position, EntityType::Enlarger)
+Enlarger::Enlarger(const sf::Vector2f position) : Item(position)
 {
 
 }

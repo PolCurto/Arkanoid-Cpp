@@ -35,18 +35,20 @@ bool Ball::Start()
 
 UpdateState Ball::Update(float deltaTime)
 {
+	if (!isEnabled) return UPDATE_CONTINUE;
+
 	CheckEffects(deltaTime);
 	Move(deltaTime);
 	CheckCollisions();
+
 	// Increase ball speed over time
 	currentVelocity += deltaTime * 10; 
-
 	return UPDATE_CONTINUE;
 }
 
 UpdateState Ball::Draw()
 {
-	App->renderer->DrawShape(shape);
+	if (isEnabled) App->renderer->DrawShape(shape);
 	return UPDATE_CONTINUE;
 }
 

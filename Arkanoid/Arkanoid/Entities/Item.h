@@ -7,7 +7,7 @@
 class Item : public Entity
 {
 public:
-	Item(const sf::Vector2f position, const EntityType type);
+	Item(const sf::Vector2f position);
 	~Item();
 
 	virtual bool Start() override;

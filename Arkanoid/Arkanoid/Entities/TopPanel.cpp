@@ -54,14 +54,13 @@ bool TopPanel::Start()
 
 UpdateState TopPanel::Draw()
 {
-	App->renderer->DrawShape(shape);
+	if (!isEnabled) return UPDATE_CONTINUE;
 
+	App->renderer->DrawShape(shape);
 	App->renderer->DrawText(*scoreLabel);
 	App->renderer->DrawText(*score);
-
 	App->renderer->DrawText(*lifeLabel);
 	App->renderer->DrawText(*life);
-
 	return UPDATE_CONTINUE;
 }
 

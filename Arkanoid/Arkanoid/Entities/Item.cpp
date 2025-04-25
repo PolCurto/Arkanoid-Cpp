@@ -5,7 +5,7 @@
 #include "GameModule.h"
 #include "Paddle.h"
 
-Item::Item(const sf::Vector2f position, const EntityType type) : Entity(type, position)
+Item::Item(const sf::Vector2f position) : Entity(EntityType::Item, position)
 {
 
 }
@@ -25,6 +25,8 @@ bool Item::Start()
 
 UpdateState Item::Update(float deltaTime)
 {
+	if (!isEnabled) return UPDATE_CONTINUE;
+
 	Move(deltaTime);
 	CheckCollisions();
 	return UPDATE_CONTINUE;

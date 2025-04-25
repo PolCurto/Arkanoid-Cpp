@@ -4,7 +4,7 @@
 #include "GameModule.h"
 #include "Paddle.h"
 
-Reducer::Reducer(const sf::Vector2f position) : Item(position, EntityType::Reducer)
+Reducer::Reducer(const sf::Vector2f position) : Item(position)
 {
 
 }

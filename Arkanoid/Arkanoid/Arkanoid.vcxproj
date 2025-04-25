@@ -150,6 +150,7 @@
     <ClCompile Include="Modules\InputModule.cpp" />
     <ClCompile Include="Modules\RenderModule.cpp" />
     <ClCompile Include="Modules\WindowModule.cpp" />
+    <ClCompile Include="Entities\PauseScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Modules\RenderModule.h" />
     <ClInclude Include="Modules\WindowModule.h" />
     <ClInclude Include="Entities\TopPanel.h" />
+    <ClInclude Include="Entities\PauseScreen.h" />
     <ClInclude Include="Utils\Globals.h" />
     <ClInclude Include="Utils\Text.h" />
   </ItemGroup>

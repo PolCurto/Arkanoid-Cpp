@@ -9,6 +9,7 @@
 class Ball;
 class Paddle;
 class TopPanel;
+class PauseScreen;
 
 class GameModule : public Module
 {
@@ -39,6 +40,7 @@ private:
 	Ball* ball;
 	Paddle* paddle;
 	TopPanel* topPanel;
+	PauseScreen* pauseScreen;
 
 	std::vector<Entity*> entities;
 	std::vector<Entity*> entitiesToAdd;

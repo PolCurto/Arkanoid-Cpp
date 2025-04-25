@@ -4,7 +4,7 @@
 #include "GameModule.h"
 #include "Ball.h"
 
-Destroyer::Destroyer(const sf::Vector2f position) : Item(position, EntityType::Destroyer)
+Destroyer::Destroyer(const sf::Vector2f position) : Item(position)
 {
 
 }

@@ -10,9 +10,7 @@ enum class EntityType: uint8_t
 	Block,
 	Paddle,
 	Ball,
-	Enlarger,
-	Reducer,
-	Destroyer,
+	Item,
 	UI
 };
 
@@ -31,9 +29,14 @@ public:
 	EntityType GetType() const { return type; }
 	sf::Vector2f GetPosition() const { return position; }
 	sf::Vector2f GetSize() const { return size; }
+	bool IsEnabled() const { return true; }
+
+	void SetEnabled(bool state) { isEnabled = state; }
 
 protected:
 	EntityType type;
 	sf::Vector2f position;
 	sf::Vector2f size;
+
+	bool isEnabled = true;
 };

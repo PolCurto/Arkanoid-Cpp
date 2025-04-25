@@ -34,16 +34,17 @@ bool Paddle::Start()
 
 UpdateState Paddle::Update(float deltaTime)
 {
+	if (!isEnabled) return UPDATE_CONTINUE;
+
 	CheckEffects(deltaTime);
 	GetInputs();
 	Move(deltaTime);
-
 	return UPDATE_CONTINUE;
 }
 
 UpdateState Paddle::Draw()
 {
-	App->renderer->DrawShape(shape);
+	if (isEnabled) App->renderer->DrawShape(shape);
 	return UPDATE_CONTINUE;
 }
 

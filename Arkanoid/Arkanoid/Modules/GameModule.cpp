@@ -4,6 +4,7 @@
 #include "Entities/Block.h"
 #include "Entities/Paddle.h"
 #include "Entities/TopPanel.h"
+#include "Entities/PauseScreen.h"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -31,6 +32,7 @@ GameModule::GameModule()
 	}
 
 	entities.push_back(topPanel = new TopPanel());
+	entities.push_back(pauseScreen = new PauseScreen());
 }
 
 GameModule::~GameModule()
@@ -149,7 +151,7 @@ void GameModule::AddScore(int newScore)
 void GameModule::PauseGame()
 {
 	isPaused = !isPaused;
-	//TODO: Pantalla pausa maybe
+	pauseScreen->SetEnabled(isPaused);
 }
 
 void GameModule::ManageEntities()

@@ -16,6 +16,9 @@
     <Filter Include="Entities\Items">
       <UniqueIdentifier>{55b361a3-e08e-455f-a61c-a67d574ac379}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities\UI">
+      <UniqueIdentifier>{d622563f-2b86-467d-bacd-90f1c1cf3876}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entities\Block.cpp">
@@ -61,7 +64,10 @@
       <Filter>Entities\Items</Filter>
     </ClCompile>
     <ClCompile Include="Entities\TopPanel.cpp">
-      <Filter>Entities</Filter>
+      <Filter>Entities\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\PauseScreen.cpp">
+      <Filter>Entities\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,14 +116,17 @@
     <ClInclude Include="Entities\Destroyer.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\TopPanel.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\Globals.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Utils\Text.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\TopPanel.h">
+      <Filter>Entities\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\PauseScreen.h">
+      <Filter>Entities\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
