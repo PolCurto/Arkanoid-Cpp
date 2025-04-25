@@ -90,16 +90,28 @@ void Ball::Move(float deltaTime)
 	}
 
 	// Bounce off walls
-	if (finalPos.x < 0 || finalPos.x + size.x > ARENA_WIDTH)
+	if (wallTimer <= 0)
 	{
-		App->audio->PlaySFX("wallBounce");
-		direction.x *= -1;
+		bool bounce = false;
+
+		if (finalPos.x < 0 || finalPos.x + size.x > ARENA_WIDTH)
+		{
+			bounce = true;
+			direction.x *= -1;
+		}
+		if (finalPos.y < SCREEN_HEIGHT - ARENA_HEIGHT)
+		{
+			bounce = true;
+			direction.y *= -1;
+		}
+
+		if (bounce) 
+		{
+			wallTimer = wallCollisionTime;
+			App->audio->PlaySFX("wallBounce");
+		}
 	}
-	if (finalPos.y < SCREEN_HEIGHT - ARENA_HEIGHT)
-	{
-		direction.y *= -1;
-		App->audio->PlaySFX("wallBounce");
-	}
+	
 
 	position = finalPos;
 	shape.setPosition(position);
@@ -143,6 +155,7 @@ void Ball::Bounce(const Entity* otherEnt)
 void Ball::CheckEffects(float deltaTime)
 {
 	if (paddleTimer > 0) paddleTimer -= deltaTime;
+	if (wallTimer > 0) wallTimer -= deltaTime;
 
 	if (!isDestroyer) return;
 

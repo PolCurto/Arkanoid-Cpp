@@ -12,6 +12,14 @@ class TopPanel;
 class PauseScreen;
 class StaticScreen;
 
+enum class GameState
+{
+	Start,
+	Playing,
+	Defeat,
+	Victory
+};
+
 class GameModule : public Module
 {
 public:
@@ -38,6 +46,7 @@ public:
 private:
 	void SetupScene();
 	void ManageEntities();
+	bool AreBlocksLeft();
 	void EndGame();
 
 	Ball* ball;
@@ -47,6 +56,7 @@ private:
 	StaticScreen* pauseScreen;
 	StaticScreen* startScreen;
 	StaticScreen* gameOverScreen;
+	StaticScreen* victoryScreen;
 
 	std::vector<Entity*> entities;
 	std::vector<Entity*> entitiesToAdd;
@@ -56,6 +66,6 @@ private:
 	int streak = 0;
 	int lives = 3;
 
-	bool isStarted = false;
+	GameState state = GameState::Start;
 	bool isPaused = true;
 };

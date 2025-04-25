@@ -17,7 +17,10 @@ public:
 	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
+	void PlayMusic(const std::string& filename);
 	void PlaySFX(const std::string& name);
+	void StopAllSFX();
+	void StopMusic() { music.stop(); };
 
 private:
 	void CleanUp();

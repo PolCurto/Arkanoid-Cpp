@@ -38,12 +38,30 @@ bool AudioModule::Close()
 	return true;
 }
 
+void AudioModule::PlayMusic(const std::string& filename)
+{
+	if (music.openFromFile(filename))
+	{
+		music.setVolume(20);
+		music.setLooping(true);
+		music.play();
+	}
+}
+
 void AudioModule::PlaySFX(const std::string& name)
 {
 	std::unique_ptr<sf::Sound> sound = std::make_unique<sf::Sound>(App->resources->GetAudio(name));
-	sound->setVolume(50);
+	sound->setVolume(30);
 	sound->play();
 	activeSounds.emplace_back(std::move(sound));
+}
+
+void AudioModule::StopAllSFX()
+{
+	for (int i = 0; i < activeSounds.size(); ++i)
+	{
+		activeSounds[i]->stop();
+	}
 }
 
 void AudioModule::CleanUp()

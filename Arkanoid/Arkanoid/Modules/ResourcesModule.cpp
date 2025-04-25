@@ -23,10 +23,10 @@ bool ResourcesModule::Start()
 	if (buffer.loadFromFile("Audio/paddleBounce.ogg")) audioBuffers.insert({ "paddleBounce", buffer });
 	if (buffer.loadFromFile("Audio/wallBounce.ogg")) audioBuffers.insert({ "wallBounce", buffer });
 	if (buffer.loadFromFile("Audio/blockHit.ogg")) audioBuffers.insert({ "blockHit1", buffer });
-	if (buffer.loadFromFile("Audio/shrink.ogg")) audioBuffers.insert({ "shrink", buffer });
-	if (buffer.loadFromFile("Audio/grow.ogg")) audioBuffers.insert({ "grow", buffer });
-	if (buffer.loadFromFile("Audio/destroyer.ogg")) audioBuffers.insert({ "destroyer", buffer });
-	
+	if (buffer.loadFromFile("Audio/shrink.wav")) audioBuffers.insert({ "shrink", buffer });
+	if (buffer.loadFromFile("Audio/grow.wav")) audioBuffers.insert({ "grow", buffer });
+	if (buffer.loadFromFile("Audio/destroyer.wav")) audioBuffers.insert({ "destroyer", buffer });
+	if (buffer.loadFromFile("Audio/gameOver.ogg")) audioBuffers.insert({ "gameOver", buffer });
 
 	// Load textures
 

@@ -42,6 +42,9 @@ private:
 	float paddleCollisionTime = 0.5f;
 	float paddleTimer;
 
+	float wallCollisionTime = 0.2f;
+	float wallTimer;
+
 	sf::Color defaultColor = sf::Color({ 0, 179, 255 });
 	sf::Color defaultOutlineColor = sf::Color::White;
 };

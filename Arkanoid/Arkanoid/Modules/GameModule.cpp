@@ -87,10 +87,14 @@ void GameModule::OnMiss()
 	if (score < 0) score = 0;
 	lives -= 1;
 
-	if (lives == 0) EndGame();
-
 	topPanel->SetScore(score);
 	topPanel->SetLife(lives);
+
+	if (lives == 0)
+	{
+		state = GameState::Defeat;
+		EndGame();
+	}
 }
 
 void GameModule::AddScore(int newScore)
@@ -122,8 +126,13 @@ void GameModule::AddScore(int newScore)
 	}
 
 	score += newScore;
-
 	topPanel->SetScore(score, color);
+
+	if (!AreBlocksLeft())
+	{
+		state = GameState::Victory;
+		EndGame();
+	}
 }
 
 void GameModule::PauseGame()
@@ -134,10 +143,12 @@ void GameModule::PauseGame()
 
 void GameModule::StartGame()
 {
-	if (isStarted) return;
+	if (state != GameState::Start) return;
+
+	App->audio->PlayMusic("Audio/levelMusic.wav");
 
 	isPaused = false;
-	isStarted = true;
+	state = GameState::Playing;
 	startScreen->SetEnabled(false);
 }
 
@@ -154,12 +165,12 @@ void GameModule::SetupScene()
 
 	// Set all the blocks
 	const uint8_t rows = 6;
-	const uint8_t columns = 12;
+	const uint8_t columns = 10;
 	for (uint8_t x = 0; x < columns; ++x)
 	{
 		for (uint8_t y = 0; y < rows; ++y)
 		{
-			const sf::Vector2f position(x * 75.0f, y * 30.0f + 200.0f);
+			const sf::Vector2f position(x * 75.0f + 75, y * 30.0f + 260.0f);
 			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
 		}
 	}
@@ -177,12 +188,19 @@ void GameModule::SetupScene()
 	gameOverScreen->SetBackground({ 50, 0, 0 });
 	gameOverScreen->AddLabel("GAME OVER", 120, sf::Color::Red, sf::Vector2f(130.0f, 350.0f));
 
+	// Victory screen
+	entities.push_back(victoryScreen = new StaticScreen());
+	victoryScreen->SetBackground({ 0, 50, 0 });
+	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(150.0f, 350.0f));
+
 	// Start screen
 	entities.push_back(startScreen = new StaticScreen());
 	startScreen->SetBackground({ 0, 0, 50 });
 	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(260.0f, 300.0f));
 	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
 	startScreen->SetEnabled(true);
+
+	App->audio->PlayMusic("Audio/startScreen.wav");
 }
 
 void GameModule::ManageEntities()
@@ -208,13 +226,39 @@ void GameModule::ManageEntities()
 	entitiesToAdd.clear();
 }
 
+bool GameModule::AreBlocksLeft()
+{
+	bool areLeft = false;
+
+	for (Entity* entity : entities)
+	{
+		if (entity->GetType() == EntityType::Block && entity->IsEnabled()) areLeft = true;
+	}
+
+	return areLeft;
+}
+
 void GameModule::EndGame()
 {
+	App->audio->StopMusic();
+	App->audio->StopAllSFX();
 	for (Entity* entity : entities)
 	{
 		entity->SetEnabled(false);
 	}
 	isPaused = true;
-	gameOverScreen->SetEnabled(true);
+
+	switch (state)
+	{
+	case GameState::Defeat:
+		App->audio->PlaySFX("gameOver");
+		gameOverScreen->SetEnabled(true);
+		break;
+
+	case GameState::Victory:
+		App->audio->PlayMusic("victory.wav");
+		victoryScreen->SetEnabled(true);
+		break;
+	}
 }
 

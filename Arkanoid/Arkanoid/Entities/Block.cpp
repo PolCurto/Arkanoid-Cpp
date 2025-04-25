@@ -69,6 +69,8 @@ void Block::OnHit(const int damage)
 
 void Block::Destroy()
 {
+	isEnabled = false;
+
 	App->game->AddScore(score);
 
 	// Randomly spawn an item
@@ -98,6 +100,4 @@ void Block::Destroy()
 			break;
 		}
 	}
-
-	isEnabled = false;
 }
