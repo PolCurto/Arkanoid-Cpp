@@ -29,7 +29,7 @@ public:
 	EntityType GetType() const { return type; }
 	sf::Vector2f GetPosition() const { return position; }
 	sf::Vector2f GetSize() const { return size; }
-	bool IsEnabled() const { return true; }
+	bool IsEnabled() const { return isEnabled; }
 
 	void SetEnabled(bool state) { isEnabled = state; }
 

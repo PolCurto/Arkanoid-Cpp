@@ -98,6 +98,8 @@ void Ball::CheckCollisions()
 {
 	for (Entity* entity : App->game->GetAllEntities())
 	{
+		if (!entity->IsEnabled()) continue;
+
 		EntityType entityType = entity->GetType();
 		if (entityType == EntityType::Block)
 		{

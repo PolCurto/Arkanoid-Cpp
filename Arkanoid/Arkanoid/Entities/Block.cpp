@@ -99,7 +99,5 @@ void Block::Destroy()
 		}
 	}
 
-	// Move the block far away to avoid destroying it
-	position = { 10000, 10000 };
-	shape.setPosition(position);
+	isEnabled = false;
 }

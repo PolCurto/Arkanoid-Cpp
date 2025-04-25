@@ -34,7 +34,7 @@ UpdateState Item::Update(float deltaTime)
 
 UpdateState Item::Draw()
 {
-	App->renderer->DrawShape(shape);
+	if (isEnabled) App->renderer->DrawShape(shape);
 	return UPDATE_CONTINUE;
 }
 
@@ -50,8 +50,7 @@ bool Item::CheckCollisions()
 	if (shape.getGlobalBounds().findIntersection(App->game->GetPaddle()->GetBoundingBox()))
 	{
 		isColliding = true;
-		position = sf::Vector2f(10000, 10000);
-		shape.setPosition(position);
+		isEnabled = false;
 	}
 
 	return isColliding;
