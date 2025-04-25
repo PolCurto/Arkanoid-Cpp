@@ -1,6 +1,7 @@
 #include "Reducer.h"
 
 #include "Application.h"
+#include "ResourcesModule.h"
 #include "AudioModule.h"
 #include "GameModule.h"
 #include "Paddle.h"
@@ -20,8 +21,7 @@ bool Reducer::Start()
 	bool state = Item::Start();
 
 	velocity = 500.0f;
-	shape.setPointCount(4);
-	shape.setFillColor(sf::Color::Red);
+	shape.setTexture(&App->resources->GetTexture("a"));
 	shape.setOutlineThickness(-1.0f);
 	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
 

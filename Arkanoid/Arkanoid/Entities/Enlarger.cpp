@@ -1,6 +1,7 @@
 #include "Enlarger.h"
 
 #include "Application.h"
+#include "ResourcesModule.h"
 #include "GameModule.h"
 #include "AudioModule.h"
 #include "Paddle.h"
@@ -19,8 +20,7 @@ bool Enlarger::Start()
 {
 	bool state = Item::Start();
 
-	shape.setPointCount(3);
-	shape.setFillColor(sf::Color::Yellow);
+	shape.setTexture(&App->resources->GetTexture("b"));
 	shape.setOutlineThickness(-1.0f);
 	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
 

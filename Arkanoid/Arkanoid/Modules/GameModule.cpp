@@ -172,7 +172,7 @@ void GameModule::SetupScene()
 	{
 		for (uint8_t y = 0; y < rows; ++y)
 		{
-			const sf::Vector2f position(x * 75.0f + 75, y * 30.0f + 260.0f);
+			const sf::Vector2f position(x * 75.0f + 75.0f + ARENA_H_BORDER, y * 30.0f + TOP_PANEL_HEIGHT + ARENA_V_BORDER + 90);
 			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
 		}
 	}
@@ -182,24 +182,24 @@ void GameModule::SetupScene()
 	// Pause screen
 	entities.push_back(pauseScreen = new StaticScreen());
 	pauseScreen->SetBackground({ 0, 0, 0, 150 });
-	pauseScreen->AddLabel("GAME PAUSED", 48, sf::Color::White, sf::Vector2f(285.0f, 300.0f));
-	pauseScreen->AddLabel("Press 'esc' to resume", 36, sf::Color::White, sf::Vector2f(210.0f, 400.0f));
+	pauseScreen->AddLabel("GAME PAUSED", 48, sf::Color::White, sf::Vector2f(320.0f, 300.0f));
+	pauseScreen->AddLabel("Press 'esc' to resume", 36, sf::Color::White, sf::Vector2f(245.0f, 400.0f));
 
 	// Game over screen
 	entities.push_back(gameOverScreen = new StaticScreen());
 	gameOverScreen->SetBackground({ 50, 0, 0 });
-	gameOverScreen->AddLabel("GAME OVER", 120, sf::Color::Red, sf::Vector2f(130.0f, 350.0f));
+	gameOverScreen->AddLabel("GAME OVER", 120, sf::Color::Red, sf::Vector2f(155.0f, 350.0f));
 
 	// Victory screen
 	entities.push_back(victoryScreen = new StaticScreen());
 	victoryScreen->SetBackground({ 0, 50, 0 });
-	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(150.0f, 350.0f));
+	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(175.0f, 350.0f));
 
 	// Start screen
 	entities.push_back(startScreen = new StaticScreen());
 	startScreen->SetBackground({ 0, 0, 50 });
-	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(260.0f, 300.0f));
-	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
+	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(285.0f, 300.0f));
+	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(259.0f, 450.0f));
 	startScreen->SetEnabled(true);
 
 	App->audio->PlayMusic("Audio/startScreen.wav");
@@ -258,7 +258,7 @@ void GameModule::EndGame()
 		break;
 
 	case GameState::Victory:
-		App->audio->PlayMusic("victory.wav");
+		App->audio->PlayMusic("Audio/victory.wav");
 		victoryScreen->SetEnabled(true);
 		break;
 	}

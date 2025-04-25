@@ -42,12 +42,12 @@ bool TopPanel::Start()
 	lifeLabel->setString("LIVES");
 	lifeLabel->setCharacterSize(40);
 	lifeLabel->setFillColor(sf::Color::Red);
-	lifeLabel->setPosition(sf::Vector2f(550, 25));
+	lifeLabel->setPosition(sf::Vector2f(600, 25));
 
 	life->setString("3");
 	life->setCharacterSize(40);
 	life->setFillColor(sf::Color::White);
-	life->setPosition(sf::Vector2f(600, 70));
+	life->setPosition(sf::Vector2f(650, 70));
 
 	return true;
 }

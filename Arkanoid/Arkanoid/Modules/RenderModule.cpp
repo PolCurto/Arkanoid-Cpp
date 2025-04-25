@@ -18,7 +18,7 @@ RenderModule::~RenderModule()
 bool RenderModule::Start()
 {
 	background.setPosition({ 0, TOP_PANEL_HEIGHT });
-	background.setSize({ ARENA_WIDTH + ARENA_H_BORDERS, ARENA_HEIGHT + ARENA_V_BORDER });
+	background.setSize({ ARENA_WIDTH + (ARENA_H_BORDER * 2), ARENA_HEIGHT + ARENA_V_BORDER });
 	background.setTexture(&App->resources->GetTexture("background"));
 
 	DrawShape(background);
@@ -30,7 +30,7 @@ UpdateState RenderModule::Update(float deltaTime)
 	mainWindow->clear(sf::Color({ 22, 28, 217 }));
 
 	// Draw background texture
-
+	DrawShape(background);
 
 	return UPDATE_CONTINUE;
 }

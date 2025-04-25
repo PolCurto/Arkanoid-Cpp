@@ -1,6 +1,7 @@
 #include "Destroyer.h"
 
 #include "Application.h"
+#include "ResourcesModule.h"
 #include "GameModule.h"
 #include "Ball.h"
 
@@ -18,8 +19,7 @@ bool Destroyer::Start()
 {
 	bool state = Item::Start();
 
-	shape.setPointCount(5);
-	shape.setFillColor(sf::Color::Magenta);
+	shape.setTexture(&App->resources->GetTexture("c"));
 	shape.setOutlineThickness(-1.0f);
 	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
 

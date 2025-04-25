@@ -26,7 +26,7 @@ bool Ball::Start()
 	shape.setRadius(10.0f);
 	size = shape.getLocalBounds().size;
 
-	position.x = ARENA_WIDTH / 2.0f - shape.getRadius();
+	position.x = ARENA_WIDTH / 2.0f - shape.getRadius() + ARENA_H_BORDER;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -63,7 +63,7 @@ bool Ball::Close()
 void Ball::Reset()
 {
 	currentVelocity = startVelocity;
-	position.x = ARENA_WIDTH / 2.0f - shape.getRadius();
+	position.x = ARENA_WIDTH / 2.0f - shape.getRadius() + ARENA_H_BORDER;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -96,12 +96,12 @@ void Ball::Move(float deltaTime)
 	{
 		bool bounce = false;
 
-		if (finalPos.x < 0 || finalPos.x + size.x > ARENA_WIDTH)
+		if (finalPos.x < ARENA_H_BORDER || finalPos.x + size.x > ARENA_WIDTH + ARENA_H_BORDER)
 		{
 			bounce = true;
 			direction.x *= -1;
 		}
-		if (finalPos.y < SCREEN_HEIGHT - ARENA_HEIGHT)
+		if (finalPos.y < TOP_PANEL_HEIGHT + ARENA_V_BORDER)
 		{
 			bounce = true;
 			direction.y *= -1;

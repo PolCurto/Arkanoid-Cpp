@@ -22,8 +22,8 @@ bool Paddle::Start()
 	size.y = 20.0f;
 	shape.setSize(size);
 
-	position.x = (ARENA_WIDTH - size.x) / 2.0f;
-	position.y = 800.0f;
+	position.x = (ARENA_WIDTH - size.x + ARENA_H_BORDER * 2) / 2.0f;
+	position.y = 850.0f;
 	shape.setPosition(position);
 
 	shape.setFillColor(defaultColor);
@@ -100,7 +100,7 @@ void Paddle::Move(float deltaTime)
 	float finalPos = position.x + currentVelocity * deltaTime;
 
 	// Avoid going out of bounds
-	if (finalPos > 0 && finalPos + size.x < ARENA_WIDTH)
+	if (finalPos > ARENA_H_BORDER && finalPos + size.x < ARENA_WIDTH + ARENA_H_BORDER)
 	{
 		position.x = finalPos;
 		shape.setPosition(position);

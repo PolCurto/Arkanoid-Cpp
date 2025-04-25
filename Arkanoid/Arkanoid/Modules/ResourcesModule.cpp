@@ -22,6 +22,9 @@ bool ResourcesModule::Start()
 	// Load textures
 	sf::Texture texture;
 	if (texture.loadFromFile("Textures/background.png")) textures.insert({ "background", texture });
+	if (texture.loadFromFile("Textures/a.png")) textures.insert({ "a", texture });
+	if (texture.loadFromFile("Textures/b.png")) textures.insert({ "b", texture });
+	if (texture.loadFromFile("Textures/c.png")) textures.insert({ "c", texture });
 
 	return true;
 }

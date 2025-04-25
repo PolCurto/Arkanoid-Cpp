@@ -39,10 +39,10 @@ private:
 	float timer = 0;
 	float destroyerDuration = 5.0f;
 
-	float paddleCollisionTime = 0.5f;
+	float paddleCollisionTime = 0.3f;
 	float paddleTimer;
 
-	float wallCollisionTime = 0.2f;
+	float wallCollisionTime = 0.1f;
 	float wallTimer;
 
 	sf::Color defaultColor = sf::Color({ 0, 179, 255 });
