@@ -21,6 +21,8 @@ Ball::~Ball()
 
 bool Ball::Start()
 {
+	paddleTimer = 0;
+
 	shape.setRadius(10.0f);
 	size = shape.getLocalBounds().size;
 

@@ -139,6 +139,8 @@ void GameModule::PauseGame()
 {
 	isPaused = !isPaused;
 	pauseScreen->SetEnabled(isPaused);
+	if (isPaused) App->audio->PauseMusic();
+	else App->audio->ResumeMusic();
 }
 
 void GameModule::StartGame()
