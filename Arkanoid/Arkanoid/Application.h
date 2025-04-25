@@ -11,6 +11,7 @@ class RenderModule;
 class GameModule;
 class InputModule;
 class AudioModule;
+class ResourcesModule;
 
 class Application
 {
@@ -28,10 +29,10 @@ public:
 	GameModule* game;
 	InputModule* input;
 	AudioModule* audio;
+	ResourcesModule* resources;
 
 private:
 	std::vector<Module*> modules;
-
 };
 
 extern Application* App;

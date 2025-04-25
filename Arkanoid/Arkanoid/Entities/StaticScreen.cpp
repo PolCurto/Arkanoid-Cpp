@@ -3,22 +3,18 @@
 #include "Application.h"
 #include "RenderModule.h"
 #include "GameModule.h"
+#include "ResourcesModule.h"
 
 #include <SFML/Graphics/Text.hpp>
 
 
 StaticScreen::StaticScreen() : Entity(EntityType::UI)
 {
-	if (font.openFromFile("HomeVideo-BLG6G.ttf"))
-	{
-	}
-
 	isEnabled = false;
 }
 
 StaticScreen::~StaticScreen()
 {
-
 }
 
 bool StaticScreen::Start()
@@ -59,7 +55,7 @@ void StaticScreen::SetBackground(const sf::Color& color)
 
 void StaticScreen::AddLabel(const std::string& text, const int size, const sf::Color& color, const sf::Vector2f& position)
 {
-	sf::Text* newLabel = new sf::Text(font);
+	sf::Text* newLabel = new sf::Text(App->resources->GetFont("HomeVideo"));
 
 	newLabel->setString(text);
 	newLabel->setCharacterSize(size);

@@ -5,10 +5,12 @@
 #include "GameModule.h"
 #include "AudioModule.h"
 #include "InputModule.h"
+#include "ResourcesModule.h"
 
 Application::Application()
 {
 	modules.push_back(window = new WindowModule());
+	modules.push_back(resources = new ResourcesModule());
 	modules.push_back(renderer = new RenderModule(window->GetWindow()));
 	modules.push_back(input = new InputModule(window->GetWindow()));
 	modules.push_back(game = new GameModule());

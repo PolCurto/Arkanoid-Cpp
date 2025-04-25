@@ -27,6 +27,5 @@ public:
 
 protected:
 	sf::RectangleShape shape;
-	sf::Font font;
 	std::vector<sf::Text*> labels;
 };

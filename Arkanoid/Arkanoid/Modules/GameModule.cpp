@@ -11,48 +11,6 @@
 
 GameModule::GameModule()
 {
-	// Game entities
-	entities.push_back(ball = new Ball());
-	entities.push_back(paddle = new Paddle());
-
-	const std::vector<sf::Color> colors = {
-		sf::Color(143, 143, 143), sf::Color(255, 33, 33), sf::Color(255, 233, 33),
-		sf::Color(31, 128, 255), sf::Color(229, 31, 255), sf::Color(74, 255, 38)
-	};
-
-	// Set all the blocks
-	const uint8_t rows = 6;
-	const uint8_t columns = 12;
-	for (uint8_t x = 0; x < columns; ++x)
-	{
-		for (uint8_t y = 0; y < rows; ++y)
-		{
-			const sf::Vector2f position(x * 75.0f, y * 30.0f + 200.0f);
-			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
-		}
-	}
-
-	entities.push_back(topPanel = new TopPanel());
-
-
-	// Pause screen
-	entities.push_back(pauseScreen = new StaticScreen());
-	pauseScreen->SetBackground({ 0, 0, 0, 150 });
-	pauseScreen->AddLabel("GAME PAUSED", 48, sf::Color::White, sf::Vector2f(285.0f, 300.0f));
-	pauseScreen->AddLabel("Press 'esc' to resume", 36, sf::Color::White, sf::Vector2f(210.0f, 400.0f));
-
-	// Game over screen
-	entities.push_back(gameOverScreen = new StaticScreen());
-	gameOverScreen->SetBackground({ 50, 0, 0 });
-	gameOverScreen->AddLabel("GAME OVER", 80, sf::Color::Red, sf::Vector2f(230.0f, 300.0f));
-	gameOverScreen->AddLabel("Press 'r' to restart", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
-
-	// Start screen
-	entities.push_back(startScreen = new StaticScreen());
-	startScreen->SetBackground({ 0, 0, 50 });
-	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(260.0f, 300.0f));
-	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
-	startScreen->SetEnabled(true);
 }
 
 GameModule::~GameModule()
@@ -66,6 +24,8 @@ GameModule::~GameModule()
 
 bool GameModule::Start()
 {
+	SetupScene();
+
 	bool state = true;
 
 	for (Entity* entity : entities)
@@ -175,6 +135,51 @@ void GameModule::StartGame()
 	isPaused = false;
 	isStarted = true;
 	startScreen->SetEnabled(false);
+}
+
+void GameModule::SetupScene()
+{
+	// Game entities
+	entities.push_back(ball = new Ball());
+	entities.push_back(paddle = new Paddle());
+
+	const std::vector<sf::Color> colors = {
+		sf::Color(143, 143, 143), sf::Color(255, 33, 33), sf::Color(255, 233, 33),
+		sf::Color(31, 128, 255), sf::Color(229, 31, 255), sf::Color(74, 255, 38)
+	};
+
+	// Set all the blocks
+	const uint8_t rows = 6;
+	const uint8_t columns = 12;
+	for (uint8_t x = 0; x < columns; ++x)
+	{
+		for (uint8_t y = 0; y < rows; ++y)
+		{
+			const sf::Vector2f position(x * 75.0f, y * 30.0f + 200.0f);
+			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
+		}
+	}
+
+	entities.push_back(topPanel = new TopPanel());
+
+	// Pause screen
+	entities.push_back(pauseScreen = new StaticScreen());
+	pauseScreen->SetBackground({ 0, 0, 0, 150 });
+	pauseScreen->AddLabel("GAME PAUSED", 48, sf::Color::White, sf::Vector2f(285.0f, 300.0f));
+	pauseScreen->AddLabel("Press 'esc' to resume", 36, sf::Color::White, sf::Vector2f(210.0f, 400.0f));
+
+	// Game over screen
+	entities.push_back(gameOverScreen = new StaticScreen());
+	gameOverScreen->SetBackground({ 50, 0, 0 });
+	gameOverScreen->AddLabel("GAME OVER", 80, sf::Color::Red, sf::Vector2f(230.0f, 300.0f));
+	gameOverScreen->AddLabel("Press 'r' to restart", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
+
+	// Start screen
+	entities.push_back(startScreen = new StaticScreen());
+	startScreen->SetBackground({ 0, 0, 50 });
+	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(260.0f, 300.0f));
+	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
+	startScreen->SetEnabled(true);
 }
 
 void GameModule::ManageEntities()

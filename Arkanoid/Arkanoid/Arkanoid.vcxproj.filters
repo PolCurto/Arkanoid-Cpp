@@ -69,6 +69,9 @@
     <ClCompile Include="Entities\StaticScreen.cpp">
       <Filter>Entities\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\ResourcesModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\WindowModule.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Entities\StaticScreen.h">
       <Filter>Entities\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\ResourcesModule.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

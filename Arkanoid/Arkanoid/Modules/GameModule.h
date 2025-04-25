@@ -36,6 +36,7 @@ public:
 	Ball* GetBall() const { return ball; }
 
 private:
+	void SetupScene();
 	void ManageEntities();
 	void EndGame();
 

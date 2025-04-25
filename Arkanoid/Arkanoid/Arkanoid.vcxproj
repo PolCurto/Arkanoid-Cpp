@@ -150,6 +150,7 @@
     <ClCompile Include="Modules\GameModule.cpp" />
     <ClCompile Include="Modules\InputModule.cpp" />
     <ClCompile Include="Modules\RenderModule.cpp" />
+    <ClCompile Include="Modules\ResourcesModule.cpp" />
     <ClCompile Include="Modules\WindowModule.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="Modules\InputModule.h" />
     <ClInclude Include="Modules\Module.h" />
     <ClInclude Include="Modules\RenderModule.h" />
+    <ClInclude Include="Modules\ResourcesModule.h" />
     <ClInclude Include="Modules\WindowModule.h" />
     <ClInclude Include="Entities\TopPanel.h" />
     <ClInclude Include="Utils\Globals.h" />
