@@ -25,7 +25,7 @@ TopPanel::~TopPanel()
 
 bool TopPanel::Start()
 {
-	shape.setSize(sf::Vector2f(SCREEN_WIDTH, 150));
+	shape.setSize(sf::Vector2f(SCREEN_WIDTH, TOP_PANEL_HEIGHT));
 	shape.setFillColor({ 10, 10, 10 });
 	shape.setPosition({ 0, 0 });
 

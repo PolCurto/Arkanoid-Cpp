@@ -1,16 +1,7 @@
 #include "ResourcesModule.h"
 
-#include <SFML/Audio.hpp>
-
-ResourcesModule::ResourcesModule()
-{
-
-}
-
-ResourcesModule::~ResourcesModule()
-{
-
-}
+#include "SFML/Graphics.hpp"
+#include <iostream>
 
 bool ResourcesModule::Start()
 {
@@ -29,18 +20,29 @@ bool ResourcesModule::Start()
 	if (buffer.loadFromFile("Audio/gameOver.ogg")) audioBuffers.insert({ "gameOver", buffer });
 
 	// Load textures
-
-
+	sf::Texture texture;
+	if (texture.loadFromFile("Textures/background.png")) textures.insert({ "background", texture });
 
 	return true;
 }
 
-UpdateState ResourcesModule::Update(float deltaTime)
+const sf::SoundBuffer& ResourcesModule::GetAudio(const std::string& name) const
 {
-	return UPDATE_CONTINUE;
+	const auto& it = audioBuffers.find(name);
+	if (it != audioBuffers.end()) return it->second;
+	else std::cerr << "Could no find audio with name: " + name << std::endl;
 }
 
-bool ResourcesModule::Close()
+const sf::Font& ResourcesModule::GetFont(const std::string& name) const
 {
-	return true;
+	const auto& it = fonts.find(name);
+	if (it != fonts.end()) return it->second;
+	else std::cerr << "Could no find font with name: " + name << std::endl;
+}
+
+const sf::Texture& ResourcesModule::GetTexture(const std::string& name) const
+{
+	const auto& it = textures.find(name);
+	if (it != textures.end()) return it->second;
+	else std::cerr << "Could no find texture with name: " + name << std::endl;
 }

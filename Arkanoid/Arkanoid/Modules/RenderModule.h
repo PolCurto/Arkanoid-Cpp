@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Module.h"
+#include <SFML/Graphics/RectangleShape.hpp>
 
 namespace sf
 {
@@ -25,5 +26,5 @@ public:
 
 private:
 	sf::RenderWindow* mainWindow;
-
+	sf::RectangleShape background;
 };
