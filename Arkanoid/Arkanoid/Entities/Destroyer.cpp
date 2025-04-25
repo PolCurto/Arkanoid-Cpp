@@ -23,6 +23,8 @@ bool Destroyer::Start()
 	shape.setOutlineThickness(-1.0f);
 	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
 
+	velocity = 0;
+
 	return state;
 }
 
@@ -31,8 +33,7 @@ void Destroyer::Move(float deltaTime)
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);
 
-	if (CheckCollisions())
-	{
-		App->game->GetBall()->Upgrade();
-	}
+	velocity += deltaTime * speedIncrease;
+
+	if (CheckCollisions()) App->game->GetBall()->Upgrade();
 }

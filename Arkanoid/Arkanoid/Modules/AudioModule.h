@@ -2,6 +2,9 @@
 
 #include "Module.h"
 
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Music.hpp>
+
 class AudioModule : public Module
 {
 public:
@@ -14,5 +17,6 @@ public:
 	bool Close() override;
 
 private:
-
+	sf::SoundBuffer buffer;
+	sf::Music music;
 };

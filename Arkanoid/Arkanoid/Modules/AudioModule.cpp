@@ -1,5 +1,7 @@
 #include "AudioModule.h"
 
+#include <SFML/Audio.hpp>
+
 AudioModule::AudioModule()
 {
 

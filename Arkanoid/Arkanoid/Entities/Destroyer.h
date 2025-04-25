@@ -12,4 +12,7 @@ public:
 
 private:
 	void Move(float deltaTime) override;
+
+private:
+	float speedIncrease = 800;
 };
