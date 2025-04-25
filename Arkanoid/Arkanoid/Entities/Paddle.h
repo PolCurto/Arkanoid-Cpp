@@ -2,13 +2,6 @@
 
 #include "Block.h"
 
-enum class PaddleMode
-{
-	Default,
-	Large,
-	Small
-};
-
 class Paddle : public Block
 {
 public:
@@ -20,24 +13,35 @@ public:
 	UpdateState Draw() override;
 	bool Close() override;
 
-	void Grow();
-	void Shrink();
+	void SpeedUp();
+	void AddGun();
 
 private:
-	void GetInputs();
+	void GetInputs(float deltaTime);
 	void Move(float deltaTime);
 	void CheckEffects(float deltaTime);
-	void ResetSize();
+	void SetGunsPositions();
+	void Shoot(float deltaTime);
 
 private:
 	sf::Color defaultColor = sf::Color({ 125, 125, 125 });
 	float defaultWidth = 200.0f;
 
 	float currentVelocity = 0;
+	float defaultVelocity = 600;
 	float velocity = 600;
 
-	float effectDuration = 10;
-	float timer = 0;
-	PaddleMode mode = PaddleMode::Default;
+	bool hasGuns;
+	float gunsDuration = 5;
+	float gunsTimer = 0;
+	float fireRate = 0.5f;
+	float fireTimer = 0;
+
+	bool isFast;
+	float speederDuration = 10;
+	float speedTimer = 0;
+
+	sf::RectangleShape leftGun;
+	sf::RectangleShape rightGun;
 
 };

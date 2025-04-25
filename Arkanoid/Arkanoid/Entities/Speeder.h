@@ -2,11 +2,11 @@
 
 #include "Item.h"
 
-class Reducer : public Item
+class Speeder : public Item
 {
 public:
-	Reducer(const sf::Vector2f position);
-	~Reducer();
+	Speeder(const sf::Vector2f position);
+	~Speeder();
 
 	bool Start() override;
 

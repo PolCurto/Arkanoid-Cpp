@@ -1,4 +1,4 @@
-#include "Reducer.h"
+#include "Gun.h"
 
 #include "Application.h"
 #include "ResourcesModule.h"
@@ -6,17 +6,17 @@
 #include "GameModule.h"
 #include "Paddle.h"
 
-Reducer::Reducer(const sf::Vector2f position) : Item(position)
+Gun::Gun(const sf::Vector2f position) : Item(position)
 {
 
 }
 
-Reducer::~Reducer()
+Gun::~Gun()
 {
 
 }
 
-bool Reducer::Start()
+bool Gun::Start()
 {
 	bool state = Item::Start();
 
@@ -30,7 +30,7 @@ bool Reducer::Start()
 	return state;
 }
 
-void Reducer::Move(float deltaTime)
+void Gun::Move(float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);
@@ -38,6 +38,6 @@ void Reducer::Move(float deltaTime)
 	if (CheckCollisions())
 	{
 		App->audio->PlaySFX("shrink");
-		App->game->GetPaddle()->Shrink();
+		App->game->GetPaddle()->SpeedUp();
 	}
 }

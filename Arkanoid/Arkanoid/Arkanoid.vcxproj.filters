@@ -57,10 +57,10 @@
     <ClCompile Include="Entities\Destroyer.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Entities\Enlarger.cpp">
+    <ClCompile Include="Entities\Speeder.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Entities\Reducer.cpp">
+    <ClCompile Include="Entities\Gun.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
     <ClCompile Include="Entities\TopPanel.cpp">
@@ -110,19 +110,16 @@
     <ClInclude Include="Entities\Item.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\Enlarger.h">
+    <ClInclude Include="Entities\Speeder.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\Reducer.h">
+    <ClInclude Include="Entities\Gun.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Destroyer.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
     <ClInclude Include="Utils\Globals.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Text.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Entities\TopPanel.h">

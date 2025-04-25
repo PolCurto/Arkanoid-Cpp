@@ -25,6 +25,7 @@ bool ResourcesModule::Start()
 	if (texture.loadFromFile("Textures/a.png")) textures.insert({ "a", texture });
 	if (texture.loadFromFile("Textures/b.png")) textures.insert({ "b", texture });
 	if (texture.loadFromFile("Textures/c.png")) textures.insert({ "c", texture });
+	if (texture.loadFromFile("Textures/gun.png")) textures.insert({ "gun", texture });
 
 	return true;
 }

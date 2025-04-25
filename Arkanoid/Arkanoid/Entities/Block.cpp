@@ -3,16 +3,11 @@
 #include "Application.h"
 #include "RenderModule.h"
 #include "GameModule.h"
-#include "Enlarger.h"
-#include "Reducer.h"
+#include "Speeder.h"
+#include "Gun.h"
 #include "Destroyer.h"
 
 #include <random>
-
-Block::Block() : Entity(EntityType::Block)
-{
-
-}
 
 Block::Block(const sf::Vector2f position, const sf::Color color, const int score) : color(color), score(score), Entity(EntityType::Block, position)
 {
@@ -40,6 +35,36 @@ bool Block::Start()
 	shape.setFillColor(color);
 	shape.setOutlineThickness(-1.0f);
 	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
+
+	// Set if has item or not at the creation with a random chance
+	// Code from: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<> distr(0.0f, 1.0f);
+
+	if (distr(gen) < itemRate)
+	{
+		const sf::Vector2 posToSpawn(position.x + size.x / 3.0f, position.y);
+
+		// Pick a random item type
+		std::uniform_int_distribution<> distr(0, 2);
+		switch (distr(gen))
+		{
+		case 0:
+			itemOnDestroy = new Speeder(posToSpawn);
+			break;
+
+		case 1:
+			itemOnDestroy = new Gun(posToSpawn);
+			break;
+
+		case 2:
+			itemOnDestroy = new Destroyer(posToSpawn);
+			break;
+		}
+		App->game->AddEntity(itemOnDestroy);
+		itemOnDestroy->SetEnabled(false);
+	}
 
 	return true;
 }
@@ -72,32 +97,5 @@ void Block::Destroy()
 	isEnabled = false;
 
 	App->game->AddScore(score);
-
-	// Randomly spawn an item
-	// Code from: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_real_distribution<> distr(0.0f, 1.0f);
-
-	if (distr(gen) < itemRate)
-	{
-		const sf::Vector2 posToSpawn(position.x + size.x / 3.0f, position.y);
-
-		// Pick a random item type
-		std::uniform_int_distribution<> distr(0, 2);
-		switch (distr(gen))
-		{
-		case 0:		
-			App->game->AddEntity(new Enlarger(posToSpawn));
-			break;
-
-		case 1:
-			App->game->AddEntity(new Reducer(posToSpawn));
-			break;
-
-		case 2:
-			App->game->AddEntity(new Destroyer(posToSpawn));
-			break;
-		}
-	}
+	if (itemOnDestroy) itemOnDestroy->SetEnabled(true);	
 }

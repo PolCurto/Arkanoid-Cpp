@@ -1,4 +1,4 @@
-#include "Enlarger.h"
+#include "Speeder.h"
 
 #include "Application.h"
 #include "ResourcesModule.h"
@@ -6,17 +6,17 @@
 #include "AudioModule.h"
 #include "Paddle.h"
 
-Enlarger::Enlarger(const sf::Vector2f position) : Item(position)
+Speeder::Speeder(const sf::Vector2f position) : Item(position)
 {
 
 }
 
-Enlarger::~Enlarger()
+Speeder::~Speeder()
 {
 
 }
 
-bool Enlarger::Start()
+bool Speeder::Start()
 {
 	bool state = Item::Start();
 
@@ -27,7 +27,7 @@ bool Enlarger::Start()
 	return state;
 }
 
-void Enlarger::Move(float deltaTime)
+void Speeder::Move(float deltaTime)
 {
 	position += direction * velocity * deltaTime;
 	shape.setPosition(position);
@@ -35,6 +35,6 @@ void Enlarger::Move(float deltaTime)
 	if (CheckCollisions())
 	{
 		App->audio->PlaySFX("grow");
-		App->game->GetPaddle()->Grow();
+		App->game->GetPaddle()->SpeedUp();
 	}
 }

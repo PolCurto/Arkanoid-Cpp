@@ -4,10 +4,11 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 
+class Item;
+
 class Block : public Entity
 {
 public:
-	Block();
 	Block(const sf::Vector2f position, const sf::Color color, const int score);
 	Block(const EntityType type);
 	~Block();
@@ -32,4 +33,5 @@ protected:
 	float itemRate = 0.8f;
 
 	int score;
+	Item* itemOnDestroy = nullptr;
 };

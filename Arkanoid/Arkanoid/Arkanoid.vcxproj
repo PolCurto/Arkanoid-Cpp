@@ -139,11 +139,11 @@
     <ClCompile Include="Entities\Ball.cpp" />
     <ClCompile Include="Entities\Block.cpp" />
     <ClCompile Include="Entities\Destroyer.cpp" />
-    <ClCompile Include="Entities\Enlarger.cpp" />
+    <ClCompile Include="Entities\Speeder.cpp" />
     <ClCompile Include="Entities\StaticScreen.cpp" />
     <ClCompile Include="Entities\Item.cpp" />
     <ClCompile Include="Entities\Paddle.cpp" />
-    <ClCompile Include="Entities\Reducer.cpp" />
+    <ClCompile Include="Entities\Gun.cpp" />
     <ClCompile Include="Entities\TopPanel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modules\AudioModule.cpp" />
@@ -156,14 +156,14 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Entities\Destroyer.h" />
-    <ClInclude Include="Entities\Enlarger.h" />
+    <ClInclude Include="Entities\Speeder.h" />
     <ClInclude Include="Entities\Ball.h" />
     <ClInclude Include="Entities\Block.h" />
     <ClInclude Include="Entities\Entity.h" />
     <ClInclude Include="Entities\StaticScreen.h" />
     <ClInclude Include="Entities\Item.h" />
     <ClInclude Include="Entities\Paddle.h" />
-    <ClInclude Include="Entities\Reducer.h" />
+    <ClInclude Include="Entities\Gun.h" />
     <ClInclude Include="Modules\AudioModule.h" />
     <ClInclude Include="Modules\GameModule.h" />
     <ClInclude Include="Modules\InputModule.h" />

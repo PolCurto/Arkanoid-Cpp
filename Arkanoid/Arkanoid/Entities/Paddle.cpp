@@ -3,8 +3,7 @@
 #include "Application.h"
 #include "RenderModule.h"
 #include "InputModule.h"
-
-#include <iostream>
+#include "ResourcesModule.h"
 
 Paddle::Paddle() : Block(EntityType::Paddle)
 {
@@ -28,7 +27,16 @@ bool Paddle::Start()
 
 	shape.setFillColor(defaultColor);
 	shape.setOutlineThickness(2.0f);
-	shape.setOutlineColor({ sf::Color({15, 15, 15}) });
+	shape.setOutlineColor({ 15, 15, 15 });
+
+	leftGun.setTexture(&App->resources->GetTexture("gun"));
+	rightGun.setTexture(&App->resources->GetTexture("gun"));
+	leftGun.setSize({ 30, 60 });
+	rightGun.setSize({ 30, 60 });
+	SetGunsPositions();
+
+	// Create bullets pool
+
 	return true;
 }
 
@@ -37,14 +45,21 @@ UpdateState Paddle::Update(float deltaTime)
 	if (!isEnabled) return UPDATE_CONTINUE;
 
 	CheckEffects(deltaTime);
-	GetInputs();
+	GetInputs(deltaTime);
 	Move(deltaTime);
 	return UPDATE_CONTINUE;
 }
 
 UpdateState Paddle::Draw()
 {
-	if (isEnabled) App->renderer->DrawShape(shape);
+	if (!isEnabled) return UPDATE_CONTINUE;
+
+	if (hasGuns)
+	{
+		App->renderer->DrawShape(leftGun);
+		App->renderer->DrawShape(rightGun);
+	}
+	App->renderer->DrawShape(shape);
 	return UPDATE_CONTINUE;
 }
 
@@ -53,34 +68,21 @@ bool Paddle::Close()
 	return true;
 }
 
-void Paddle::Grow()
+void Paddle::SpeedUp()
 {
-	//TODO Fix this is similar tyo shrink
-	if (mode != PaddleMode::Large)
-	{
-		mode = PaddleMode::Large;
-		timer = effectDuration;
-		size.x = 300.0f;
-		shape.setPosition(position);
-		shape.setSize(size);
-		shape.setFillColor(sf::Color(175, 175, 175));
-	}
+	isFast = true;
+	speedTimer = speederDuration;
+	velocity = 1000;
+	shape.setFillColor(sf::Color(25, 255, 75));
 }
 
-void Paddle::Shrink()
+void Paddle::AddGun()
 {
-	if (mode != PaddleMode::Small)
-	{
-		mode = PaddleMode::Small;
-		timer = effectDuration;
-		size.x = 100.0f;
-		shape.setPosition(position);
-		shape.setSize(size);
-		shape.setFillColor(sf::Color(75, 75, 75));
-	}
+	hasGuns = true;
+	gunsTimer = gunsDuration;
 }
 
-void Paddle::GetInputs()
+void Paddle::GetInputs(float deltaTime)
 {
 	currentVelocity = 0;
 
@@ -93,6 +95,11 @@ void Paddle::GetInputs()
 	{
 		currentVelocity += velocity;
 	}
+
+	if (hasGuns && App->input->IsKeyDown(sf::Keyboard::Scan::Space))
+	{
+		Shoot(deltaTime);
+	}
 }
 
 void Paddle::Move(float deltaTime)
@@ -103,26 +110,45 @@ void Paddle::Move(float deltaTime)
 	if (finalPos > ARENA_H_BORDER && finalPos + size.x < ARENA_WIDTH + ARENA_H_BORDER)
 	{
 		position.x = finalPos;
+		SetGunsPositions();
 		shape.setPosition(position);
 	}
 }
 
 void Paddle::CheckEffects(float deltaTime)
 {
-	if (mode == PaddleMode::Default) return;
-
-	timer -= deltaTime;
-	if (timer <= 0) 
+	if (isFast)
 	{
-		ResetSize();
-		timer = 0;
+		speedTimer -= deltaTime;
+		if (speedTimer <= 0)
+		{
+			isFast = false;
+			shape.setFillColor(defaultColor);
+			speedTimer = 0;
+		}
 	}
+
+	if (hasGuns)
+	{
+		gunsTimer -= deltaTime;
+		if (gunsTimer <= 0)
+		{
+			hasGuns = false;
+			gunsTimer = 0;
+		}
+	}
+	
 }
 
-void Paddle::ResetSize()
+void Paddle::SetGunsPositions()
 {
-	shape.setFillColor(defaultColor);
-	mode = PaddleMode::Default;
-	size.x = defaultWidth;
-	shape.setSize(size);
+	leftGun.setPosition({ position.x, position.y - 60 });
+	rightGun.setPosition({ position.x + size.x - 30, position.y - 60 });
+}
+
+void Paddle::Shoot(float deltaTime)
+{
+	if (fireTimer < fireRate) return;
+
+	fireTimer += deltaTime;
 }

@@ -2,11 +2,11 @@
 
 #include "Item.h"
 
-class Enlarger : public Item
+class Gun : public Item
 {
 public:
-	Enlarger(const sf::Vector2f position);
-	~Enlarger();
+	Gun(const sf::Vector2f position);
+	~Gun();
 
 	bool Start() override;
 
