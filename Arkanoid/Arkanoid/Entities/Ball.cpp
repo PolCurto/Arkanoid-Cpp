@@ -23,7 +23,7 @@ bool Ball::Start()
 	shape.setRadius(10.0f);
 	size = shape.getLocalBounds().size;
 
-	position.x = ARENA_WIDTH / 2.0f;
+	position.x = ARENA_WIDTH / 2.0f - shape.getRadius();
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -60,7 +60,7 @@ bool Ball::Close()
 void Ball::Reset()
 {
 	currentVelocity = startVelocity;
-	position.x = ARENA_WIDTH / 2.0f;
+	position.x = ARENA_WIDTH / 2.0f - shape.getRadius();
 	position.y = 500.0f;
 	shape.setPosition(position);
 

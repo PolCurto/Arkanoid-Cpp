@@ -22,7 +22,7 @@ bool Paddle::Start()
 	size.y = 20.0f;
 	shape.setSize(size);
 
-	position.x = 400.0f;
+	position.x = (ARENA_WIDTH - size.x) / 2.0f;
 	position.y = 800.0f;
 	shape.setPosition(position);
 

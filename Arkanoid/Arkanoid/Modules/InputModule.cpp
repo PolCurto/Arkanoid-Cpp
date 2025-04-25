@@ -34,6 +34,10 @@ UpdateState InputModule::Update(float deltaTime)
 		{
 			App->game->PauseGame();
 		}
+		if (event->is<sf::Event::KeyPressed>() && event->getIf<sf::Event::KeyPressed>()->scancode == sf::Keyboard::Scan::Enter)
+		{
+			App->game->StartGame();
+		}
 	}
 
 	return state;

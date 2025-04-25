@@ -4,13 +4,14 @@
 #include "Entities/Block.h"
 #include "Entities/Paddle.h"
 #include "Entities/TopPanel.h"
-#include "Entities/PauseScreen.h"
+#include "Entities/StaticScreen.h"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
 
 GameModule::GameModule()
 {
+	// Game entities
 	entities.push_back(ball = new Ball());
 	entities.push_back(paddle = new Paddle());
 
@@ -32,7 +33,26 @@ GameModule::GameModule()
 	}
 
 	entities.push_back(topPanel = new TopPanel());
-	entities.push_back(pauseScreen = new PauseScreen());
+
+
+	// Pause screen
+	entities.push_back(pauseScreen = new StaticScreen());
+	pauseScreen->SetBackground({ 0, 0, 0, 150 });
+	pauseScreen->AddLabel("GAME PAUSED", 48, sf::Color::White, sf::Vector2f(285.0f, 300.0f));
+	pauseScreen->AddLabel("Press 'esc' to resume", 36, sf::Color::White, sf::Vector2f(210.0f, 400.0f));
+
+	// Game over screen
+	entities.push_back(gameOverScreen = new StaticScreen());
+	gameOverScreen->SetBackground({ 50, 0, 0 });
+	gameOverScreen->AddLabel("GAME OVER", 80, sf::Color::Red, sf::Vector2f(230.0f, 300.0f));
+	gameOverScreen->AddLabel("Press 'r' to restart", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
+
+	// Start screen
+	entities.push_back(startScreen = new StaticScreen());
+	startScreen->SetBackground({ 0, 0, 50 });
+	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(260.0f, 300.0f));
+	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
+	startScreen->SetEnabled(true);
 }
 
 GameModule::~GameModule()
@@ -59,33 +79,27 @@ bool GameModule::Start()
 
 UpdateState GameModule::Update(float deltaTime)
 {
-	if (isGameOver)
+	if (isPaused) deltaTime = 0;
+
+	UpdateState state = UPDATE_CONTINUE;
+	ManageEntities();
+
+	// First update the entities' logic
+	for (Entity* entity : entities)
 	{
-
+		state = entity->Update(deltaTime);
+		if (state != UPDATE_CONTINUE) break;
 	}
-	else
+
+	if (state != UPDATE_CONTINUE) return state;
+
+	// Draw them afterwards
+	for (Entity* entity : entities)
 	{
-		if (isPaused) deltaTime = 0;
-
-		UpdateState state = UPDATE_CONTINUE;
-		ManageEntities();
-
-		// First update the entities' logic
-		for (Entity* entity : entities)
-		{
-			state = entity->Update(deltaTime);
-			if (state != UPDATE_CONTINUE) break;
-		}
-
-		if (state != UPDATE_CONTINUE) return state;
-
-		// Draw them afterwards
-		for (Entity* entity : entities)
-		{
-			state = entity->Draw();
-			if (state != UPDATE_CONTINUE) break;
-		}
+		state = entity->Draw();
+		if (state != UPDATE_CONTINUE) break;
 	}
+	
 	return UPDATE_CONTINUE;
 }
 
@@ -154,6 +168,15 @@ void GameModule::PauseGame()
 	pauseScreen->SetEnabled(isPaused);
 }
 
+void GameModule::StartGame()
+{
+	if (isStarted) return;
+
+	isPaused = false;
+	isStarted = true;
+	startScreen->SetEnabled(false);
+}
+
 void GameModule::ManageEntities()
 {
 	for (Entity* oldEntity : entitiesToDelete)
@@ -179,7 +202,7 @@ void GameModule::ManageEntities()
 
 void GameModule::EndGame()
 {
-	isGameOver = true;
-
-	//TODO: ventana de game over press r to continue
+	isPaused = true;
+	gameOverScreen->SetEnabled(true);
 }
+

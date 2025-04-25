@@ -140,6 +140,7 @@
     <ClCompile Include="Entities\Block.cpp" />
     <ClCompile Include="Entities\Destroyer.cpp" />
     <ClCompile Include="Entities\Enlarger.cpp" />
+    <ClCompile Include="Entities\StaticScreen.cpp" />
     <ClCompile Include="Entities\Item.cpp" />
     <ClCompile Include="Entities\Paddle.cpp" />
     <ClCompile Include="Entities\Reducer.cpp" />
@@ -150,7 +151,6 @@
     <ClCompile Include="Modules\InputModule.cpp" />
     <ClCompile Include="Modules\RenderModule.cpp" />
     <ClCompile Include="Modules\WindowModule.cpp" />
-    <ClCompile Include="Entities\PauseScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -159,6 +159,7 @@
     <ClInclude Include="Entities\Ball.h" />
     <ClInclude Include="Entities\Block.h" />
     <ClInclude Include="Entities\Entity.h" />
+    <ClInclude Include="Entities\StaticScreen.h" />
     <ClInclude Include="Entities\Item.h" />
     <ClInclude Include="Entities\Paddle.h" />
     <ClInclude Include="Entities\Reducer.h" />
@@ -169,7 +170,6 @@
     <ClInclude Include="Modules\RenderModule.h" />
     <ClInclude Include="Modules\WindowModule.h" />
     <ClInclude Include="Entities\TopPanel.h" />
-    <ClInclude Include="Entities\PauseScreen.h" />
     <ClInclude Include="Utils\Globals.h" />
     <ClInclude Include="Utils\Text.h" />
   </ItemGroup>

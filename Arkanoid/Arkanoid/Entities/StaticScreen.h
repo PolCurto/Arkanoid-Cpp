@@ -11,21 +11,22 @@ namespace sf
 	class Text;
 }
 
-class PauseScreen : public Entity
+class StaticScreen : public Entity
 {
 public:
-	PauseScreen();
-	~PauseScreen();
+	StaticScreen();
+	~StaticScreen();
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };
 	UpdateState Draw() override;
 	bool Close() override;
 
+	void SetBackground(const sf::Color& color);
+	void AddLabel(const std::string& text, const int size, const sf::Color& color, const sf::Vector2f& position);
+
 protected:
 	sf::RectangleShape shape;
-
 	sf::Font font;
-
-	sf::Text* pauseLabel;
+	std::vector<sf::Text*> labels;
 };

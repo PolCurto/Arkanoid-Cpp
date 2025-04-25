@@ -10,6 +10,7 @@ class Ball;
 class Paddle;
 class TopPanel;
 class PauseScreen;
+class StaticScreen;
 
 class GameModule : public Module
 {
@@ -25,11 +26,12 @@ public:
 	void OnMiss();
 	void AddScore(int newScore);
 	void PauseGame();
+	void StartGame();
 
 	void AddEntity(Entity* newEntity) { entitiesToAdd.push_back(newEntity); }
 	void DeleteEntity(Entity* entity) { entitiesToDelete.push_back(entity); }
-
 	const std::vector<Entity*>& GetAllEntities() const { return entities; }
+
 	Paddle* GetPaddle() const { return paddle; }
 	Ball* GetBall() const { return ball; }
 
@@ -40,16 +42,19 @@ private:
 	Ball* ball;
 	Paddle* paddle;
 	TopPanel* topPanel;
-	PauseScreen* pauseScreen;
+
+	StaticScreen* pauseScreen;
+	StaticScreen* startScreen;
+	StaticScreen* gameOverScreen;
 
 	std::vector<Entity*> entities;
 	std::vector<Entity*> entitiesToAdd;
 	std::vector<Entity*> entitiesToDelete;
 
-	int score;
-	int streak;
+	int score = 0;
+	int streak = 0;
 	int lives = 3;
 
-	bool isGameOver = false;
-	bool isPaused = false;
+	bool isStarted = false;
+	bool isPaused = true;
 };
