@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "GameModule.h"
+#include "AudioModule.h"
 #include "Paddle.h"
 
 Enlarger::Enlarger(const sf::Vector2f position) : Item(position)
@@ -33,6 +34,7 @@ void Enlarger::Move(float deltaTime)
 
 	if (CheckCollisions())
 	{
+		App->audio->PlaySFX("grow");
 		App->game->GetPaddle()->Grow();
 	}
 }

@@ -55,6 +55,7 @@ bool Paddle::Close()
 
 void Paddle::Grow()
 {
+	//TODO Fix this is similar tyo shrink
 	if (mode != PaddleMode::Large)
 	{
 		mode = PaddleMode::Large;

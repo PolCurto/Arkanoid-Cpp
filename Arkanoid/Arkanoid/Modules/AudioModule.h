@@ -4,6 +4,7 @@
 
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Audio/Music.hpp>
+#include <memory>
 
 class AudioModule : public Module
 {
@@ -16,7 +17,15 @@ public:
 	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
+	void PlaySFX(const std::string& name);
+
 private:
-	sf::SoundBuffer buffer;
+	void CleanUp();
+
+private:
+	std::vector<std::unique_ptr<sf::Sound>> activeSounds;
 	sf::Music music;
+
+	float cleanupRate = 1;
+	float timer;
 };

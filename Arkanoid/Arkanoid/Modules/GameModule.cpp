@@ -5,6 +5,8 @@
 #include "Entities/Paddle.h"
 #include "Entities/TopPanel.h"
 #include "Entities/StaticScreen.h"
+#include "AudioModule.h"
+#include "Application.h"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -96,6 +98,8 @@ void GameModule::AddScore(int newScore)
 	++streak;
 	sf::Color color = sf::Color::Red;
 
+	App->audio->PlaySFX("blockHit1");
+
 	if (streak >= 5)
 	{
 		color = sf::Color(255, 175, 0);
@@ -171,8 +175,7 @@ void GameModule::SetupScene()
 	// Game over screen
 	entities.push_back(gameOverScreen = new StaticScreen());
 	gameOverScreen->SetBackground({ 50, 0, 0 });
-	gameOverScreen->AddLabel("GAME OVER", 80, sf::Color::Red, sf::Vector2f(230.0f, 300.0f));
-	gameOverScreen->AddLabel("Press 'r' to restart", 36, sf::Color::White, sf::Vector2f(225.0f, 450.0f));
+	gameOverScreen->AddLabel("GAME OVER", 120, sf::Color::Red, sf::Vector2f(130.0f, 350.0f));
 
 	// Start screen
 	entities.push_back(startScreen = new StaticScreen());
@@ -207,6 +210,10 @@ void GameModule::ManageEntities()
 
 void GameModule::EndGame()
 {
+	for (Entity* entity : entities)
+	{
+		entity->SetEnabled(false);
+	}
 	isPaused = true;
 	gameOverScreen->SetEnabled(true);
 }

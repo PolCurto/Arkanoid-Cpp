@@ -1,6 +1,7 @@
 #include "Reducer.h"
 
 #include "Application.h"
+#include "AudioModule.h"
 #include "GameModule.h"
 #include "Paddle.h"
 
@@ -36,6 +37,7 @@ void Reducer::Move(float deltaTime)
 
 	if (CheckCollisions())
 	{
+		App->audio->PlaySFX("shrink");
 		App->game->GetPaddle()->Shrink();
 	}
 }

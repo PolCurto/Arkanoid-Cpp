@@ -1,6 +1,7 @@
 #include "Ball.h"
 
 #include "Application.h"
+#include "AudioModule.h"
 #include "RenderModule.h"
 #include "GameModule.h"
 #include "Block.h"
@@ -42,7 +43,7 @@ UpdateState Ball::Update(float deltaTime)
 	CheckCollisions();
 
 	// Increase ball speed over time
-	currentVelocity += deltaTime * 10; 
+	currentVelocity += deltaTime * 10;
 	return UPDATE_CONTINUE;
 }
 
@@ -69,6 +70,8 @@ void Ball::Reset()
 
 void Ball::Upgrade()
 {
+	App->audio->PlaySFX("destroyer");
+
 	isDestroyer = true;
 	timer = destroyerDuration;
 	shape.setFillColor({ 89, 255, 131 });
@@ -87,8 +90,16 @@ void Ball::Move(float deltaTime)
 	}
 
 	// Bounce off walls
-	if (finalPos.x < 0 || finalPos.x + size.x > ARENA_WIDTH) direction.x *= -1;
-	if (finalPos.y < SCREEN_HEIGHT - ARENA_HEIGHT) direction.y *= -1;
+	if (finalPos.x < 0 || finalPos.x + size.x > ARENA_WIDTH)
+	{
+		App->audio->PlaySFX("wallBounce");
+		direction.x *= -1;
+	}
+	if (finalPos.y < SCREEN_HEIGHT - ARENA_HEIGHT)
+	{
+		direction.y *= -1;
+		App->audio->PlaySFX("wallBounce");
+	}
 
 	position = finalPos;
 	shape.setPosition(position);
@@ -110,10 +121,12 @@ void Ball::CheckCollisions()
 				block->OnHit(hitDamage);
 			}
 		}
-		else if (entityType == EntityType::Paddle)
+		else if (entityType == EntityType::Paddle && paddleTimer <= 0)
 		{
 			if (shape.getGlobalBounds().findIntersection(static_cast<Paddle*>(entity)->GetBoundingBox()))
 			{
+				paddleTimer = paddleCollisionTime;
+				App->audio->PlaySFX("paddleBounce");
 				Bounce(entity);
 			}
 		}
@@ -129,6 +142,8 @@ void Ball::Bounce(const Entity* otherEnt)
 
 void Ball::CheckEffects(float deltaTime)
 {
+	if (paddleTimer > 0) paddleTimer -= deltaTime;
+
 	if (!isDestroyer) return;
 
 	timer -= deltaTime;

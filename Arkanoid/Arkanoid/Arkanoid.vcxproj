@@ -173,7 +173,6 @@
     <ClInclude Include="Modules\WindowModule.h" />
     <ClInclude Include="Entities\TopPanel.h" />
     <ClInclude Include="Utils\Globals.h" />
-    <ClInclude Include="Utils\Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

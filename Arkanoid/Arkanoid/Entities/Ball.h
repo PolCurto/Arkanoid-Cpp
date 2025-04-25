@@ -39,6 +39,9 @@ private:
 	float timer = 0;
 	float destroyerDuration = 5.0f;
 
+	float paddleCollisionTime = 0.5f;
+	float paddleTimer;
+
 	sf::Color defaultColor = sf::Color({ 0, 179, 255 });
 	sf::Color defaultOutlineColor = sf::Color::White;
 };
