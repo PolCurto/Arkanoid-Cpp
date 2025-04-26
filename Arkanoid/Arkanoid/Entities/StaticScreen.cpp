@@ -28,11 +28,11 @@ UpdateState StaticScreen::Draw()
 {
 	if (!isEnabled) return UPDATE_CONTINUE;
 
-	App->renderer->DrawShape(shape);
+	App->renderer->Draw(shape, Layer::UI);
 
 	for (sf::Text* label : labels)
 	{
-		App->renderer->DrawText(*label);
+		App->renderer->Draw(*label, Layer::UI);
 	}
 	return UPDATE_CONTINUE;
 }

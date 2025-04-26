@@ -10,6 +10,14 @@ namespace sf
 	class Text;
 }
 
+enum class Layer : uint8_t
+{
+	Background = 0,
+	Front,
+	UI,
+	Count
+};
+
 class RenderModule : public Module
 {
 public:
@@ -21,10 +29,11 @@ public:
 	UpdateState PostUpdate(float deltaTime) override;
 	bool Close() override;
 
-	void DrawShape(const sf::Shape& shape);
-	void DrawText(const sf::Text& text);
+	void Draw(const sf::Drawable& drawable, const Layer layer); 
 
 private:
 	sf::RenderWindow* mainWindow;
 	sf::RectangleShape background;
+
+	std::vector<const sf::Drawable*> entitiesToDraw[(int)Layer::Count];
 };

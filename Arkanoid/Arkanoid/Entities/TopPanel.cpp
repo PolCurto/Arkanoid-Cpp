@@ -56,11 +56,11 @@ UpdateState TopPanel::Draw()
 {
 	if (!isEnabled) return UPDATE_CONTINUE;
 
-	App->renderer->DrawShape(shape);
-	App->renderer->DrawText(*scoreLabel);
-	App->renderer->DrawText(*score);
-	App->renderer->DrawText(*lifeLabel);
-	App->renderer->DrawText(*life);
+	App->renderer->Draw(shape, Layer::UI);
+	App->renderer->Draw(*scoreLabel, Layer::UI);
+	App->renderer->Draw(*score, Layer::UI);
+	App->renderer->Draw(*lifeLabel, Layer::UI);
+	App->renderer->Draw(*life, Layer::UI);
 	return UPDATE_CONTINUE;
 }
 

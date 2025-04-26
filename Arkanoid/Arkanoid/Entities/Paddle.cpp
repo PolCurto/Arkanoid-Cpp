@@ -56,10 +56,10 @@ UpdateState Paddle::Draw()
 
 	if (hasGuns)
 	{
-		App->renderer->DrawShape(leftGun);
-		App->renderer->DrawShape(rightGun);
+		App->renderer->Draw(leftGun, Layer::Front);
+		App->renderer->Draw(rightGun, Layer::Front);
 	}
-	App->renderer->DrawShape(shape);
+	App->renderer->Draw(shape, Layer::Front);
 	return UPDATE_CONTINUE;
 }
 

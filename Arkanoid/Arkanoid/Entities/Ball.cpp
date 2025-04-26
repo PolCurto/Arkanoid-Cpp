@@ -51,7 +51,7 @@ UpdateState Ball::Update(float deltaTime)
 
 UpdateState Ball::Draw()
 {
-	if (isEnabled) App->renderer->DrawShape(shape);
+	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return UPDATE_CONTINUE;
 }
 

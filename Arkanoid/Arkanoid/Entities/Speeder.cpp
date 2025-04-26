@@ -21,8 +21,6 @@ bool Speeder::Start()
 	bool state = Item::Start();
 
 	shape.setTexture(&App->resources->GetTexture("b"));
-	shape.setOutlineThickness(-1.0f);
-	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
 
 	return state;
 }

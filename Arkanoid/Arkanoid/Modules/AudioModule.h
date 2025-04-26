@@ -20,7 +20,7 @@ public:
 	void PlaySFX(const std::string& name);
 	void StopAllSFX();
 
-	void PlayMusic(const std::string& filename);
+	void PlayMusic(const std::string& filename, bool loop = true);
 	void PauseMusic() { music.pause(); }
 	void ResumeMusic() { music.play(); }
 	void StopMusic() { music.stop(); };

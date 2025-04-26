@@ -76,7 +76,7 @@ UpdateState Block::Update(float deltaTime)
 
 UpdateState Block::Draw()
 {
-	if (isEnabled) App->renderer->DrawShape(shape);
+	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return UPDATE_CONTINUE;
 }
 

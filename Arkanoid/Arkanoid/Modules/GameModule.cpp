@@ -181,7 +181,7 @@ void GameModule::SetupScene()
 
 	// Pause screen
 	entities.push_back(pauseScreen = new StaticScreen());
-	pauseScreen->SetBackground({ 0, 0, 0, 150 });
+	pauseScreen->SetBackground({ 0, 0, 0, 200 });
 	pauseScreen->AddLabel("GAME PAUSED", 48, sf::Color::White, sf::Vector2f(320.0f, 300.0f));
 	pauseScreen->AddLabel("Press 'esc' to resume", 36, sf::Color::White, sf::Vector2f(245.0f, 400.0f));
 
@@ -258,7 +258,7 @@ void GameModule::EndGame()
 		break;
 
 	case GameState::Victory:
-		App->audio->PlayMusic("Audio/victory.wav");
+		App->audio->PlayMusic("Audio/victory.wav", false);
 		victoryScreen->SetEnabled(true);
 		break;
 	}

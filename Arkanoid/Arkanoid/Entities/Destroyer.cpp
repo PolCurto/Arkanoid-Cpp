@@ -20,9 +20,6 @@ bool Destroyer::Start()
 	bool state = Item::Start();
 
 	shape.setTexture(&App->resources->GetTexture("c"));
-	shape.setOutlineThickness(-1.0f);
-	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
-
 	velocity = 0;
 
 	return state;

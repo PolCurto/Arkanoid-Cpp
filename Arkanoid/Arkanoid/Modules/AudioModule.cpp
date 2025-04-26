@@ -38,12 +38,12 @@ bool AudioModule::Close()
 	return true;
 }
 
-void AudioModule::PlayMusic(const std::string& filename)
+void AudioModule::PlayMusic(const std::string& filename, bool loop)
 {
 	if (music.openFromFile(filename))
 	{
 		music.setVolume(20);
-		music.setLooping(true);
+		music.setLooping(loop);
 		music.play();
 	}
 }
