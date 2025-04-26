@@ -8,7 +8,7 @@ class Item : public Entity
 {
 public:
 	Item(const sf::Vector2f position);
-	~Item();
+	virtual ~Item() override;
 
 	virtual bool Start() override;
 	virtual UpdateState Update(float deltaTime) override;

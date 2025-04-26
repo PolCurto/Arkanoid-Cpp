@@ -6,7 +6,7 @@ class Speeder : public Item
 {
 public:
 	Speeder(const sf::Vector2f position);
-	~Speeder();
+	~Speeder() override;
 
 	bool Start() override;
 

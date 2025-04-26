@@ -11,7 +11,7 @@ class Block : public Entity
 public:
 	Block(const sf::Vector2f position, const sf::Color color, const int score);
 	Block(const EntityType type);
-	~Block();
+	virtual ~Block() override;
 
 	virtual bool Start() override;
 	virtual UpdateState Update(float deltaTime) override;

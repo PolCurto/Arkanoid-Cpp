@@ -12,7 +12,7 @@ class ResourcesModule : public Module
 {
 public:
 	ResourcesModule() = default;
-	~ResourcesModule() = default;
+	~ResourcesModule() override = default;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };

@@ -13,7 +13,7 @@ class InputModule : public Module
 {
 public:
 	InputModule(sf::RenderWindow* window);
-	~InputModule();
+	~InputModule() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override;

@@ -19,7 +19,7 @@ Application::Application()
 
 Application::~Application()
 {
-	for (const Module* module : modules)
+	for (Module* module : modules)
 	{
 		delete module;
 	}

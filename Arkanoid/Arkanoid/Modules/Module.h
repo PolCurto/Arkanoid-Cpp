@@ -6,7 +6,7 @@ class Module
 {
 public:
 	Module() = default;
-	~Module() = default;
+	virtual ~Module() = default;
 
 	virtual bool Start() = 0;
 	virtual UpdateState Update(float deltaTime) = 0;

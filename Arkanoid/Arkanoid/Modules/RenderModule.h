@@ -22,7 +22,7 @@ class RenderModule : public Module
 {
 public:
 	RenderModule(sf::RenderWindow* window);
-	~RenderModule();
+	~RenderModule() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override;

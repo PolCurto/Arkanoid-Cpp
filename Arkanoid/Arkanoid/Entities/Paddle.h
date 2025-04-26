@@ -8,7 +8,7 @@ class Paddle : public Block
 {
 public:
 	Paddle();
-	~Paddle();
+	~Paddle() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override;

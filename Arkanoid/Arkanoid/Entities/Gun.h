@@ -6,7 +6,7 @@ class Gun : public Item
 {
 public:
 	Gun(const sf::Vector2f position);
-	~Gun();
+	~Gun() override;
 
 	bool Start() override;
 

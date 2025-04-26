@@ -8,7 +8,7 @@ class Bullet : public Entity
 {
 public:
 	Bullet();
-	~Bullet();
+	~Bullet() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override;

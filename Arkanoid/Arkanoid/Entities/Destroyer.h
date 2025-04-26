@@ -6,7 +6,7 @@ class Destroyer : public Item
 {
 public:
 	Destroyer(const sf::Vector2f position);
-	~Destroyer();
+	~Destroyer() override;
 
 	bool Start() override;
 

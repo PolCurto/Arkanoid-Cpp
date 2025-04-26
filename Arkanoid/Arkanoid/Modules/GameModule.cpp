@@ -196,7 +196,7 @@ void GameModule::SetupScene()
 
 	// Victory screen
 	entities.push_back(victoryScreen = new StaticScreen());
-	victoryScreen->SetBackground({ 0, 20, 0 });
+	victoryScreen->SetBackground({ 0, 30, 0 });
 	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(200.0f, 350.0f));
 
 	// Start screen

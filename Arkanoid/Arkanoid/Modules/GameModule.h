@@ -24,7 +24,7 @@ class GameModule : public Module
 {
 public:
 	GameModule();
-	~GameModule();
+	~GameModule() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override;

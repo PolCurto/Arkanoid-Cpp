@@ -15,7 +15,7 @@ class StaticScreen : public Entity
 {
 public:
 	StaticScreen();
-	~StaticScreen();
+	~StaticScreen() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };

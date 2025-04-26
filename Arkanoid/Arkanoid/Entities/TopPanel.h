@@ -15,7 +15,7 @@ class TopPanel : public Entity
 {
 public:
 	TopPanel();
-	~TopPanel();
+	~TopPanel() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };

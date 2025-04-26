@@ -20,7 +20,7 @@ class Entity
 public:
 	Entity(const EntityType type) : type(type) {};
 	Entity(const EntityType type, const sf::Vector2f& pos) : type(type), position(pos) {};
-	~Entity() = default;
+	virtual ~Entity() = default;
 
 	virtual bool Start() { return true; };
 	virtual UpdateState Update(float deltaTime) { return UPDATE_CONTINUE; };

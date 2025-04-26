@@ -13,7 +13,7 @@ class WindowModule : public Module
 {
 public:
 	WindowModule();
-	~WindowModule();
+	~WindowModule() override;
 
 	bool Start() override;
 	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };
