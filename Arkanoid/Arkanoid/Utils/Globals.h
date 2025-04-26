@@ -1,19 +1,22 @@
 #pragma once
 
-enum UpdateState
+namespace Globals
 {
-	UPDATE_CONTINUE = 1,
-	UPDATE_STOP,
-	UPDATE_ERROR
-};
+	enum class UpdateState
+	{
+		Continue = 1,
+		Stop,
+		Error
+	};
 
-constexpr int SCREEN_WIDTH = 964;
-constexpr int SCREEN_HEIGHT = 950;
+	constexpr int SCREEN_WIDTH = 964;
+	constexpr int SCREEN_HEIGHT = 950;
 
-constexpr int TOP_PANEL_HEIGHT = 150;
+	constexpr int TOP_PANEL_HEIGHT = 150;
 
-constexpr int ARENA_WIDTH = 900;
-constexpr int ARENA_HEIGHT = 800;
-constexpr int ARENA_H_BORDER = 32;
-constexpr int ARENA_V_BORDER = 30;
+	constexpr int ARENA_WIDTH = 900;
+	constexpr int ARENA_HEIGHT = 800;
+	constexpr int ARENA_H_BORDER = 32;
+	constexpr int ARENA_V_BORDER = 30;
+}
 

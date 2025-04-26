@@ -8,10 +8,10 @@ Application* App = nullptr;
 
 enum class MainState
 {
-	START,
-	UPDATE,
-	FINISH,
-	EXIT
+	Start,
+	Update,
+	Finish,
+	Exit
 };
 
 int main()
@@ -19,41 +19,41 @@ int main()
 	App = new Application();
 	sf::Clock clock;
 	float deltaTime;
-	MainState state = MainState::START;
-	while (state != MainState::EXIT)
+	MainState state = MainState::Start;
+	while (state != MainState::Exit)
 	{
 		switch (state)
 		{
-		case MainState::START:
+		case MainState::Start:
 			if (App->Start()) 
 			{
-				state = MainState::UPDATE;
+				state = MainState::Update;
 			}
 			else 
 			{
-				state = MainState::EXIT;
+				state = MainState::Exit;
 				std::cout << "Error in application Start" << std::endl;
 			}
 			break;
 
-		case MainState::UPDATE:
+		case MainState::Update:
 			deltaTime = clock.restart().asSeconds();
 			switch (App->Update(deltaTime))
 			{
-			case UPDATE_ERROR:
-				state = MainState::EXIT;
+			case Globals::UpdateState::Error:
+				state = MainState::Exit;
 				std::cout << "Error in application Update" << std::endl;
 				break;
 
-			case UPDATE_STOP:
-				state = MainState::FINISH;
+			case Globals::UpdateState::Stop:
+				state = MainState::Finish;
 				break;
 			}
 			break;
 
-		case MainState::FINISH:
+		case MainState::Finish:
 			if (!App->Close()) std::cout << "Error in application Close" << std::endl;
-			state = MainState::EXIT;	
+			state = MainState::Exit;	
 			break;
 		}
 	}

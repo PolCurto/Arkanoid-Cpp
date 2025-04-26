@@ -10,7 +10,7 @@ namespace sf
 	class Text;
 }
 
-enum class Layer : uint8_t
+enum class Layer
 {
 	Background = 0,
 	Front,
@@ -21,13 +21,13 @@ enum class Layer : uint8_t
 class RenderModule : public Module
 {
 public:
-	RenderModule(sf::RenderWindow* window);
-	~RenderModule() override;
+	RenderModule(sf::RenderWindow* window) : mainWindow(window) {};
+	~RenderModule() override = default;
 
 	bool Start() override;
-	UpdateState Update(float deltaTime) override;
-	UpdateState PostUpdate(float deltaTime) override;
-	bool Close() override;
+	Globals::UpdateState Update(float deltaTime) override;
+	Globals::UpdateState PostUpdate(float deltaTime) override;
+	bool Close() override { return true; };
 
 	void Draw(const sf::Drawable& drawable, const Layer layer); 
 

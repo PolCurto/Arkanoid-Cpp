@@ -32,23 +32,29 @@ bool ResourcesModule::Start()
 	return true;
 }
 
-const sf::SoundBuffer& ResourcesModule::GetAudio(const std::string& name) const
+const sf::SoundBuffer* ResourcesModule::GetAudio(const std::string& name) const
 {
 	const auto& it = audioBuffers.find(name);
-	if (it != audioBuffers.end()) return it->second;
-	else std::cerr << "Could no find audio with name: " + name << std::endl;
+	if (it != audioBuffers.end()) return &it->second;
+
+	std::cerr << "Could not find audio with name: " + name << std::endl;
+	return nullptr;
 }
 
-const sf::Font& ResourcesModule::GetFont(const std::string& name) const
+const sf::Font* ResourcesModule::GetFont(const std::string& name) const
 {
 	const auto& it = fonts.find(name);
-	if (it != fonts.end()) return it->second;
-	else std::cerr << "Could no find font with name: " + name << std::endl;
+	if (it != fonts.end()) return &it->second;
+
+	std::cerr << "Could not find font with name: " + name << std::endl;
+	return nullptr;
 }
 
-const sf::Texture& ResourcesModule::GetTexture(const std::string& name) const
+const sf::Texture* ResourcesModule::GetTexture(const std::string& name) const
 {
 	const auto& it = textures.find(name);
-	if (it != textures.end()) return it->second;
-	else std::cerr << "Could no find texture with name: " + name << std::endl;
+	if (it != textures.end()) return &it->second;
+
+	std::cerr << "Could not find texture with name: " + name << std::endl;
+	return nullptr;
 }

@@ -3,7 +3,6 @@
 #include "Globals.h"
 
 #include <vector>
-#include <memory>
 
 class Module;
 class WindowModule;
@@ -20,7 +19,7 @@ public:
 	~Application();
 
 	bool Start();
-	UpdateState Update(float deltaTime);
+	Globals::UpdateState Update(float deltaTime);
 	bool Close();
 
 public:
