@@ -95,6 +95,10 @@ void GameModule::OnMiss()
 		state = GameState::Defeat;
 		EndGame();
 	}
+	else
+	{
+		App->audio->PlaySFX("miss");
+	}
 }
 
 void GameModule::AddScore(int newScore)
@@ -102,7 +106,7 @@ void GameModule::AddScore(int newScore)
 	++streak;
 	sf::Color color = sf::Color::Red;
 
-	App->audio->PlaySFX("blockHit1");
+	App->audio->PlaySFX("blockHit");
 
 	if (streak >= 5)
 	{
@@ -187,13 +191,13 @@ void GameModule::SetupScene()
 
 	// Game over screen
 	entities.push_back(gameOverScreen = new StaticScreen());
-	gameOverScreen->SetBackground({ 50, 0, 0 });
+	gameOverScreen->SetBackground({ 30, 0, 0 });
 	gameOverScreen->AddLabel("GAME OVER", 120, sf::Color::Red, sf::Vector2f(155.0f, 350.0f));
 
 	// Victory screen
 	entities.push_back(victoryScreen = new StaticScreen());
-	victoryScreen->SetBackground({ 0, 50, 0 });
-	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(175.0f, 350.0f));
+	victoryScreen->SetBackground({ 0, 20, 0 });
+	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(200.0f, 350.0f));
 
 	// Start screen
 	entities.push_back(startScreen = new StaticScreen());

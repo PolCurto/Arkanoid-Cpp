@@ -113,7 +113,6 @@ void Ball::Move(float deltaTime)
 			App->audio->PlaySFX("wallBounce");
 		}
 	}
-	
 
 	position = finalPos;
 	shape.setPosition(position);

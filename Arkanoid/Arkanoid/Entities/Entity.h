@@ -11,7 +11,8 @@ enum class EntityType: uint8_t
 	Paddle,
 	Ball,
 	Item,
-	UI
+	UI,
+	Bullet
 };
 
 class Entity

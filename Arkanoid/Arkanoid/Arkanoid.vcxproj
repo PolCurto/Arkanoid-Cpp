@@ -138,6 +138,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Entities\Ball.cpp" />
     <ClCompile Include="Entities\Block.cpp" />
+    <ClCompile Include="Entities\Bullet.cpp" />
     <ClCompile Include="Entities\Destroyer.cpp" />
     <ClCompile Include="Entities\Speeder.cpp" />
     <ClCompile Include="Entities\StaticScreen.cpp" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Entities\Bullet.h" />
     <ClInclude Include="Entities\Destroyer.h" />
     <ClInclude Include="Entities\Speeder.h" />
     <ClInclude Include="Entities\Ball.h" />

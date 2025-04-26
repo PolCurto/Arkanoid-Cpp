@@ -13,18 +13,20 @@ bool ResourcesModule::Start()
 	sf::SoundBuffer buffer;
 	if (buffer.loadFromFile("Audio/paddleBounce.ogg")) audioBuffers.insert({ "paddleBounce", buffer });
 	if (buffer.loadFromFile("Audio/wallBounce.ogg")) audioBuffers.insert({ "wallBounce", buffer });
-	if (buffer.loadFromFile("Audio/blockHit.ogg")) audioBuffers.insert({ "blockHit1", buffer });
+	if (buffer.loadFromFile("Audio/blockHit.ogg")) audioBuffers.insert({ "blockHit", buffer });
 	if (buffer.loadFromFile("Audio/shrink.wav")) audioBuffers.insert({ "shrink", buffer });
 	if (buffer.loadFromFile("Audio/grow.wav")) audioBuffers.insert({ "grow", buffer });
 	if (buffer.loadFromFile("Audio/destroyer.wav")) audioBuffers.insert({ "destroyer", buffer });
 	if (buffer.loadFromFile("Audio/gameOver.ogg")) audioBuffers.insert({ "gameOver", buffer });
+	if (buffer.loadFromFile("Audio/miss.wav")) audioBuffers.insert({ "miss", buffer });
+	if (buffer.loadFromFile("Audio/shot.wav")) audioBuffers.insert({ "shot", buffer });
 
 	// Load textures
 	sf::Texture texture;
 	if (texture.loadFromFile("Textures/background.png")) textures.insert({ "background", texture });
-	if (texture.loadFromFile("Textures/a.png")) textures.insert({ "a", texture });
-	if (texture.loadFromFile("Textures/b.png")) textures.insert({ "b", texture });
-	if (texture.loadFromFile("Textures/c.png")) textures.insert({ "c", texture });
+	if (texture.loadFromFile("Textures/gunItem.png")) textures.insert({ "gunItem", texture });
+	if (texture.loadFromFile("Textures/destroyerItem.png")) textures.insert({ "destroyerItem", texture });
+	if (texture.loadFromFile("Textures/speederItem.png")) textures.insert({ "speederItem", texture });
 	if (texture.loadFromFile("Textures/gun.png")) textures.insert({ "gun", texture });
 
 	return true;

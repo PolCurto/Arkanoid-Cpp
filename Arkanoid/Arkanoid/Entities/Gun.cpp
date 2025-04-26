@@ -21,7 +21,7 @@ bool Gun::Start()
 	bool state = Item::Start();
 
 	velocity = 600.0f;
-	shape.setTexture(&App->resources->GetTexture("a"));
+	shape.setTexture(&App->resources->GetTexture("gunItem"));
 
 	return state;
 }
@@ -34,6 +34,6 @@ void Gun::Move(float deltaTime)
 	if (CheckCollisions())
 	{
 		App->audio->PlaySFX("shrink");
-		App->game->GetPaddle()->SpeedUp();
+		App->game->GetPaddle()->AddGun();
 	}
 }

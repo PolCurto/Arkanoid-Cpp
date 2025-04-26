@@ -19,7 +19,7 @@ bool Destroyer::Start()
 {
 	bool state = Item::Start();
 
-	shape.setTexture(&App->resources->GetTexture("c"));
+	shape.setTexture(&App->resources->GetTexture("destroyerItem"));
 	velocity = 0;
 
 	return state;

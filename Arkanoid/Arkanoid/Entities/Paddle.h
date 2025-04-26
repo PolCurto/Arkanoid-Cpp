@@ -2,6 +2,8 @@
 
 #include "Block.h"
 
+class Bullet;
+
 class Paddle : public Block
 {
 public:
@@ -19,7 +21,7 @@ public:
 private:
 	void GetInputs(float deltaTime);
 	void Move(float deltaTime);
-	void CheckEffects(float deltaTime);
+	void CheckTimers(float deltaTime);
 	void SetGunsPositions();
 	void Shoot(float deltaTime);
 
@@ -29,7 +31,7 @@ private:
 
 	float currentVelocity = 0;
 	float defaultVelocity = 600;
-	float velocity = 600;
+	float velocity;
 
 	bool hasGuns;
 	float gunsDuration = 5;
@@ -44,4 +46,6 @@ private:
 	sf::RectangleShape leftGun;
 	sf::RectangleShape rightGun;
 
+	std::vector<Bullet*> bullets;
+	int bulletIndex = 0;
 };

@@ -72,6 +72,9 @@
     <ClCompile Include="Modules\ResourcesModule.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Bullet.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules\WindowModule.h">
@@ -107,9 +110,6 @@
     <ClInclude Include="Entities\Ball.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\Item.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Entities\Speeder.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
@@ -130,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="Modules\ResourcesModule.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Item.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Bullet.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

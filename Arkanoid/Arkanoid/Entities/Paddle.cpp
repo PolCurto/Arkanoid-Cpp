@@ -3,7 +3,10 @@
 #include "Application.h"
 #include "RenderModule.h"
 #include "InputModule.h"
+#include "AudioModule.h"
+#include "GameModule.h"
 #include "ResourcesModule.h"
+#include "Entities/Bullet.h"
 
 Paddle::Paddle() : Block(EntityType::Paddle)
 {
@@ -17,6 +20,7 @@ Paddle::~Paddle()
 
 bool Paddle::Start()
 {
+	velocity = defaultVelocity;
 	size.x = defaultWidth;
 	size.y = 20.0f;
 	shape.setSize(size);
@@ -36,6 +40,14 @@ bool Paddle::Start()
 	SetGunsPositions();
 
 	// Create bullets pool
+	const int bulletsSize = 20;
+	for (int i = 0; i < bulletsSize; ++i)
+	{
+		Bullet* newBullet = new Bullet();
+		bullets.push_back(newBullet);
+		App->game->AddEntity(newBullet);
+		newBullet->SetEnabled(false);
+	}
 
 	return true;
 }
@@ -44,7 +56,7 @@ UpdateState Paddle::Update(float deltaTime)
 {
 	if (!isEnabled) return UPDATE_CONTINUE;
 
-	CheckEffects(deltaTime);
+	CheckTimers(deltaTime);
 	GetInputs(deltaTime);
 	Move(deltaTime);
 	return UPDATE_CONTINUE;
@@ -115,7 +127,7 @@ void Paddle::Move(float deltaTime)
 	}
 }
 
-void Paddle::CheckEffects(float deltaTime)
+void Paddle::CheckTimers(float deltaTime)
 {
 	if (isFast)
 	{
@@ -137,7 +149,8 @@ void Paddle::CheckEffects(float deltaTime)
 			gunsTimer = 0;
 		}
 	}
-	
+
+	if (fireTimer < fireRate) fireTimer += deltaTime;
 }
 
 void Paddle::SetGunsPositions()
@@ -150,5 +163,13 @@ void Paddle::Shoot(float deltaTime)
 {
 	if (fireTimer < fireRate) return;
 
-	fireTimer += deltaTime;
+	fireTimer = 0;
+	App->audio->PlaySFX("shot");
+
+	// Reuse the same bullets in the pool to avoid creating and destroying them
+	if (bulletIndex >= bullets.size()) bulletIndex = 0;
+
+	bullets[bulletIndex]->OnShot({ position.x + 12, position.y - 65 });
+	bullets[bulletIndex + 1]->OnShot({ position.x + size.x - 12, position.y - 65 });
+	bulletIndex += 2;
 }
