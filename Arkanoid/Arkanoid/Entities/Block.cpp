@@ -69,15 +69,15 @@ bool Block::Start()
 	return true;
 }
 
-UpdateState Block::Update(float deltaTime)
+Globals::UpdateState Block::Update(float deltaTime)
 {
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
-UpdateState Block::Draw()
+Globals::UpdateState Block::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool Block::Close()

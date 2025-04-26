@@ -23,8 +23,8 @@ public:
 	virtual ~Entity() = default;
 
 	virtual bool Start() { return true; };
-	virtual UpdateState Update(float deltaTime) { return UPDATE_CONTINUE; };
-	virtual UpdateState Draw() { return UPDATE_CONTINUE; };
+	virtual Globals::UpdateState Update(float deltaTime) { return Globals::UpdateState::Continue; };
+	virtual Globals::UpdateState Draw() { return Globals::UpdateState::Continue; };
 	virtual bool Close() { return true; };
 
 	EntityType GetType() const { return type; }

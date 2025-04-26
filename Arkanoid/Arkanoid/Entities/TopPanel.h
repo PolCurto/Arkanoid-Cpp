@@ -18,8 +18,8 @@ public:
 	~TopPanel() override;
 
 	bool Start() override;
-	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };
-	UpdateState Draw() override;
+	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
+	Globals::UpdateState Draw() override;
 	bool Close() override;
 
 	void SetScore(int newScore, sf::Color color = sf::Color::Red);

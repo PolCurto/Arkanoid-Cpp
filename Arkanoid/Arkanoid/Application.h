@@ -20,7 +20,7 @@ public:
 	~Application();
 
 	bool Start();
-	UpdateState Update(float deltaTime);
+	Globals::UpdateState Update(float deltaTime);
 	bool Close();
 
 public:

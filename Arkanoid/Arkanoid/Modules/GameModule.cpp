@@ -39,30 +39,30 @@ bool GameModule::Start()
 	return state;
 }
 
-UpdateState GameModule::Update(float deltaTime)
+Globals::UpdateState GameModule::Update(float deltaTime)
 {
 	if (isPaused) deltaTime = 0;
 
-	UpdateState state = UPDATE_CONTINUE;
+	Globals::UpdateState state = Globals::UpdateState::Continue;
 	ManageEntities();
 
 	// First update the entities' logic
 	for (Entity* entity : entities)
 	{
 		state = entity->Update(deltaTime);
-		if (state != UPDATE_CONTINUE) break;
+		if (state != Globals::UpdateState::Continue) break;
 	}
 
-	if (state != UPDATE_CONTINUE) return state;
+	if (state != Globals::UpdateState::Continue) return state;
 
 	// Draw them afterwards
 	for (Entity* entity : entities)
 	{
 		state = entity->Draw();
-		if (state != UPDATE_CONTINUE) break;
+		if (state != Globals::UpdateState::Continue) break;
 	}
 	
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool GameModule::Close()
@@ -176,7 +176,7 @@ void GameModule::SetupScene()
 	{
 		for (uint8_t y = 0; y < rows; ++y)
 		{
-			const sf::Vector2f position(x * 75.0f + 75.0f + ARENA_H_BORDER, y * 30.0f + TOP_PANEL_HEIGHT + ARENA_V_BORDER + 90);
+			const sf::Vector2f position(x * 75.0f + 75.0f + Globals::ARENA_H_BORDER, y * 30.0f + Globals::TOP_PANEL_HEIGHT + Globals::ARENA_V_BORDER + 90);
 			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
 		}
 	}

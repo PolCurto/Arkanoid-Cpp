@@ -21,7 +21,7 @@ bool AudioModule::Start()
 	return true;
 }
 
-UpdateState AudioModule::Update(float deltaTime)
+Globals::UpdateState AudioModule::Update(float deltaTime)
 {
 	timer += deltaTime;
 	if (timer >= cleanupRate)
@@ -30,7 +30,7 @@ UpdateState AudioModule::Update(float deltaTime)
 		CleanUp();
 	}
 
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool AudioModule::Close()

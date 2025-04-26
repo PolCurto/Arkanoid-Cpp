@@ -40,12 +40,12 @@ int main()
 			deltaTime = clock.restart().asSeconds();
 			switch (App->Update(deltaTime))
 			{
-			case UPDATE_ERROR:
+			case Globals::UpdateState::Error:
 				state = MainState::EXIT;
 				std::cout << "Error in application Update" << std::endl;
 				break;
 
-			case UPDATE_STOP:
+			case Globals::UpdateState::Stop:
 				state = MainState::FINISH;
 				break;
 			}

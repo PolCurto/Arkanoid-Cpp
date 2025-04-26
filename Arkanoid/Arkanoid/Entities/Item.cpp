@@ -23,19 +23,19 @@ bool Item::Start()
 	return true;
 }
 
-UpdateState Item::Update(float deltaTime)
+Globals::UpdateState Item::Update(float deltaTime)
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	Move(deltaTime);
 	CheckCollisions();
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
-UpdateState Item::Draw()
+Globals::UpdateState Item::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool Item::Close()

@@ -27,8 +27,8 @@ public:
 	~GameModule() override;
 
 	bool Start() override;
-	UpdateState Update(float deltaTime) override;
-	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
+	Globals::UpdateState Update(float deltaTime) override;
+	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
 	bool Close() override;
 
 	void OnMiss();

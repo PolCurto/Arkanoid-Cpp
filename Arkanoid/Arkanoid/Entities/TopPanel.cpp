@@ -25,7 +25,7 @@ TopPanel::~TopPanel()
 
 bool TopPanel::Start()
 {
-	shape.setSize(sf::Vector2f(SCREEN_WIDTH, TOP_PANEL_HEIGHT));
+	shape.setSize(sf::Vector2f(Globals::SCREEN_WIDTH, Globals::TOP_PANEL_HEIGHT));
 	shape.setFillColor({ 10, 10, 10 });
 	shape.setPosition({ 0, 0 });
 
@@ -52,16 +52,16 @@ bool TopPanel::Start()
 	return true;
 }
 
-UpdateState TopPanel::Draw()
+Globals::UpdateState TopPanel::Draw()
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	App->renderer->Draw(shape, Layer::UI);
 	App->renderer->Draw(*scoreLabel, Layer::UI);
 	App->renderer->Draw(*score, Layer::UI);
 	App->renderer->Draw(*lifeLabel, Layer::UI);
 	App->renderer->Draw(*life, Layer::UI);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool TopPanel::Close()

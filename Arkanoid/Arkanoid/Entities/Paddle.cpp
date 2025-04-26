@@ -25,7 +25,7 @@ bool Paddle::Start()
 	size.y = 20.0f;
 	shape.setSize(size);
 
-	position.x = (ARENA_WIDTH - size.x + ARENA_H_BORDER * 2) / 2.0f;
+	position.x = (Globals::ARENA_WIDTH - size.x + Globals::ARENA_H_BORDER * 2) / 2.0f;
 	position.y = 850.0f;
 	shape.setPosition(position);
 
@@ -52,19 +52,19 @@ bool Paddle::Start()
 	return true;
 }
 
-UpdateState Paddle::Update(float deltaTime)
+Globals::UpdateState Paddle::Update(float deltaTime)
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	CheckTimers(deltaTime);
 	GetInputs(deltaTime);
 	Move(deltaTime);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
-UpdateState Paddle::Draw()
+Globals::UpdateState Paddle::Draw()
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	if (hasGuns)
 	{
@@ -72,7 +72,7 @@ UpdateState Paddle::Draw()
 		App->renderer->Draw(rightGun, Layer::Front);
 	}
 	App->renderer->Draw(shape, Layer::Front);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool Paddle::Close()
@@ -119,7 +119,7 @@ void Paddle::Move(float deltaTime)
 	float finalPos = position.x + currentVelocity * deltaTime;
 
 	// Avoid going out of bounds
-	if (finalPos > ARENA_H_BORDER && finalPos + size.x < ARENA_WIDTH + ARENA_H_BORDER)
+	if (finalPos > Globals::ARENA_H_BORDER && finalPos + size.x < Globals::ARENA_WIDTH + Globals::ARENA_H_BORDER)
 	{
 		position.x = finalPos;
 		SetGunsPositions();

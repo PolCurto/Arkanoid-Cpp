@@ -25,19 +25,19 @@ bool Bullet::Start()
 	return true;
 }
 
-UpdateState Bullet::Update(float deltaTime)
+Globals::UpdateState Bullet::Update(float deltaTime)
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	Move(deltaTime);
 	CheckCollisions();
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
-UpdateState Bullet::Draw()
+Globals::UpdateState Bullet::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool Bullet::Close()
@@ -61,7 +61,7 @@ void Bullet::Move(float deltaTime)
 void Bullet::CheckCollisions()
 {
 	// If it goes off screen, disable
-	if (position.y + size.y > ARENA_HEIGHT)
+	if (position.y + size.y > Globals::ARENA_HEIGHT)
 	{
 		isEnabled = false;
 	}

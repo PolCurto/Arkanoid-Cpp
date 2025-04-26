@@ -11,8 +11,8 @@ public:
 	~Paddle() override;
 
 	bool Start() override;
-	UpdateState Update(float deltaTime) override;
-	UpdateState Draw() override;
+	Globals::UpdateState Update(float deltaTime) override;
+	Globals::UpdateState Draw() override;
 	bool Close() override;
 
 	void SpeedUp();

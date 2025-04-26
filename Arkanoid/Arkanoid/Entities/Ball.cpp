@@ -26,7 +26,7 @@ bool Ball::Start()
 	shape.setRadius(10.0f);
 	size = shape.getLocalBounds().size;
 
-	position.x = ARENA_WIDTH / 2.0f - shape.getRadius() + ARENA_H_BORDER;
+	position.x = Globals::ARENA_WIDTH / 2.0f - shape.getRadius() + Globals::ARENA_H_BORDER;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -36,9 +36,9 @@ bool Ball::Start()
 	return true;
 }
 
-UpdateState Ball::Update(float deltaTime)
+Globals::UpdateState Ball::Update(float deltaTime)
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	CheckEffects(deltaTime);
 	Move(deltaTime);
@@ -46,13 +46,13 @@ UpdateState Ball::Update(float deltaTime)
 
 	// Increase ball speed over time
 	currentVelocity += deltaTime * 10;
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
-UpdateState Ball::Draw()
+Globals::UpdateState Ball::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool Ball::Close()
@@ -63,7 +63,7 @@ bool Ball::Close()
 void Ball::Reset()
 {
 	currentVelocity = startVelocity;
-	position.x = ARENA_WIDTH / 2.0f - shape.getRadius() + ARENA_H_BORDER;
+	position.x = Globals::ARENA_WIDTH / 2.0f - shape.getRadius() + Globals::ARENA_H_BORDER;
 	position.y = 500.0f;
 	shape.setPosition(position);
 
@@ -85,7 +85,7 @@ void Ball::Move(float deltaTime)
 	sf::Vector2f finalPos = position + currentVelocity * direction * deltaTime;
 
 	// Gets off stage below, reset ball
-	if (finalPos.y + size.y > SCREEN_HEIGHT)
+	if (finalPos.y + size.y > Globals::SCREEN_HEIGHT)
 	{
 		App->game->OnMiss();
 		return;
@@ -96,12 +96,12 @@ void Ball::Move(float deltaTime)
 	{
 		bool bounce = false;
 
-		if (finalPos.x < ARENA_H_BORDER || finalPos.x + size.x > ARENA_WIDTH + ARENA_H_BORDER)
+		if (finalPos.x < Globals::ARENA_H_BORDER || finalPos.x + size.x > Globals::ARENA_WIDTH + Globals::ARENA_H_BORDER)
 		{
 			bounce = true;
 			direction.x *= -1;
 		}
-		if (finalPos.y < TOP_PANEL_HEIGHT + ARENA_V_BORDER)
+		if (finalPos.y < Globals::TOP_PANEL_HEIGHT + Globals::ARENA_V_BORDER)
 		{
 			bounce = true;
 			direction.y *= -1;

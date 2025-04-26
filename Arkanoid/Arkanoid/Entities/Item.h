@@ -11,8 +11,8 @@ public:
 	virtual ~Item() override;
 
 	virtual bool Start() override;
-	virtual UpdateState Update(float deltaTime) override;
-	virtual UpdateState Draw() override;
+	virtual Globals::UpdateState Update(float deltaTime) override;
+	virtual Globals::UpdateState Draw() override;
 	virtual bool Close() override;
 
 protected:

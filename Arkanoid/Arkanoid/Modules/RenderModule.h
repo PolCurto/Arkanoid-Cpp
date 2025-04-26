@@ -25,8 +25,8 @@ public:
 	~RenderModule() override;
 
 	bool Start() override;
-	UpdateState Update(float deltaTime) override;
-	UpdateState PostUpdate(float deltaTime) override;
+	Globals::UpdateState Update(float deltaTime) override;
+	Globals::UpdateState PostUpdate(float deltaTime) override;
 	bool Close() override;
 
 	void Draw(const sf::Drawable& drawable, const Layer layer); 

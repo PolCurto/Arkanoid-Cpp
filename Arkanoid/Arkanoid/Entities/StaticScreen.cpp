@@ -19,14 +19,14 @@ StaticScreen::~StaticScreen()
 
 bool StaticScreen::Start()
 {
-	shape.setSize(sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT));
+	shape.setSize(sf::Vector2f(Globals::SCREEN_WIDTH, Globals::SCREEN_HEIGHT));
 	shape.setPosition({ 0, 0 });
 	return true;
 }
 
-UpdateState StaticScreen::Draw()
+Globals::UpdateState StaticScreen::Draw()
 {
-	if (!isEnabled) return UPDATE_CONTINUE;
+	if (!isEnabled) return Globals::UpdateState::Continue;
 
 	App->renderer->Draw(shape, Layer::UI);
 
@@ -34,7 +34,7 @@ UpdateState StaticScreen::Draw()
 	{
 		App->renderer->Draw(*label, Layer::UI);
 	}
-	return UPDATE_CONTINUE;
+	return Globals::UpdateState::Continue;
 }
 
 bool StaticScreen::Close()
