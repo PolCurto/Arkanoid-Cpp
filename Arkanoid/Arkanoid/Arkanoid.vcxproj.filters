@@ -119,6 +119,9 @@
     <ClInclude Include="Entities\Destroyer.h">
       <Filter>Entities\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\Globals.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
     <ClInclude Include="Entities\TopPanel.h">
       <Filter>Entities\UI</Filter>
     </ClInclude>
@@ -133,9 +136,6 @@
     </ClInclude>
     <ClInclude Include="Entities\Bullet.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\Globals.h">
-      <Filter>App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

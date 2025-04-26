@@ -13,11 +13,11 @@ class WindowModule : public Module
 {
 public:
 	WindowModule();
-	~WindowModule() override = default;
+	~WindowModule() override;
 
 	bool Start() override;
-	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
+	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
 	sf::RenderWindow* GetWindow() { return window; }

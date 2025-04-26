@@ -15,13 +15,13 @@ public:
 	~ResourcesModule() override = default;
 
 	bool Start() override;
-	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
+	UpdateState Update(float deltaTime) override { return UPDATE_CONTINUE; };
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override { return true; };
 
-	const sf::SoundBuffer* GetAudio(const std::string& name) const;
-	const sf::Texture* GetTexture(const std::string& name) const;
-	const sf::Font* GetFont(const std::string& name) const;
+	const sf::SoundBuffer& GetAudio(const std::string& name) const;
+	const sf::Texture& GetTexture(const std::string& name) const;
+	const sf::Font& GetFont(const std::string& name) const;
 
 private:
 	std::unordered_map<std::string, sf::SoundBuffer> audioBuffers;

@@ -1,15 +1,19 @@
 #include "GameModule.h"
 
-#include "AudioModule.h"
-#include "Application.h"
 #include "Entities/Ball.h"
 #include "Entities/Block.h"
 #include "Entities/Paddle.h"
 #include "Entities/TopPanel.h"
 #include "Entities/StaticScreen.h"
+#include "AudioModule.h"
+#include "Application.h"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
+
+GameModule::GameModule()
+{
+}
 
 GameModule::~GameModule()
 {
@@ -35,30 +39,30 @@ bool GameModule::Start()
 	return state;
 }
 
-Globals::UpdateState GameModule::Update(float deltaTime)
+UpdateState GameModule::Update(float deltaTime)
 {
 	if (isPaused) deltaTime = 0;
 
-	Globals::UpdateState state = Globals::UpdateState::Continue;
+	UpdateState state = UPDATE_CONTINUE;
 	ManageEntities();
 
 	// First update the entities' logic
 	for (Entity* entity : entities)
 	{
 		state = entity->Update(deltaTime);
-		if (state != Globals::UpdateState::Continue) break;
+		if (state != UPDATE_CONTINUE) break;
 	}
 
-	if (state != Globals::UpdateState::Continue) return state;
+	if (state != UPDATE_CONTINUE) return state;
 
 	// Draw them afterwards
 	for (Entity* entity : entities)
 	{
 		state = entity->Draw();
-		if (state != Globals::UpdateState::Continue) break;
+		if (state != UPDATE_CONTINUE) break;
 	}
 	
-	return Globals::UpdateState::Continue;
+	return UPDATE_CONTINUE;
 }
 
 bool GameModule::Close()
@@ -78,6 +82,7 @@ void GameModule::OnMiss()
 {
 	ball->Reset();
 
+	// TODO: subtract score or something like that
 	score -= 100;
 	if (score < 0) score = 0;
 	lives -= 1;
@@ -159,19 +164,19 @@ void GameModule::SetupScene()
 	entities.push_back(ball = new Ball());
 	entities.push_back(paddle = new Paddle());
 
-	// Set all the blocks
 	const std::vector<sf::Color> colors = {
 		sf::Color(143, 143, 143), sf::Color(255, 33, 33), sf::Color(255, 233, 33),
 		sf::Color(31, 128, 255), sf::Color(229, 31, 255), sf::Color(74, 255, 38)
 	};
 
-	const int rows = 6;
-	const int columns = 10;
-	for (int x = 0; x < columns; ++x)
+	// Set all the blocks
+	const uint8_t rows = 6;
+	const uint8_t columns = 10;
+	for (uint8_t x = 0; x < columns; ++x)
 	{
-		for (int y = 0; y < rows; ++y)
+		for (uint8_t y = 0; y < rows; ++y)
 		{
-			const sf::Vector2f position(x * 75.0f + 75.0f + Globals::ARENA_H_BORDER, y * 30.0f + Globals::TOP_PANEL_HEIGHT + Globals::ARENA_V_BORDER + 90);
+			const sf::Vector2f position(x * 75.0f + 75.0f + ARENA_H_BORDER, y * 30.0f + TOP_PANEL_HEIGHT + ARENA_V_BORDER + 90);
 			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
 		}
 	}

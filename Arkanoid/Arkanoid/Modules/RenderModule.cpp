@@ -5,25 +5,35 @@
 
 #include <SFML/Graphics.hpp>
 
+RenderModule::RenderModule(sf::RenderWindow* window) : mainWindow(window)
+{
+
+}
+
+RenderModule::~RenderModule()
+{
+
+}
+
 bool RenderModule::Start()
 {
-	background.setPosition({ 0, Globals::TOP_PANEL_HEIGHT });
-	background.setSize({ Globals::ARENA_WIDTH + (Globals::ARENA_H_BORDER * 2), Globals::ARENA_HEIGHT + Globals::ARENA_V_BORDER });
+	background.setPosition({ 0, TOP_PANEL_HEIGHT });
+	background.setSize({ ARENA_WIDTH + (ARENA_H_BORDER * 2), ARENA_HEIGHT + ARENA_V_BORDER });
 	background.setTexture(&App->resources->GetTexture("background"));
 	return true;
 }
 
-Globals::UpdateState RenderModule::Update(float deltaTime)
+UpdateState RenderModule::Update(float deltaTime)
 {
-	mainWindow->clear({ 0, 0, 0 });
+	mainWindow->clear(sf::Color({ 22, 28, 217 }));
 
 	// Draw background texture
 	Draw(background, Layer::Background);
 
-	return Globals::UpdateState::Continue;
+	return UPDATE_CONTINUE;
 }
 
-Globals::UpdateState RenderModule::PostUpdate(float deltaTime)
+UpdateState RenderModule::PostUpdate(float deltaTime)
 {
 	// Draw all entities by layers order
 	for (int i = 0; i < (int)Layer::Count; ++i)
@@ -36,10 +46,14 @@ Globals::UpdateState RenderModule::PostUpdate(float deltaTime)
 	}
 	mainWindow->display();
 
-	return Globals::UpdateState::Continue;
+	return UPDATE_CONTINUE;
 }
 
 void RenderModule::Draw(const sf::Drawable& drawable, const Layer layer)
 {
 	entitiesToDraw[(int)layer].push_back(&drawable);
+}
+bool RenderModule::Close()
+{
+	return true;
 }

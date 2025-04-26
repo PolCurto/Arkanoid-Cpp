@@ -12,13 +12,13 @@ namespace sf
 class InputModule : public Module
 {
 public:
-	InputModule(sf::RenderWindow* window) : mainWindow(window) {};
-	~InputModule() override = default;
+	InputModule(sf::RenderWindow* window);
+	~InputModule() override;
 
-	bool Start() override { return true; };
-	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
-	bool Close() override { return true; };
+	bool Start() override;
+	UpdateState Update(float deltaTime) override;
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
+	bool Close() override;
 
 	bool IsKeyDown(sf::Keyboard::Scan key) const;
 

@@ -39,22 +39,22 @@ bool Application::Start()
 	return state;
 }
 
-Globals::UpdateState Application::Update(float deltaTime)
+UpdateState Application::Update(float deltaTime)
 {
-	Globals::UpdateState state = Globals::UpdateState::Continue;
+	UpdateState state = UPDATE_CONTINUE;
 
 	for (Module* module : modules)
 	{
 		state = module->Update(deltaTime);
-		if (state != Globals::UpdateState::Continue) break;
+		if (state != UPDATE_CONTINUE) break;
 	}
 
-	if (state != Globals::UpdateState::Continue) return state;
+	if (state != UPDATE_CONTINUE) return state;
 
 	for (Module* module : modules)
 	{
 		state = module->PostUpdate(deltaTime);
-		if (state != Globals::UpdateState::Continue) break;
+		if (state != UPDATE_CONTINUE) break;
 	}
 
 	return state;

@@ -4,10 +4,24 @@
 #include "ResourcesModule.h"
 
 #include <SFML/Audio.hpp>
-
 #include <iostream>
 
-Globals::UpdateState AudioModule::Update(float deltaTime)
+AudioModule::AudioModule()
+{
+
+}
+
+AudioModule::~AudioModule()
+{
+
+}
+
+bool AudioModule::Start()
+{
+	return true;
+}
+
+UpdateState AudioModule::Update(float deltaTime)
 {
 	timer += deltaTime;
 	if (timer >= cleanupRate)
@@ -16,9 +30,12 @@ Globals::UpdateState AudioModule::Update(float deltaTime)
 		CleanUp();
 	}
 
-	std::cout << "Active sounds: " + activeSounds.size() << std::endl;
+	return UPDATE_CONTINUE;
+}
 
-	return Globals::UpdateState::Continue;
+bool AudioModule::Close()
+{
+	return true;
 }
 
 void AudioModule::PlayMusic(const std::string& filename, bool loop)
@@ -55,7 +72,7 @@ void AudioModule::CleanUp()
 		std::remove_if(
 			activeSounds.begin(), activeSounds.end(),
 			[](const std::unique_ptr<sf::Sound>& sound) {
-				return sound->getStatus() == sf::Sound::Status::Stopped;
+				return sound->getStatus() != sf::Sound::Status::Playing;
 			}), 
 		activeSounds.end());
 }

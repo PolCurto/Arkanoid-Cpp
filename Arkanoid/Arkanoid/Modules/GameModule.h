@@ -23,12 +23,12 @@ enum class GameState
 class GameModule : public Module
 {
 public:
-	GameModule() = default;
+	GameModule();
 	~GameModule() override;
 
 	bool Start() override;
-	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
+	UpdateState Update(float deltaTime) override;
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
 	bool Close() override;
 
 	void OnMiss();

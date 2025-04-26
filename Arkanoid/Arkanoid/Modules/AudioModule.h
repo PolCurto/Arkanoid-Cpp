@@ -9,13 +9,13 @@
 class AudioModule : public Module
 {
 public:
-	AudioModule() = default;
-	~AudioModule() override = default;
+	AudioModule();
+	~AudioModule() override;
 
-	bool Start() override { return true; };
-	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
-	bool Close() override { return true; };
+	bool Start() override;
+	UpdateState Update(float deltaTime) override;
+	UpdateState PostUpdate(float deltaTime) override { return UPDATE_CONTINUE; };
+	bool Close() override;
 
 	void PlaySFX(const std::string& name);
 	void StopAllSFX();
@@ -32,6 +32,6 @@ private:
 	std::vector<std::unique_ptr<sf::Sound>> activeSounds;
 	sf::Music music;
 
-	float cleanupRate = 1.0f;
+	float cleanupRate = 1;
 	float timer;
 };
