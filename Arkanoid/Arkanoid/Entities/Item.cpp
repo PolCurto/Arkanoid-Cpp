@@ -5,16 +5,6 @@
 #include "GameModule.h"
 #include "Paddle.h"
 
-Item::Item(const sf::Vector2f position) : Entity(EntityType::Item, position)
-{
-
-}
-
-Item::~Item()
-{
-
-}
-
 bool Item::Start()
 {
 	shape.setRadius(15.0);
@@ -36,11 +26,6 @@ Globals::UpdateState Item::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;
-}
-
-bool Item::Close()
-{
-	return true;
 }
 
 bool Item::CheckCollisions()

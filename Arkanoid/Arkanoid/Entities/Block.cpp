@@ -9,20 +9,7 @@
 
 #include <random>
 
-Block::Block(const sf::Vector2f position, const sf::Color color, const int score) : color(color), score(score), Entity(EntityType::Block, position)
-{
-
-}
-
-Block::Block(const EntityType type) : Entity(type)
-{
-
-}
-
-Block::~Block()
-{
-
-}
+Block::Block(const sf::Vector2f position, const sf::Color color, const int score) : color(color), score(score), Entity(EntityType::Block, position) {}
 
 bool Block::Start()
 {
@@ -34,7 +21,7 @@ bool Block::Start()
 
 	shape.setFillColor(color);
 	shape.setOutlineThickness(-1.0f);
-	shape.setOutlineColor(sf::Color({ 15, 15, 15 }));
+	shape.setOutlineColor({ 15, 15, 15 });
 
 	// Set if has item or not at the creation with a random chance
 	// Code from: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
@@ -69,33 +56,19 @@ bool Block::Start()
 	return true;
 }
 
-Globals::UpdateState Block::Update(float deltaTime)
-{
-	return Globals::UpdateState::Continue;
-}
-
 Globals::UpdateState Block::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;
 }
 
-bool Block::Close()
-{
-	return true;
-}
-
 void Block::OnHit(const int damage)
 {
 	life -= damage;
-
-	if (life == 0) Destroy();
-}
-
-void Block::Destroy()
-{
-	isEnabled = false;
-
-	App->game->AddScore(score);
-	if (itemOnDestroy) itemOnDestroy->SetEnabled(true);	
+	if (life == 0)
+	{
+		isEnabled = false;
+		App->game->AddScore(score);
+		if (itemOnDestroy) itemOnDestroy->SetEnabled(true);
+	}
 }

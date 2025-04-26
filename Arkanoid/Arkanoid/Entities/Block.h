@@ -10,28 +10,26 @@ class Block : public Entity
 {
 public:
 	Block(const sf::Vector2f position, const sf::Color color, const int score);
-	Block(const EntityType type);
-	virtual ~Block() override;
+	Block(const EntityType type) : Entity(type) {};
+	virtual ~Block() override = default;
 
 	virtual bool Start() override;
-	virtual Globals::UpdateState Update(float deltaTime) override;
+	virtual Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
 	virtual Globals::UpdateState Draw() override;
-	virtual bool Close() override;
 
 	void OnHit(const int damage);
 
 	const sf::FloatRect GetBoundingBox() { return shape.getGlobalBounds(); };
 
-private:
-	void Destroy();
-
 protected:
 	sf::RectangleShape shape;
 
+private:
 	sf::Color color;
-	unsigned int life = 1;
-	float itemRate = 0.2f;
 
-	int score;
+	int score = 0;
+	unsigned int life = 1;
+
+	float itemRate = 0.2f;
 	Item* itemOnDestroy = nullptr;
 };

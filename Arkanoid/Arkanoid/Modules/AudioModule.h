@@ -3,19 +3,20 @@
 #include "Module.h"
 
 #include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/Music.hpp>
 #include <memory>
 
 class AudioModule : public Module
 {
 public:
-	AudioModule();
-	~AudioModule() override;
+	AudioModule() = default;
+	~AudioModule() override = default;
 
-	bool Start() override;
+	bool Start() override { return true; };
 	Globals::UpdateState Update(float deltaTime) override;
 	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
-	bool Close() override;
+	bool Close() override { return true; };
 
 	void PlaySFX(const std::string& name);
 	void StopAllSFX();

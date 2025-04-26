@@ -7,13 +7,12 @@
 class Item : public Entity
 {
 public:
-	Item(const sf::Vector2f position);
-	virtual ~Item() override;
+	Item(const sf::Vector2f position) : Entity(EntityType::Item, position) {};
+	virtual ~Item() override = default;
 
 	virtual bool Start() override;
 	virtual Globals::UpdateState Update(float deltaTime) override;
 	virtual Globals::UpdateState Draw() override;
-	virtual bool Close() override;
 
 protected:
 	virtual void Move(float deltaTime) {};

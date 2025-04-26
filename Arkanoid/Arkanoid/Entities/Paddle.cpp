@@ -8,20 +8,10 @@
 #include "ResourcesModule.h"
 #include "Entities/Bullet.h"
 
-Paddle::Paddle() : Block(EntityType::Paddle)
-{
-
-}
-
-Paddle::~Paddle()
-{
-
-}
-
 bool Paddle::Start()
 {
 	velocity = defaultVelocity;
-	size.x = defaultWidth;
+	size.x = 200.0f;
 	size.y = 20.0f;
 	shape.setSize(size);
 
@@ -35,8 +25,8 @@ bool Paddle::Start()
 
 	leftGun.setTexture(App->resources->GetTexture("gun"));
 	rightGun.setTexture(App->resources->GetTexture("gun"));
-	leftGun.setSize({ 30, 60 });
-	rightGun.setSize({ 30, 60 });
+	leftGun.setSize({ 30.0f, 60.0f });
+	rightGun.setSize({ 30.0f, 60.0f });
 	SetGunsPositions();
 
 	// Create bullets pool
@@ -73,11 +63,6 @@ Globals::UpdateState Paddle::Draw()
 	}
 	App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;
-}
-
-bool Paddle::Close()
-{
-	return true;
 }
 
 void Paddle::SpeedUp()

@@ -6,21 +6,6 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 
-AudioModule::AudioModule()
-{
-
-}
-
-AudioModule::~AudioModule()
-{
-
-}
-
-bool AudioModule::Start()
-{
-	return true;
-}
-
 Globals::UpdateState AudioModule::Update(float deltaTime)
 {
 	timer += deltaTime;
@@ -31,11 +16,6 @@ Globals::UpdateState AudioModule::Update(float deltaTime)
 	}
 
 	return Globals::UpdateState::Continue;
-}
-
-bool AudioModule::Close()
-{
-	return true;
 }
 
 void AudioModule::PlayMusic(const std::string& filename, bool loop)

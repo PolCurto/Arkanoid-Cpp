@@ -13,7 +13,7 @@ class WindowModule : public Module
 {
 public:
 	WindowModule();
-	~WindowModule() override = default;
+	~WindowModule() override;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
@@ -23,5 +23,5 @@ public:
 	sf::RenderWindow* GetWindow() { return window; }
 
 private:
-	sf::RenderWindow* window;
+	sf::RenderWindow* window = nullptr;
 };

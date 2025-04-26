@@ -9,6 +9,11 @@ WindowModule::WindowModule()
 	window = new sf::RenderWindow();
 }
 
+WindowModule::~WindowModule()
+{
+	delete window;
+}
+
 bool WindowModule::Start()
 {
 	sf::ContextSettings settings;
@@ -21,6 +26,5 @@ bool WindowModule::Start()
 bool WindowModule::Close()
 {
 	window->close();
-	delete window;
 	return true;
 }

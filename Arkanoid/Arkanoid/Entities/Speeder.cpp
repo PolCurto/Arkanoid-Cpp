@@ -6,16 +6,6 @@
 #include "AudioModule.h"
 #include "Paddle.h"
 
-Speeder::Speeder(const sf::Vector2f position) : Item(position)
-{
-
-}
-
-Speeder::~Speeder()
-{
-
-}
-
 bool Speeder::Start()
 {
 	bool state = Item::Start();
