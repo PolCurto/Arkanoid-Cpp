@@ -5,16 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 
-RenderModule::RenderModule(sf::RenderWindow* window) : mainWindow(window)
-{
-
-}
-
-RenderModule::~RenderModule()
-{
-
-}
-
 bool RenderModule::Start()
 {
 	background.setPosition({ 0, Globals::TOP_PANEL_HEIGHT });
@@ -52,8 +42,4 @@ Globals::UpdateState RenderModule::PostUpdate(float deltaTime)
 void RenderModule::Draw(const sf::Drawable& drawable, const Layer layer)
 {
 	entitiesToDraw[(int)layer].push_back(&drawable);
-}
-bool RenderModule::Close()
-{
-	return true;
 }

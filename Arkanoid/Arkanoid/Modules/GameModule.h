@@ -23,7 +23,7 @@ enum class GameState
 class GameModule : public Module
 {
 public:
-	GameModule();
+	GameModule() = default;
 	~GameModule() override;
 
 	bool Start() override;

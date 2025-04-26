@@ -5,25 +5,9 @@
 
 #include <SFML/Graphics.hpp>
 
-InputModule::InputModule(sf::RenderWindow* window) : mainWindow(window)
-{
-
-}
-
-InputModule::~InputModule()
-{
-
-}
-
-bool InputModule::Start()
-{
-	return true;
-}
-
 Globals::UpdateState InputModule::Update(float deltaTime)
 {
 	Globals::UpdateState state = Globals::UpdateState::Continue;
-
 
 	while (const std::optional<sf::Event> event = mainWindow->pollEvent())
 	{
@@ -41,11 +25,6 @@ Globals::UpdateState InputModule::Update(float deltaTime)
 	}
 
 	return state;
-}
-
-bool InputModule::Close()
-{
-	return true;
 }
 
 bool InputModule::IsKeyDown(sf::Keyboard::Scan key) const

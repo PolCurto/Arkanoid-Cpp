@@ -1,19 +1,15 @@
 #include "GameModule.h"
 
+#include "AudioModule.h"
+#include "Application.h"
 #include "Entities/Ball.h"
 #include "Entities/Block.h"
 #include "Entities/Paddle.h"
 #include "Entities/TopPanel.h"
 #include "Entities/StaticScreen.h"
-#include "AudioModule.h"
-#include "Application.h"
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
-
-GameModule::GameModule()
-{
-}
 
 GameModule::~GameModule()
 {
@@ -82,7 +78,7 @@ void GameModule::OnMiss()
 {
 	ball->Reset();
 
-	// TODO: subtract score or something like that
+	streak = 0;
 	score -= 100;
 	if (score < 0) score = 0;
 	lives -= 1;
@@ -162,14 +158,13 @@ void GameModule::SetupScene()
 {
 	// Game entities
 	entities.push_back(ball = new Ball());
-	entities.push_back(paddle = new Paddle());
+	entities.push_back(paddle = new Paddle());	
 
+	// Set all the blocks
 	const std::vector<sf::Color> colors = {
 		sf::Color(143, 143, 143), sf::Color(255, 33, 33), sf::Color(255, 233, 33),
 		sf::Color(31, 128, 255), sf::Color(229, 31, 255), sf::Color(74, 255, 38)
 	};
-
-	// Set all the blocks
 	const int rows = 6;
 	const int columns = 10;
 	for (int x = 0; x < columns; ++x)

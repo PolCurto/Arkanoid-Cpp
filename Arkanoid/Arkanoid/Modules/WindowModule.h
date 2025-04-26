@@ -13,7 +13,7 @@ class WindowModule : public Module
 {
 public:
 	WindowModule();
-	~WindowModule() override;
+	~WindowModule() override = default;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };

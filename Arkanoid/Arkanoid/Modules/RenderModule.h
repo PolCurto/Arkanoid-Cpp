@@ -21,13 +21,13 @@ enum class Layer
 class RenderModule : public Module
 {
 public:
-	RenderModule(sf::RenderWindow* window);
-	~RenderModule() override;
+	RenderModule(sf::RenderWindow* window) : mainWindow(window) {};
+	~RenderModule() override = default;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override;
 	Globals::UpdateState PostUpdate(float deltaTime) override;
-	bool Close() override;
+	bool Close() override { return true; };
 
 	void Draw(const sf::Drawable& drawable, const Layer layer); 
 

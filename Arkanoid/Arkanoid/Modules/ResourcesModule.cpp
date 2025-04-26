@@ -1,6 +1,5 @@
 #include "ResourcesModule.h"
 
-#include "SFML/Graphics.hpp"
 #include <iostream>
 
 bool ResourcesModule::Start()

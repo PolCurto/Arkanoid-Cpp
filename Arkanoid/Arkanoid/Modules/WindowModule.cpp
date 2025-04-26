@@ -9,11 +9,6 @@ WindowModule::WindowModule()
 	window = new sf::RenderWindow();
 }
 
-WindowModule::~WindowModule()
-{
-
-}
-
 bool WindowModule::Start()
 {
 	sf::ContextSettings settings;

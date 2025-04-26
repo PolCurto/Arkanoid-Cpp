@@ -75,7 +75,7 @@ void AudioModule::CleanUp()
 		std::remove_if(
 			activeSounds.begin(), activeSounds.end(),
 			[](const std::unique_ptr<sf::Sound>& sound) {
-				return sound->getStatus() != sf::Sound::Status::Playing;
+				return sound->getStatus() == sf::Sound::Status::Stopped;
 			}), 
 		activeSounds.end());
 }

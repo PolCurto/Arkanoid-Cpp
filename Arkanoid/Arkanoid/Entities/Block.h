@@ -30,7 +30,7 @@ protected:
 
 	sf::Color color;
 	unsigned int life = 1;
-	float itemRate = 0.1f;
+	float itemRate = 0.2f;
 
 	int score;
 	Item* itemOnDestroy = nullptr;
