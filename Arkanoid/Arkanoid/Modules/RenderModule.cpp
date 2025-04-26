@@ -19,7 +19,7 @@ bool RenderModule::Start()
 {
 	background.setPosition({ 0, Globals::TOP_PANEL_HEIGHT });
 	background.setSize({ Globals::ARENA_WIDTH + (Globals::ARENA_H_BORDER * 2), Globals::ARENA_HEIGHT + Globals::ARENA_V_BORDER });
-	background.setTexture(&App->resources->GetTexture("background"));
+	background.setTexture(App->resources->GetTexture("background"));
 	return true;
 }
 

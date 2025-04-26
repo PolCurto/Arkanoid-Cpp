@@ -55,7 +55,10 @@ void StaticScreen::SetBackground(const sf::Color& color)
 
 void StaticScreen::AddLabel(const std::string& text, const int size, const sf::Color& color, const sf::Vector2f& position)
 {
-	sf::Text* newLabel = new sf::Text(App->resources->GetFont("HomeVideo"));
+	const sf::Font* font = App->resources->GetFont("HomeVideo");
+	if (!font) return;
+
+	sf::Text* newLabel = new sf::Text(*font);
 
 	newLabel->setString(text);
 	newLabel->setCharacterSize(size);

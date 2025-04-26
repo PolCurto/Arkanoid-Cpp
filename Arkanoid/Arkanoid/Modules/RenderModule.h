@@ -10,7 +10,7 @@ namespace sf
 	class Text;
 }
 
-enum class Layer : uint8_t
+enum class Layer
 {
 	Background = 0,
 	Front,

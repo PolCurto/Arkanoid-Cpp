@@ -5,7 +5,7 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 
-enum class EntityType: uint8_t
+enum class EntityType
 {
 	Block,
 	Paddle,

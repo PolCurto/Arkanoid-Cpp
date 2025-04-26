@@ -33,8 +33,8 @@ bool Paddle::Start()
 	shape.setOutlineThickness(2.0f);
 	shape.setOutlineColor({ 15, 15, 15 });
 
-	leftGun.setTexture(&App->resources->GetTexture("gun"));
-	rightGun.setTexture(&App->resources->GetTexture("gun"));
+	leftGun.setTexture(App->resources->GetTexture("gun"));
+	rightGun.setTexture(App->resources->GetTexture("gun"));
 	leftGun.setSize({ 30, 60 });
 	rightGun.setSize({ 30, 60 });
 	SetGunsPositions();

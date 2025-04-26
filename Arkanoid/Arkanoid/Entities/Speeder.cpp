@@ -20,7 +20,7 @@ bool Speeder::Start()
 {
 	bool state = Item::Start();
 
-	shape.setTexture(&App->resources->GetTexture("speederItem"));
+	shape.setTexture(App->resources->GetTexture("speederItem"));
 
 	return state;
 }

@@ -50,7 +50,10 @@ void AudioModule::PlayMusic(const std::string& filename, bool loop)
 
 void AudioModule::PlaySFX(const std::string& name)
 {
-	std::unique_ptr<sf::Sound> sound = std::make_unique<sf::Sound>(App->resources->GetAudio(name));
+	const sf::SoundBuffer* buffer = App->resources->GetAudio(name);
+	if (!buffer) return;
+
+	std::unique_ptr<sf::Sound> sound = std::make_unique<sf::Sound>(*buffer);
 	sound->setVolume(30);
 	sound->play();
 	activeSounds.emplace_back(std::move(sound));

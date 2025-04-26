@@ -21,7 +21,7 @@ bool Gun::Start()
 	bool state = Item::Start();
 
 	velocity = 600.0f;
-	shape.setTexture(&App->resources->GetTexture("gunItem"));
+	shape.setTexture(App->resources->GetTexture("gunItem"));
 
 	return state;
 }

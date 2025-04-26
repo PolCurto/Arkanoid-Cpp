@@ -170,11 +170,11 @@ void GameModule::SetupScene()
 	};
 
 	// Set all the blocks
-	const uint8_t rows = 6;
-	const uint8_t columns = 10;
-	for (uint8_t x = 0; x < columns; ++x)
+	const int rows = 6;
+	const int columns = 10;
+	for (int x = 0; x < columns; ++x)
 	{
-		for (uint8_t y = 0; y < rows; ++y)
+		for (int y = 0; y < rows; ++y)
 		{
 			const sf::Vector2f position(x * 75.0f + 75.0f + Globals::ARENA_H_BORDER, y * 30.0f + Globals::TOP_PANEL_HEIGHT + Globals::ARENA_V_BORDER + 90);
 			entities.push_back(new Block(position, colors[y], (6 - y) * 10));
