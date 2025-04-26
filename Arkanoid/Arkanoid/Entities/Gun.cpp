@@ -6,16 +6,6 @@
 #include "GameModule.h"
 #include "Paddle.h"
 
-Gun::Gun(const sf::Vector2f position) : Item(position)
-{
-
-}
-
-Gun::~Gun()
-{
-
-}
-
 bool Gun::Start()
 {
 	bool state = Item::Start();

@@ -7,20 +7,9 @@
 #include "Block.h"
 #include "Paddle.h"
 
-#include <iostream>
-
-Ball::Ball() : Entity(EntityType::Ball)
-{
-	currentVelocity = startVelocity;
-}
-
-Ball::~Ball()
-{
-
-}
-
 bool Ball::Start()
 {
+	currentVelocity = startVelocity;
 	paddleTimer = 0;
 
 	shape.setRadius(10.0f);
@@ -53,11 +42,6 @@ Globals::UpdateState Ball::Draw()
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;
-}
-
-bool Ball::Close()
-{
-	return true;
 }
 
 void Ball::Reset()

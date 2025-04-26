@@ -15,6 +15,11 @@ StaticScreen::StaticScreen() : Entity(EntityType::UI)
 
 StaticScreen::~StaticScreen()
 {
+	for (sf::Text* label : labels)
+	{
+		delete label;
+	}
+	labels.clear();
 }
 
 bool StaticScreen::Start()
@@ -35,17 +40,6 @@ Globals::UpdateState StaticScreen::Draw()
 		App->renderer->Draw(*label, Layer::UI);
 	}
 	return Globals::UpdateState::Continue;
-}
-
-bool StaticScreen::Close()
-{
-	for (sf::Text* label : labels)
-	{
-		delete label;
-	}
-
-	labels.clear();
-	return true;
 }
 
 void StaticScreen::SetBackground(const sf::Color& color)

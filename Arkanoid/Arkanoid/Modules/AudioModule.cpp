@@ -4,7 +4,6 @@
 #include "ResourcesModule.h"
 
 #include <SFML/Audio.hpp>
-#include <iostream>
 
 Globals::UpdateState AudioModule::Update(float deltaTime)
 {

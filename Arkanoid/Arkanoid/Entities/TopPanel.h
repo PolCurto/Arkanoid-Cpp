@@ -18,9 +18,7 @@ public:
 	~TopPanel() override;
 
 	bool Start() override;
-	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
 	Globals::UpdateState Draw() override;
-	bool Close() override;
 
 	void SetScore(int newScore, sf::Color color = sf::Color::Red);
 	void SetLife(const int lives);
@@ -28,11 +26,8 @@ public:
 protected:
 	sf::RectangleShape shape;
 
-	sf::Font font;
-
-	sf::Text* scoreLabel;
-	sf::Text* score;
-
-	sf::Text* lifeLabel;
-	sf::Text* life;
+	sf::Text* scoreLabel = nullptr;
+	sf::Text* score = nullptr;
+	sf::Text* lifeLabel = nullptr;
+	sf::Text* life = nullptr;
 };

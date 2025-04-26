@@ -23,5 +23,5 @@ public:
 	bool IsKeyDown(sf::Keyboard::Scan key) const;
 
 private:
-	sf::RenderWindow* mainWindow;
+	sf::RenderWindow* mainWindow = nullptr;
 };

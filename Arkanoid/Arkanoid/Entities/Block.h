@@ -14,7 +14,6 @@ public:
 	virtual ~Block() override = default;
 
 	virtual bool Start() override;
-	virtual Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
 	virtual Globals::UpdateState Draw() override;
 
 	void OnHit(const int damage);

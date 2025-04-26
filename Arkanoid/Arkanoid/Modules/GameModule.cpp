@@ -192,13 +192,13 @@ void GameModule::SetupScene()
 	// Victory screen
 	entities.push_back(victoryScreen = new StaticScreen());
 	victoryScreen->SetBackground({ 0, 30, 0 });
-	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(200.0f, 350.0f));
+	victoryScreen->AddLabel("YOU WIN!", 120, sf::Color::Green, sf::Vector2f(195.0f, 350.0f));
 
 	// Start screen
 	entities.push_back(startScreen = new StaticScreen());
 	startScreen->SetBackground({ 0, 0, 50 });
-	startScreen->AddLabel("ARKANOID", 80, sf::Color::Yellow, sf::Vector2f(285.0f, 300.0f));
-	startScreen->AddLabel("Press enter to start", 36, sf::Color::White, sf::Vector2f(259.0f, 450.0f));
+	startScreen->AddLabel("ARKANOID", 100, sf::Color::Yellow, sf::Vector2f(240.0f, 300.0f));
+	startScreen->AddLabel("Press enter to start", 42, sf::Color::White, sf::Vector2f(230.0f, 500.0f));
 	startScreen->SetEnabled(true);
 
 	App->audio->PlayMusic("Audio/startScreen.wav");

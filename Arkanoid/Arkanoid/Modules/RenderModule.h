@@ -32,7 +32,7 @@ public:
 	void Draw(const sf::Drawable& drawable, const Layer layer); 
 
 private:
-	sf::RenderWindow* mainWindow;
+	sf::RenderWindow* mainWindow = nullptr;
 	sf::RectangleShape background;
 
 	std::vector<const sf::Drawable*> entitiesToDraw[(int)Layer::Count];

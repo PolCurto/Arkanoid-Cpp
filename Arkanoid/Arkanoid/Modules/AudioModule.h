@@ -34,5 +34,5 @@ private:
 	sf::Music music;
 
 	float cleanupRate = 1;
-	float timer;
+	float timer = 0;
 };

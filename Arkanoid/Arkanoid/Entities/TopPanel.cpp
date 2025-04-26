@@ -3,24 +3,28 @@
 #include "Application.h"
 #include "RenderModule.h"
 #include "GameModule.h"
+#include "ResourcesModule.h"
 
 #include <SFML/Graphics/Text.hpp>
 
-
 TopPanel::TopPanel() : Entity(EntityType::UI)
 {
-	if (font.openFromFile("HomeVideo-BLG6G.ttf"))
+	const sf::Font* font = App->resources->GetFont("HomeVideo");
+	if (font)
 	{
-		scoreLabel = new sf::Text(font);
-		score = new sf::Text(font);
-		lifeLabel = new sf::Text(font);
-		life = new sf::Text(font);
+		scoreLabel = new sf::Text(*font);
+		score = new sf::Text(*font);
+		lifeLabel = new sf::Text(*font);
+		life = new sf::Text(*font);
 	}
 }
 
 TopPanel::~TopPanel()
 {
-
+	delete scoreLabel;
+	delete score;
+	delete lifeLabel;
+	delete life;
 }
 
 bool TopPanel::Start()
@@ -62,17 +66,6 @@ Globals::UpdateState TopPanel::Draw()
 	App->renderer->Draw(*lifeLabel, Layer::UI);
 	App->renderer->Draw(*life, Layer::UI);
 	return Globals::UpdateState::Continue;
-}
-
-bool TopPanel::Close()
-{
-	delete scoreLabel;
-	delete score;
-
-	delete lifeLabel;
-	delete life;
-
-	return true;
 }
 
 void TopPanel::SetScore(int newScore, sf::Color color)

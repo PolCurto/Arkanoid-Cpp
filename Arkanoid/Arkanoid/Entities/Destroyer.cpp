@@ -5,16 +5,6 @@
 #include "GameModule.h"
 #include "Ball.h"
 
-Destroyer::Destroyer(const sf::Vector2f position) : Item(position)
-{
-
-}
-
-Destroyer::~Destroyer()
-{
-
-}
-
 bool Destroyer::Start()
 {
 	bool state = Item::Start();

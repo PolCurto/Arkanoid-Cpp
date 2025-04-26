@@ -6,16 +6,6 @@
 #include "GameModule.h"
 #include "Entities/Block.h"
 
-Bullet::Bullet() : Entity(EntityType::Bullet, position)
-{
-
-}
-
-Bullet::~Bullet()
-{
-
-}
-
 bool Bullet::Start()
 {
 	shape.setSize({ 5.0f, 15.0f });
@@ -40,11 +30,6 @@ Globals::UpdateState Bullet::Draw()
 	return Globals::UpdateState::Continue;
 }
 
-bool Bullet::Close()
-{
-	return true;
-}
-
 void Bullet::OnShot(const sf::Vector2f& newPos)
 {
 	position = newPos;
@@ -61,10 +46,7 @@ void Bullet::Move(float deltaTime)
 void Bullet::CheckCollisions()
 {
 	// If it goes off screen, disable
-	if (position.y + size.y > Globals::ARENA_HEIGHT)
-	{
-		isEnabled = false;
-	}
+	if (position.y + size.y > Globals::ARENA_HEIGHT) isEnabled = false;
 
 	// Check collisions with blocks
 	for (Entity* entity : App->game->GetAllEntities())

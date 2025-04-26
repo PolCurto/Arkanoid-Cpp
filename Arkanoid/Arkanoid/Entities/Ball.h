@@ -7,13 +7,12 @@
 class Ball : public Entity
 {
 public:
-	Ball();
-	~Ball() override;
+	Ball() : Entity(EntityType::Ball) {};
+	~Ball() override = default;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override;
 	Globals::UpdateState Draw() override;
-	bool Close() override;
 
 	void Reset();
 	void Upgrade();
@@ -31,7 +30,7 @@ private:
 	sf::Vector2f direction = {0.0f, 1.0f};
 	float startVelocity = 400;
 	float maxVelocity = 700;
-	float currentVelocity;
+	float currentVelocity = 0;
 
 	int hitDamage = 1;
 
@@ -41,7 +40,6 @@ private:
 
 	float paddleCollisionTime = 0.3f;
 	float paddleTimer;
-
 	float wallCollisionTime = 0.1f;
 	float wallTimer;
 
