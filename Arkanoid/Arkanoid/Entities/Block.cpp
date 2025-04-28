@@ -56,7 +56,7 @@ bool Block::Start()
 	return true;
 }
 
-Globals::UpdateState Block::Draw()
+Globals::UpdateState Block::Draw() const
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;

@@ -7,12 +7,12 @@
 class Bullet : public Entity
 {
 public:
-	Bullet() : Entity(EntityType::Bullet, position) {};
+	Bullet() : Entity(EntityType::Bullet, position) {}
 	~Bullet() override = default;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState Draw() override;
+	Globals::UpdateState Draw() const override;
 
 	void OnShot(const sf::Vector2f& newPos);
 

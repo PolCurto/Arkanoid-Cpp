@@ -58,7 +58,7 @@ Globals::UpdateState GameModule::Update(float deltaTime)
 		if (state != Globals::UpdateState::Continue) break;
 	}
 	
-	return Globals::UpdateState::Continue;
+	return state;
 }
 
 bool GameModule::Close()
@@ -229,14 +229,12 @@ void GameModule::ManageEntities()
 
 bool GameModule::AreBlocksLeft()
 {
-	bool areLeft = false;
-
 	for (Entity* entity : entities)
 	{
-		if (entity->GetType() == EntityType::Block && entity->IsEnabled()) areLeft = true;
+		if (entity->GetType() == EntityType::Block && entity->IsEnabled()) return true;
 	}
 
-	return areLeft;
+	return false;
 }
 
 void GameModule::EndGame()

@@ -28,7 +28,7 @@ public:
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
+	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; }
 	bool Close() override;
 
 	void OnMiss();
@@ -49,14 +49,14 @@ private:
 	bool AreBlocksLeft();
 	void EndGame();
 
-	Ball* ball;
-	Paddle* paddle;
-	TopPanel* topPanel;
+	Ball* ball = nullptr;
+	Paddle* paddle = nullptr;
+	TopPanel* topPanel = nullptr;
 
-	StaticScreen* pauseScreen;
-	StaticScreen* startScreen;
-	StaticScreen* gameOverScreen;
-	StaticScreen* victoryScreen;
+	StaticScreen* pauseScreen = nullptr;
+	StaticScreen* startScreen = nullptr;
+	StaticScreen* gameOverScreen = nullptr;
+	StaticScreen* victoryScreen = nullptr;
 
 	std::vector<Entity*> entities;
 	std::vector<Entity*> entitiesToAdd;

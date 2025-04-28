@@ -40,9 +40,9 @@ void AudioModule::PlaySFX(const std::string& name)
 
 void AudioModule::StopAllSFX()
 {
-	for (int i = 0; i < activeSounds.size(); ++i)
+	for (const auto& sound : activeSounds)
 	{
-		activeSounds[i]->stop();
+		sound->stop();
 	}
 }
 

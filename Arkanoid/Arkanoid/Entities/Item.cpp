@@ -22,7 +22,7 @@ Globals::UpdateState Item::Update(float deltaTime)
 	return Globals::UpdateState::Continue;
 }
 
-Globals::UpdateState Item::Draw()
+Globals::UpdateState Item::Draw() const
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;

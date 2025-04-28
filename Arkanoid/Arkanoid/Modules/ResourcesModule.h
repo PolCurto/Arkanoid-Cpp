@@ -15,9 +15,9 @@ public:
 	~ResourcesModule() override = default;
 
 	bool Start() override;
-	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; };
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
-	bool Close() override { return true; };
+	Globals::UpdateState Update(float deltaTime) override { return Globals::UpdateState::Continue; }
+	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; }
+	bool Close() override { return true; }
 
 	const sf::SoundBuffer* GetAudio(const std::string& name) const;
 	const sf::Texture* GetTexture(const std::string& name) const;

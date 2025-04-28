@@ -10,15 +10,15 @@ class Block : public Entity
 {
 public:
 	Block(const sf::Vector2f position, const sf::Color color, const int score);
-	Block(const EntityType type) : Entity(type) {};
+	Block(const EntityType type) : Entity(type) {}
 	virtual ~Block() override = default;
 
 	virtual bool Start() override;
-	virtual Globals::UpdateState Draw() override;
+	virtual Globals::UpdateState Draw() const override;
 
 	void OnHit(const int damage);
 
-	const sf::FloatRect GetBoundingBox() { return shape.getGlobalBounds(); };
+	const sf::FloatRect GetBoundingBox() const { return shape.getGlobalBounds(); }
 
 protected:
 	sf::RectangleShape shape;

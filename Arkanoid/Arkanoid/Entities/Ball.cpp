@@ -16,7 +16,7 @@ bool Ball::Start()
 	size = shape.getLocalBounds().size;
 
 	position.x = Globals::ARENA_WIDTH / 2.0f - shape.getRadius() + Globals::ARENA_H_BORDER;
-	position.y = 500.0f;
+	position.y = 800.0f;
 	shape.setPosition(position);
 
 	shape.setFillColor(defaultColor);
@@ -34,11 +34,13 @@ Globals::UpdateState Ball::Update(float deltaTime)
 	CheckCollisions();
 
 	// Increase ball speed over time
-	currentVelocity += deltaTime * 10;
+	constexpr float maxVelocity = 800.0f;
+	if (currentVelocity < maxVelocity) currentVelocity += deltaTime * 10;
+
 	return Globals::UpdateState::Continue;
 }
 
-Globals::UpdateState Ball::Draw()
+Globals::UpdateState Ball::Draw() const
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;
@@ -48,10 +50,10 @@ void Ball::Reset()
 {
 	currentVelocity = startVelocity;
 	position.x = Globals::ARENA_WIDTH / 2.0f - shape.getRadius() + Globals::ARENA_H_BORDER;
-	position.y = 500.0f;
+	position.y = 800.0f;
 	shape.setPosition(position);
 
-	direction = { 0.0f, 1.0f };
+	direction = { 0.0f, -1.0f };
 }
 
 void Ball::Upgrade()
@@ -66,7 +68,7 @@ void Ball::Upgrade()
 
 void Ball::Move(float deltaTime)
 {
-	sf::Vector2f finalPos = position + currentVelocity * direction * deltaTime;
+	const sf::Vector2f finalPos = position + currentVelocity * direction * deltaTime;
 
 	// Gets off stage below, reset ball
 	if (finalPos.y + size.y > Globals::SCREEN_HEIGHT)
@@ -118,7 +120,7 @@ void Ball::CheckCollisions()
 				block->OnHit(hitDamage);
 			}
 		}
-		else if (entityType == EntityType::Paddle && paddleTimer <= 0)
+		else if (entityType == EntityType::Paddle && paddleTimer <= 0.0f)
 		{
 			if (shape.getGlobalBounds().findIntersection(static_cast<Paddle*>(entity)->GetBoundingBox()))
 			{
@@ -139,16 +141,16 @@ void Ball::Bounce(const Entity* otherEnt)
 
 void Ball::CheckEffects(float deltaTime)
 {
-	if (paddleTimer > 0) paddleTimer -= deltaTime;
-	if (wallTimer > 0) wallTimer -= deltaTime;
+	if (paddleTimer > 0.0f) paddleTimer -= deltaTime;
+	if (wallTimer > 0.0f) wallTimer -= deltaTime;
 
 	if (!isDestroyer) return;
 
 	timer -= deltaTime;
-	if (timer <= 0)
+	if (timer <= 0.0f)
 	{
 		RemoveEffect();
-		timer = 0;
+		timer = 0.0f;
 	}
 }
 

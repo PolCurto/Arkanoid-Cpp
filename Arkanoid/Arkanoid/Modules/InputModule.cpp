@@ -3,7 +3,7 @@
 #include "Application.h"
 #include "GameModule.h"
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 Globals::UpdateState InputModule::Update(float deltaTime)
 {

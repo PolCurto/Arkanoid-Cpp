@@ -4,7 +4,6 @@
 
 #include <string>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Font.hpp>
 
 namespace sf
 {
@@ -18,7 +17,7 @@ public:
 	~StaticScreen() override;
 
 	bool Start() override;
-	Globals::UpdateState Draw() override;
+	Globals::UpdateState Draw() const override;
 
 	void SetBackground(const sf::Color& color);
 	void AddLabel(const std::string& text, const int size, const sf::Color& color, const sf::Vector2f& position);

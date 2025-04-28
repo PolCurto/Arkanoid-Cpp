@@ -7,12 +7,12 @@
 class Ball : public Entity
 {
 public:
-	Ball() : Entity(EntityType::Ball) {};
+	Ball() : Entity(EntityType::Ball) {}
 	~Ball() override = default;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState Draw() override;
+	Globals::UpdateState Draw() const override;
 
 	void Reset();
 	void Upgrade();
@@ -27,9 +27,8 @@ private:
 private:
 	sf::CircleShape shape;
 
-	sf::Vector2f direction = {0.0f, 1.0f};
+	sf::Vector2f direction = {0.0f, -1.0f};
 	float startVelocity = 400;
-	float maxVelocity = 700;
 	float currentVelocity = 0;
 
 	int hitDamage = 1;
@@ -39,9 +38,9 @@ private:
 	float destroyerDuration = 5.0f;
 
 	float paddleCollisionTime = 0.3f;
-	float paddleTimer;
+	float paddleTimer = 0;
 	float wallCollisionTime = 0.1f;
-	float wallTimer;
+	float wallTimer = 0;
 
 	sf::Color defaultColor = sf::Color({ 0, 179, 255 });
 	sf::Color defaultOutlineColor = sf::Color::White;

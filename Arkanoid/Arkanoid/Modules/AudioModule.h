@@ -13,10 +13,10 @@ public:
 	AudioModule() = default;
 	~AudioModule() override = default;
 
-	bool Start() override { return true; };
+	bool Start() override { return true; }
 	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; };
-	bool Close() override { return true; };
+	Globals::UpdateState PostUpdate(float deltaTime) override { return Globals::UpdateState::Continue; }
+	bool Close() override { return true; }
 
 	void PlaySFX(const std::string& name);
 	void StopAllSFX();
@@ -24,7 +24,7 @@ public:
 	void PlayMusic(const std::string& filename, bool loop = true);
 	void PauseMusic() { music.pause(); }
 	void ResumeMusic() { music.play(); }
-	void StopMusic() { music.stop(); };
+	void StopMusic() { music.stop(); }
 
 private:
 	void CleanUp();

@@ -29,7 +29,7 @@ bool StaticScreen::Start()
 	return true;
 }
 
-Globals::UpdateState StaticScreen::Draw()
+Globals::UpdateState StaticScreen::Draw() const
 {
 	if (!isEnabled) return Globals::UpdateState::Continue;
 

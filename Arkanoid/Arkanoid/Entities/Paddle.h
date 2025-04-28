@@ -7,12 +7,12 @@ class Bullet;
 class Paddle : public Block
 {
 public:
-	Paddle() : Block(EntityType::Paddle) {};
+	Paddle() : Block(EntityType::Paddle) {}
 	~Paddle() override = default;
 
 	bool Start() override;
 	Globals::UpdateState Update(float deltaTime) override;
-	Globals::UpdateState Draw() override;
+	Globals::UpdateState Draw() const override;
 
 	void SpeedUp();
 	void AddGun();
@@ -25,7 +25,7 @@ private:
 	void Shoot(float deltaTime);
 
 private:
-	sf::Color defaultColor = sf::Color({ 125, 125, 125 });
+	sf::Color defaultColor = sf::Color( 125, 125, 125 );
 
 	float currentVelocity = 0;
 	float defaultVelocity = 600;

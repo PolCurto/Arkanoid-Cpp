@@ -24,9 +24,8 @@ bool Paddle::Start()
 	shape.setOutlineColor({ 15, 15, 15 });
 
 	leftGun.setTexture(App->resources->GetTexture("gun"));
-	rightGun.setTexture(App->resources->GetTexture("gun"));
 	leftGun.setSize({ 30.0f, 60.0f });
-	rightGun.setSize({ 30.0f, 60.0f });
+	rightGun = leftGun;
 	SetGunsPositions();
 
 	// Create bullets pool
@@ -52,7 +51,7 @@ Globals::UpdateState Paddle::Update(float deltaTime)
 	return Globals::UpdateState::Continue;
 }
 
-Globals::UpdateState Paddle::Draw()
+Globals::UpdateState Paddle::Draw() const
 {
 	if (!isEnabled) return Globals::UpdateState::Continue;
 
@@ -87,12 +86,10 @@ void Paddle::GetInputs(float deltaTime)
 	{
 		currentVelocity -= velocity;
 	}
-
 	if (App->input->IsKeyDown(sf::Keyboard::Scan::Right))
 	{
 		currentVelocity += velocity;
 	}
-
 	if (hasGuns && App->input->IsKeyDown(sf::Keyboard::Scan::Space))
 	{
 		Shoot(deltaTime);
@@ -101,7 +98,7 @@ void Paddle::GetInputs(float deltaTime)
 
 void Paddle::Move(float deltaTime)
 {
-	float finalPos = position.x + currentVelocity * deltaTime;
+	const float finalPos = position.x + currentVelocity * deltaTime;
 
 	// Avoid going out of bounds
 	if (finalPos > Globals::ARENA_H_BORDER && finalPos + size.x < Globals::ARENA_WIDTH + Globals::ARENA_H_BORDER)
@@ -152,7 +149,7 @@ void Paddle::Shoot(float deltaTime)
 	App->audio->PlaySFX("shot");
 
 	// Reuse the same bullets in the pool to avoid creating and destroying them
-	if (bulletIndex >= bullets.size()) bulletIndex = 0;
+	if (bulletIndex >= bullets.size() - 1) bulletIndex = 0;
 
 	bullets[bulletIndex]->OnShot({ position.x + 12, position.y - 65 });
 	bullets[bulletIndex + 1]->OnShot({ position.x + size.x - 12, position.y - 65 });

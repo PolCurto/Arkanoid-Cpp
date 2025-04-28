@@ -2,9 +2,7 @@
 
 #include "Entity.h"
 
-#include <string>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Font.hpp>
 
 namespace sf
 {
@@ -18,7 +16,7 @@ public:
 	~TopPanel() override;
 
 	bool Start() override;
-	Globals::UpdateState Draw() override;
+	Globals::UpdateState Draw() const override;
 
 	void SetScore(int newScore, sf::Color color = sf::Color::Red);
 	void SetLife(const int lives);

@@ -3,7 +3,6 @@
 #include "Globals.h"
 
 #include <vector>
-#include <memory>
 
 class Module;
 class WindowModule;

@@ -56,7 +56,7 @@ bool TopPanel::Start()
 	return true;
 }
 
-Globals::UpdateState TopPanel::Draw()
+Globals::UpdateState TopPanel::Draw() const
 {
 	if (!isEnabled) return Globals::UpdateState::Continue;
 

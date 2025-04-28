@@ -24,7 +24,7 @@ Globals::UpdateState Bullet::Update(float deltaTime)
 	return Globals::UpdateState::Continue;
 }
 
-Globals::UpdateState Bullet::Draw()
+Globals::UpdateState Bullet::Draw() const
 {
 	if (isEnabled) App->renderer->Draw(shape, Layer::Front);
 	return Globals::UpdateState::Continue;
