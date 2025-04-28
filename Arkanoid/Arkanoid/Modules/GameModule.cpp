@@ -137,6 +137,8 @@ void GameModule::AddScore(int newScore)
 
 void GameModule::PauseGame()
 {
+	if (state != GameState::Playing) return;
+
 	isPaused = !isPaused;
 	pauseScreen->SetEnabled(isPaused);
 	if (isPaused) App->audio->PauseMusic();

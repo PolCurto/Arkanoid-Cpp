@@ -46,7 +46,7 @@ void Bullet::Move(float deltaTime)
 void Bullet::CheckCollisions()
 {
 	// If it goes off screen, disable
-	if (position.y + size.y > Globals::ARENA_HEIGHT) isEnabled = false;
+	if (position.y < Globals::TOP_PANEL_HEIGHT + Globals::ARENA_V_BORDER) isEnabled = false;
 
 	// Check collisions with blocks
 	for (Entity* entity : App->game->GetAllEntities())
